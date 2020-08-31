@@ -1,0 +1,12 @@
+{
+    "values": [
+    {
+        "name": "{{continue}}",
+        "replace": ""
+    },
+    {
+        "name": "{{cancel}}",
+        "replace": "cancel = true, message.channel.send(embed('Prompt Cancelled', 'Response given was cancel.', guild, '#'))"
+    }
+]
+}
