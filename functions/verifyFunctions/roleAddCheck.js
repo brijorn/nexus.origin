@@ -12,6 +12,20 @@ module.exports = async (bot, message, guild, type='reg', extra='N/A') => {
     let addedRole = ''
     let rolesRemoved = []
     let currentrole = undefined
+    // Highest Role Information
+
+    let highestroleobj = ''
+    let highestrolehier = 0
+    let highestrolename = 'Guest'
+    let highestroletype = ''
+
+    async function setHighest(obj, asset=false, name) {
+        highestrolehier = obj.hierarchy
+        highestroleobj = obj
+        if (asset === true) {highestrolename = await rbx.getProductInfo(obj.assetId); highestroletype='asset'}
+        if (asset === false) {highestrolename = name; highestroletype='rank'}
+        return
+    }
     if (guild.verificationSettings.verifiedRole !== 'none') {
         if (!member.roles.cache.has(guild.verificationSettings.verifiedRole)) {
             member.roles.add(guild.verificationSettings.verifiedRole)
@@ -26,6 +40,7 @@ module.exports = async (bot, message, guild, type='reg', extra='N/A') => {
         for (i=0; i < array.length; i++) {
             const asset = array[i]
             if (member.roles.cache.has(asset.roleId) && message.guild.roles.cache.get(asset.roleId)) {
+                if (asset.hierarchy > highestrolehier) setHighest(asset, true)
                 const owns = await usr.ownsAsset(robloxUser, asset.assetID)
                 if (owns = true) { user.roles.add(asset.roleId); rolesAdded.push(guildLoc.cache.get(asset.roleId).name)}
             }
@@ -39,32 +54,35 @@ module.exports = async (bot, message, guild, type='reg', extra='N/A') => {
         }
         // Here begins Shit Hole
 
-        // Get their rank in the linked group
         let currentRank = 0
-        // If their In the group
         for (b=0; b < guild.roleBinds.length; b++) {
-            console.log('inside')
             const obj = guild.roleBinds[b]
             const roles = obj.binds
-            const rank = await rbx.getRankInGroup(obj.Id, rouser)
-            let rankname = rbx.getRankNameInGroup(obj.id, rouser)
+            const rank = await rbx.getRankInGroup(obj.id, rouser)
+            let rankname = await rbx.getRankNameInGroup(obj.id, rouser)
             const objrank = roles.find(a => a.rank === rank)
-            console.log(objrank)
             if (!objrank) return
             if (rank > 0 && objrank && !member.roles.cache.find(r => r.id === objrank.roleId)) {
-                const oldrole = member.roles.cache.find(r => roles.includes(r.id))
-                try { member.roles.add(objrank.roleId); rolesAdded.push(guildLoc.roles.cache.get(objrank.roleId).name)}
-                catch { message.channel.send(embed('Error', `Failed to give you the role with the Id of ${objrank.roleId}, If you can, make sure this role exists.`, guild))}
+                if (objrank.hierarchy >= highestrolehier) setHighest(objrank, false, rankname)
+                const toRemove = roles.find(r => r.roles.find(o => member.roles.cache.has(o) === true))
+
+                if (toRemove && toRemove.roles.length > 0) { try { toRemove.roles.forEach(r => { if (objrank.roles.includes(r)) return; member.roles.remove(r); rolesRemoved.push(guildLoc.roles.cache.get(r).name) }); } catch(err) {console.log(err); message.channel.send(embed('Error', `Failed to remove Roles, this is usually a permissions error.`, guild, 'failure', false, true))} }
+                try { objrank.roles.forEach(r => {
+                    if (message.member.roles.cache.get(r)) return
+                    member.roles.add(r); 
+                    rolesAdded.push(guildLoc.roles.cache.get(r).name)});}
+                catch { message.channel.send(embed('Error', `Failed to give you one of the following roles: ${objrank.roles.map(e => `<@&${e}>`).join(', ')}, If you can, make sure this role exists.`, guild, 'failure', false, true))}
             }
             else if (obj.main === true && member.roles.cache.find(r => r.id === objrank.roleId)) {currentrole = guildLoc.roles.cache.get(objrank.roleId).name; currentRank = rank}
             if (!objrank) currentrole = null 
 
         }
-       const roleInfoName = (currentRank === 0) ? 'Not In Group' : currentrole
-       const roleInfo = {
-           rank: currentRank,
-           groupRankInfo: roleInfoName,
-       }
+        const roleInfo = {
+            type: highestroletype,
+            name: highestrolename,
+            obj: highestroleobj
+
+        }
     return {
         rolesAdded,
         rolesRemoved,

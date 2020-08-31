@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args, guild) => {
   const numbers = new RegExp("^[0-9]+$");
   const setup1 = embed(
     "Group Setup",
-    "What is the **ID** of the group?\nThis will wipe all bindings for the group with this Id.\n\nRespond **cancel** to cancel",
+    "What is the **ID** of the group?\nThis will wipe all bindings for the group with this id or previous main group.\n\nRespond **cancel** to cancel",
     guild
   );
   const groupid = await prompt.editStart(message, setup1);
@@ -53,7 +53,7 @@ module.exports.run = async (bot, message, args, guild) => {
     // Ask them if they want to bind the guild ranks
     const askToBind = embed(
       "Rank Binding",
-      `Would you like to bind your group ranks to the Server?\n*Note:* If you do not create them now, you can create them later with the command \`${guild.prefix}bind group [rank] [tag: tag or none] [role, roles]\n\nRespond \`yes\` or \`no\`\nRespond **cancel** to cancel.`,
+      `Would you like to bind your group ranks to the Server?\n*Note:* If you do not create them now, you can create them later with the command \`${guild.prefix}bind group [rank] [tag: tag or none] [role, roles]\`\n\nRespond \`yes\` or \`no\`\nRespond **cancel** to cancel.`,
       guild,
       'def', false
     )
@@ -72,7 +72,7 @@ module.exports.run = async (bot, message, args, guild) => {
       'def',
       false
     );
-    const rankask = await prompt.editprompt(message, groupid.message, setup3, "lower");
+    const rankask = await prompt.editPrompt(message, groupid.message, setup3, "lower");
     if (rankask === "merge") {
       const mergeRank = require("../../functions/setupFunctions/mergeRank");
       const mergeRankFunc = await mergeRank(

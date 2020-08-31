@@ -7,11 +7,13 @@ const guildModel = require('../../models/guildModel/guild')
 module.exports = async (bot, message, msgToEdit, groupid, guild) => {
 
     let oldbinds = guild.roleBinds.find(o => o.main === true || o.id === groupid)
+    oldbinds = {}
     const newbindsObj = {
-        Id: groupid,
+        id: groupid,
         main: true,
         binds: [],
     }
+    guild.markModified('roleBinds')
     await guild.save()
     const search = await fetch(`https://groups.roblox.com/v1/groups/${groupid}/roles`).then(response => response.json())
     .then(async bod => {
@@ -33,8 +35,8 @@ module.exports = async (bot, message, msgToEdit, groupid, guild) => {
             }).then(async darole => {
                         // Creating and Saving Roles as Objects and praying this stupid method works
                         const RoleObj = {
+                            id: element.id,
                             rank: element.rank,
-                            rankName: element.name,
                             nickname: 'default',
                             roles: [darole.id],
                             hierarchy: 1,
@@ -48,8 +50,8 @@ module.exports = async (bot, message, msgToEdit, groupid, guild) => {
             const role = message.guild.roles.cache.find(role => role.name === element.name).id
                     // Creating and Saving Roles as Objects and praying this stupid method works
                     const RoleObj = {
+                        id: element.id,
                         rank: element.rank,
-                        rankName: element.name,
                         nickname: 'default',
                         roles: [role],
                         hierarchy: 1,

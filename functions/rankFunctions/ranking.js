@@ -4,7 +4,6 @@ const editprompt = require("../../prompt/editprompt");
 const verificationModel = require("../../models/verificationModel/verification");
 const embed = require("../embed");
 const fetch = require("node-fetch");
-const getRank = require('../../lib/roblox/group//getGroupRanks');
 
 module.exports = async (bot, message, guild, rank, msgToEdit) => {
   const val = undefined
@@ -37,10 +36,9 @@ module.exports = async (bot, message, guild, rank, msgToEdit) => {
       )
     );
   msgToEdit.edit(embed("none", "Ranking you in the group please wait.", guild));
-  const userRank = await getRank(guild.robloxGroup, user, "name");
   const setrank = parseInt(userrank.rank);
   const ranking = await noblox
-    .setRank({ group: guild.robloxGroup, target: user, rank: setrank })
+    .setRank({ group: guild.robloxGroup, target: user, rank: userrank.rank })
     .catch((msg) => {
       value = msg;
       if (msg === '403')

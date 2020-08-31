@@ -88,5 +88,3 @@ bot.on('message', async message => {
 })
 bot.mongoose.init()
 bot.login(config.token)
-
-message.channel.send(`${date.getDay} days, ${date.getHours()} hours and ${date.getMinutes} minutes`)

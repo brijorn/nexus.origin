@@ -2,10 +2,8 @@ const embed = require('../../embed')
 const config = require('../../../config.json')
 const { MessageEmbed } = require('discord.js')
 const verification = require('../../../models/verificationModel/verification')
-const editStart = require('../../../prompt/editStartPrompt')
-const editprompt = require('../../../prompt/editprompt')
 const enabledisable = require('../../../lib/enabledisable')
-const role = require('../../../lib/role')
+const role = require('../../../lib/parse/index').role
 module.exports = async (bot, message, args, guild) => {
     console.log(args)
     if (!args[1]) {
@@ -22,7 +20,7 @@ module.exports = async (bot, message, args, guild) => {
         .setDescription(`You can run the command ${guild.prefix}settings verification <setting> to change a setting.`)
         .addField('Group', `[${guild.robloxGroup}](https://www.roblox.com/groups/${guild.robloxGroup})`, true)
         .addField('VerifiedRole', `${message.guild.roles.cache.get(verification.verifiedRole)} : ${verification.verifiedRole}`, true)
-        .addField('Bound Roles', guild.roleBindings.length, true)
+        .addField('Bound Roles', guild.roleBinds.find(o => o.main === true).binds.length, true)
         .addField('UnverifiedEnabled', unverifiedStatus, true)
         .addField('UnverifiedRole', unverifiedRoleStatus, true)
         .addField('AutoVerify', autoVerifyStatus, true)

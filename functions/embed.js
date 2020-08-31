@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-module.exports = (title, description, guild, color = '#ab2db3', footer=true) => {
+module.exports = (title, description, guild, color = '#ab2db3', footer=true, timestamp=false) => {
     if (color === 'def') color = guild.embedInfo.color
 
     // Convert word to color so I dont have to fucking require config.json
@@ -17,6 +17,7 @@ module.exports = (title, description, guild, color = '#ab2db3', footer=true) => 
         else {
             embed.setColor(color)
         }
+        if (timestamp === true) embed.setTimestamp()
         
         return embed
     }
@@ -32,6 +33,7 @@ module.exports = (title, description, guild, color = '#ab2db3', footer=true) => 
         else {
             embed.setColor(color)
         }
+        if (timestamp === true) embed.setTimestamp()
         return embed;
     }
 

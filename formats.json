@@ -1,34 +1,53 @@
 {
     "nicknameformats": [
     {
-        "name": "{robloxname}",
+        "name": "{{robloxname}}",
         "changeto": "newUsername",
         "description": "Changes to their roblox username"
     },
     {
-        "name": "{rank}",
-        "changeto": "roleInfo.rank",
-        "description": "Changes to their group rank number"
-    },
-    {
-        "name": "{rankname}",
+        "name": "{{rankname}}",
         "changeto": "roleInfo.groupRankInfo.rankName",
         "description": "Changes to their group rank name"
     },
     {
-        "name": "{brackets-only}",
+        "name": "{{brackets-only}}",
         "changeto": "format.substring(format.indexOf(\"[\")+1,format.indexOf(\"]\"))",
         "description": "Changes to the rank information in [] brackets. EG: [ABC] Alpha becomes ABC"
     },
     {
-        "name": "{discordname}",
+        "name": "{{discordname}}",
         "changeto": "message.author.username",
         "description": "Converts to the user's discord name."
     },
     {
-        "name": "{discord-discrim}",
+        "name": "{{discordtag}}",
         "changeto": "message.author.discriminator",
         "description": "Changes to the user's tag, eg: 0962"
     }
-]
+],
+    "asset": [
+        {
+            "name": "{{assetname}}",
+            "changeto": "a"
+        },
+        {
+            "name": "{{hierarchy}}",
+            "changeto": "roleInfo.obj.hierarchy"
+        }
+    ],
+    "rank": [
+        {
+            "name": "{{rank}}",
+            "changeto": "roleInfo.obj.rank"
+        },
+        {
+            "name": "{{hierarchy}}",
+            "changeto": "roleInfo.obj.hierarchy"
+        },
+        {
+            "name": "{{rankname}}",
+            "changeto": "roleInfo.name"
+        }
+    ]
 }

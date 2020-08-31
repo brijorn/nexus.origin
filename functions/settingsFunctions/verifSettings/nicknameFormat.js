@@ -8,7 +8,7 @@ const { MessageEmbed } = require('discord.js')
 
 module.exports = async (bot, message, args, guild) => {
     if (!args[2]) {
-        const note = '\nYou can also accompany these with regular text. Such as, `Hi, {discordname}#{discord-discrim}` or `[{rank}]{robloxname}`'
+        const note = '\nYou can also accompany these with regular text. Such as, `Hi, {{discordname}}#{discordtag}}` or `[{{rank}}]{{robloxname}}`'
         const list = formats.nicknameformats.map(each => `${each.name} -> ${each.description}`).join('\n\n')
         const startmsg = new MessageEmbed()
         .setTitle('Nickname Formats')

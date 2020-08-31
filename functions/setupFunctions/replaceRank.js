@@ -22,10 +22,11 @@ module.exports = async (bot, message, msgToEdit, groupid, guild) => {
     let oldbinds = guild.roleBinds.find(o => o.main === true || o.id === groupid)
     oldbinds = {}
     const newbindsObj = {
-        Id: groupid,
+        id: groupid,
         main: true,
         binds: [],
     }
+    guild.markModified('roleBinds')
     await guild.save()
     const check = await message.guild.roles.cache.forEach(async role => {
     if (!deletableRole(role)) return
@@ -33,7 +34,7 @@ module.exports = async (bot, message, msgToEdit, groupid, guild) => {
     if (role.id === message.guild.id) return
     // Moderation
     if (guild.moderation.mutedrole === role.id) return
-    if (guild.roleBinds.find(o => o.roles.find(p => p.roleId === role.id))) return
+    if (guild.roleBinds.find(o => o.binds.find(p => p.roleId === role.id))) return
     if (guild.moderation.modrole.find(o => {
         let split = o.match(/\d+/)[0]
         return (split === role.id)
@@ -67,10 +68,10 @@ module.exports = async (bot, message, msgToEdit, groupid, guild) => {
               })
         	    .then(async darole => {
                         const RoleObj = {
+                            id: element.id,
                             rank: element.rank,
-                            roleId: darole.id,
                             nickname: 'default',
-                            roles: [role],
+                            roles: [darole.id],
                             hierarchy: 1,
                         }
                         
@@ -80,7 +81,7 @@ module.exports = async (bot, message, msgToEdit, groupid, guild) => {
         return roles.length
     })
     oldbinds = newbindsObj
-    info.markModified('roleBinds')
-    await info.save()
+    guild.markModified('roleBinds')
+    await guild.save()
     return search
 }

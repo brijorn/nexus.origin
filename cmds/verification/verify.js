@@ -11,7 +11,7 @@ const nicknaming = require('../../functions/verifyFunctions/nicknaming')
 const thumbnail = require('../../functions/thumbnailFunction')
 module.exports.run = async (bot, message, args, guild) => {
     const sendtype = (guild.verificationSettings.dmVerifications === true) ? await message.author : await message.channel
-    const prompt = (guild.verificationSettings.dmVerifications === true) ? dmprompt : prompt
+    const ask = (guild.verificationSettings.dmVerifications === true) ? dmprompt : prompt
     await message.react('740748381223256075')
     const setCookie = (!guild.robloxToken) ? await rbx.setCookie(config.robloxtoken) : await rbx.setCookie(guild.robloxToken)
 
@@ -27,11 +27,11 @@ module.exports.run = async (bot, message, args, guild) => {
             if (roleAdd !== undefined) {
                 if (roleAdd.rolesAdded.length !== 0) {
                     const eachrole = roleAdd.rolesAdded.map(each => `${each}`)
-                    Verified.addField('Roles Added', eachrole)
+                    Verified.addField('Roles Added', eachrole, true)
                 }
                 if (roleAdd.rolesRemoved.length !== 0) {
-                    const eachrole = roelAdd.rolesRemoved.map(each => `${each}`)
-                    Verified.addField('Roles Removed', eachrole)
+                    const eachrole = roleAdd.rolesRemoved.map(each => `${each}`)
+                    Verified.addField('Roles Removed', eachrole, true)
                 }
             
                 if (guild.verificationSettings.nicknaming === true) {
@@ -53,7 +53,7 @@ module.exports.run = async (bot, message, args, guild) => {
                 .setTitle("Verification")
                 .setDescription(`What is your roblox username?`)
                 .setColor("#f79a36")
-                const res = await prompt(message, daembed)
+                const res = await ask(message, daembed)
                 verify(message, bot, res, guild)
             }
             else {
