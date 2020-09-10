@@ -1,44 +1,58 @@
-const embed = require('../embed')
-const config = require('../../config.json')
-const substring = require('../substring')
-module.exports = async (bot, message, guild, args) => {
-    const firstargs = ['enable', 'disable', 'cooldown']
-    if (!firstargs.includes(args[1])) return message.channel.send(embed('none', 'Missing Arguments\n\nSyntax: `settings suggestion <enable, disable, cooldown> <#channel>`\n Tip: You do not need to give a channel when disabling.', guild, config.failure))
-    if (!guild.suggestionInfo) {
-        guild.suggestionInfo = {
-            enabled: false,
-            channel: '',
-            cooldown: 20
-        }
-        await guild.save()
-    }
-    if (args[1] === 'disable') {
-        message.channel.send(embed('none', `${config.disabled} Successfully disabled suggestions for your guild.`, guild, config.success))
-        guild.suggestionInfo = {
-            enabled: false,
-        }
-        guild.markModified('suggestionInfo')
-        await guild.save()
-    }
-    if (args[1] === 'enable') {
-        if (args[2].startsWith('<#') === false) return message.channel.send(embed('none', 'Missing Arguments\n\nSyntax: `settings suggestion <enable, disable> <#channel>`\n Tip: You do not need to give a channel when disabling.', config.failure))
-        const finishedchannel = await substring(args[2], 'channel')
-        if (finishedchannel === false) return message.channel.send('Channel Error', 'Invalid Channel Given.', config.failure)
-        if (!message.guild.channels.cache.get(finishedchannel)) return message.channel.send(embed('none', 'Could not find given channel.', config.failure))
-        message.channel.send(embed('none', 'Successfully enabled Suggestions for ' + '<#' + finishedchannel + '>', guild, config.success))
-        guild.suggestionInfo = {
-            enabled: true,
-            channel: finishedchannel
-        }
-        guild.markModified('suggestionInfo')
-        await guild.save()
-    }
-    if (args[1].includes('cooldown')) {
-        if (!args[2]) return message.channel.send(embed('none', 'Please give a time in seconds for the cooldown.', guild, config.failure))
-        if (isNaN(args[2]) === true) return message.channel.send(embed('none', 'The cooldown time must be a number in seconds.', guild, config.failure))
-        guild.suggestionInfo.cooldown = args[2] * 1000
-        guild.markModified('suggestionInfo')
-        await guild.save()
-        message.channel.send(embed('none', 'Successfully set the cooldown time to ' + `\`${args[2]}\``, guild, config.success))
-    }
-}
+const embed = require('../../functions/embed');
+const functions = require('../../db/suggestions/schema');
+const { Client, Message, MessageEmbed } = require('discord.js');
+/**
+ *
+ * @param { Client } bot
+ * @param { Message } message
+ * @param {*} args
+ */
+module.exports = async (bot, message, args, guild) => {
+	args = args.map(e => e.toLowerCase());
+	const res = await functions.get(message.guild.id);
+	if (res === false && args[1] !== 'create') {
+		return message.channel.send(embed('none', `There is no suggestions data for this guild, to start using it,
+        run the command ${guild.prefix}settings suggestions create.`, guild, true, true));
+	}
+	if (args[1] === 'create') {
+		await functions.enable(message);
+		return message.channel.send(embed('none', 'Suggestion data successfully created.', guild, args, true, true));
+	}
+	if (!args[1]) {
+		const channel = (res.channel.length < 1) ? 'None' : `<#${res.channel}>`;
+		const sgstInfo = new MessageEmbed()
+			.setTitle('Suggestions')
+			.setDescription(`Values can be edited with ${guild.prefix}settings suggestions <value>`)
+			.addField('Enabled', res.enabled, true)
+			.addField('Channel', channel, true)
+			.addField('Amount', res.amount, true)
+			.addField('FirstReaction', res.FirstReaction, true)
+			.addField('SecondReaction', res.SecondReaction);
+		return message.channel.send(sgstInfo);
+	}
+	if (args[1] === 'channel') {
+		const parse = require('../../lib/parse');
+		if (!args[2]) return message.channel.send('Please give a channel to set suggestions to.');
+		const channel = (await parse.channel(bot, message, args[2])).pre;
+		functions.update(message, 'channel', channel);
+		return message.channel.send(embed('Channel Changed', `Successfully set the suggestions channel to <#${channel}>`, guild, 'success', false, true));
+	}
+	if (args[1].startsWith('first')) {
+		if (!args[2]) return message.channel.send('Please give the emoji or custom emoji Id to be used for the first reaction.');
+		functions.update(message, 'FirstReaction', args[2]);
+		return message.channel.send(embed('Reaction Changed', 'Successfully changed the first reaction. *If it is not reacted on this message it did not work.*', guild, 'success', false, true))
+			.then(msg => {
+				try{ msg.react(args[2]); }
+				catch { return; }
+			});
+	}
+	if (args[1].startsWith('second')) {
+		if (!args[2]) return message.channel.send('Please give the emoji or custom emoji Id to be used for the first reaction.');
+		functions.update(message, 'SecondReaction', args[2]);
+		return message.channel.send(embed('Reaction Changed', 'Successfully changed the second reaction. *If it is not reacted on this message it did not work.*', guild, 'success', false, true))
+			.then(msg => {
+				try{ msg.react(args[2]); }
+				catch { return; }
+			});
+	}
+};

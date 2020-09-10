@@ -1,33 +1,59 @@
-const embed = require("../../embed")
-const formats = require('./welcomeformats.json')
-const { success } = require('../../../config.json')
-module.exports = async(bot, message, guild, args, msgToEdit) => {
-    if (guild.welcome.message === 'none') return msgToEdit.edit(embed('none', 'You have no welcome messages set up.', guild, '#'))
-    let welcomemsg = guild.welcome.message
-    let welcometitle = guild.welcome.embedTitle
-    const member = message.member
+const embed = require('../../embed');
+const formats = require('./welcomeformats.json');
+const { success } = require('../../../config.json');
+const { MessageEmbed, Client, Message } = require('discord.js');
+const moment = require('moment-timezone')
+/**
+ * 
+ * @param { Client } bot 
+ * @param { Message } message 
+ * @param {*} guild 
+ * @param {*} args 
+ * @param {*} welcome 
+ */
+module.exports = async (bot, message, guild, args, welcome) => {
 
-    formats.formats.forEach(each => {
-        if (welcomemsg.includes(each.name)) {
-            welcomemsg = welcomemsg.replace(each.name, eval(each.changeto))
-        }
-    })
-    if (guild.welcome.embedTitle !== 'none') {
-        formats.formats.forEach(each => {
-            if (welcometitle.includes(each.name)) {
-                welcometitle = welcometitle.replace(each.name, eval(each.changeto))
-            }
-        })
-    }
-    const sendto = (guild.welcome.channel === 'dm') ? message.author : message.guild.channels.cache.get(guild.welcome.channel)
-    
-    if (guild.welcome.embed === true) {
-        const msg = embed(welcometitle, welcomemsg, guild)
-        msg.setFooter('Test welcome message by ' + message.author.username + '#' + message.author.discriminator)
-        sendto.send(msg)
-    }
-    if (guild.welcome.embed === false) {
-        sendto.send(welcomemsg)
-    }
-    msgToEdit.edit(embed('none', 'Welcome message sent successfully.', guild, success))
+	const member = message.member;
+	const welcomemsg = welcome.welcome_message
+
+	const data = welcome.embed
+	const theEmbed = new MessageEmbed()
+	for (const [key, value] of Object.entries(data)) {
+		let newval = value
+		formats.formats.forEach(e => {
+			if (typeof newval === "string") {
+				if (newval.includes(e.name)) {
+					newval = newval.replace(new RegExp(e.name, 'g'), eval(e.changeto));
+				}
+			}
+		})
+		data[key] = newval
+	}
+	try {
+		if (data.title !== 'none') theEmbed.setTitle(data.title)
+		if (data.description !== 'none') theEmbed.setDescription(data.description)
+		if (data.color !== 'none') theEmbed.setColor(data.color)
+		if (data.footer !== 'none') theEmbed.setFooter(data.footer, (data.footerlogo !== 'none') ? data.footerlogo : '')
+		if (data.image !== 'none') theEmbed.setImage(data.image)
+		if (data.thumbnail !== 'none') theEmbed.setThumbnail(data.thumbnail)
+	}
+	catch(error) {
+		console.log(error.message)
+		message.channel.send(error.message)
+	}
+
+	const sendto = (welcome.dm === true) ? message.author : message.guild.channels.cache.get(welcome.channel);
+
+
+	if (welcome.embed.enabled === false) {
+		if (welcomemsg === 'none') return message.channel.send('No welcome message is setup')
+		sendto.send(welcomemsg);
+	}
+	else sendto.send(theEmbed);
+
+	message.channel.send(embed('none', 'Welcome message sent successfully.', guild, 'success', false, false));
+};
+
+function escapeRegExp(string) {
+	return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }

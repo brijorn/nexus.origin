@@ -1,0 +1,8 @@
+{
+    "gameplaceholders": [
+        {
+            "name": "{randusername}",
+            "changeto": "message.guild.members.cache.random().user.username"
+        }
+    ]
+}

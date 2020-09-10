@@ -1,34 +1,44 @@
 {
     "formats": [
         {
-            "name": "{user}",
+            "name": "{{user}}",
             "changeto": "member.user",
             "description": "Mentions the User"
         },
         {
-            "name": "{user.name}",
+            "name": "{{user.name}}",
             "changeto": "member.user.username",
             "description": "The user's discord username"
         },
         {
-            "name": "{user.discrim}",
+            "name": "{{user.avatar}}",
+            "changeto": "member.user.avatarURL()",
+            "description": "Gets the image link for the user's avatar"
+        },
+        {
+            "name": "{{user.discrim}}",
             "changeto": "member.user.discriminator",
             "description": "The user's discord tag"
         },
         {
-            "name": "{membercount}",
+            "name": "{{membercount}}",
             "changeto": "member.guild.memberCount",
             "description": "The guild's membercount"
         },
         {
-            "name": "{guild.name}",
+            "name": "{{guild.name}}",
             "changeto": "member.guild.name",
             "description": "The guild's name"
         },
         {
-            "name": "{guild.icon}",
+            "name": "{{guild.icon}}",
             "changeto": "member.guild.iconURL()",
             "description": "The guild's icon"
+        },
+        {
+            "name": "{{user.createdAt}}",
+            "changeto": "moment(member.user.createdTimestamp).format('MMMM Do, YYYY')",
+            "description": "Get the time a user's account was created"
         }
     ]
 }
