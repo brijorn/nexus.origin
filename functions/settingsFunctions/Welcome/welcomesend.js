@@ -1,5 +1,5 @@
 const formats = require('./welcomeformats.json');
-const { MessageEmbed, GuildMember, GuildMember } = require('discord.js');
+const { MessageEmbed, GuildMember } = require('discord.js');
 const moment = require('moment-timezone')
 const functions = require('../../../db/welcome/schema')
 /**
@@ -37,11 +37,11 @@ module.exports = async (member, guild) => {
 		message.channel.send(error.message)
 	}
 
-	const sendto = (welcome.dm === true) ? message.author : message.guild.channels.cache.get(welcome.channel);
+	const sendto = (welcome.dm === true) ? message.author : member.guild.channels.cache.get(welcome.channel);
 
 
 	if (welcome.embed.enabled === false) {
-		if (welcomemsg === 'none') return message.channel.send('No welcome message is setup')
+		if (welcomemsg === 'none') return
 		sendto.send(welcomemsg);
 	}
 	else sendto.send(theEmbed);

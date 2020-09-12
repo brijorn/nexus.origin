@@ -65,7 +65,9 @@ bot.on('guildMemberAdd', async (member) => {
 			.catch(() => message.guild.owner.send('There seems to be a problem with the **Unverified** role.'));
 	}
 });
-
+bot.on('messageReactionAdd', (reaction, user) => {
+	const messageid = reaction.message.id
+})
 bot.on('message', async message => {
 	const start = Date.now()
 	if (message.channel.type === 'dm') return;
@@ -78,9 +80,15 @@ bot.on('message', async message => {
 	if (!message.content.startsWith(prefix)) return;
 
 	// Message content array
-	const messageArray = message.content.split(' ');
-
+	const messageArray = message.content.split(' ')
+	const ticketing = require('./lib/ticketing/main')
+	const getpanel = require('./db/ticketing/panel')
+	await ticketing(bot, message, guild, 'command')
 	// Remove command and lowerCase
+	const end = Date.now()
+
+	const finish = new Date(end - start)
+	console.log(finish.getSeconds() + ' Seconds ' + finish.getMilliseconds() + ' Milliseconds')
 	const cmd = messageArray[0].slice(prefix.length).toLowerCase();
 
 	// Get the command file
@@ -101,10 +109,6 @@ bot.on('message', async message => {
 	const cooldown = await cooldownCheck(message, cooldowns, cmdFile, prefix);
 	if (cmdFile && cooldown === false) await cmdFile.run(bot, message, args, guild, user);
 
-	const end = Date.now()
-
-	const finish = new Date(end - start).getMilliseconds()
-	console.log(finish)
 });
 bot.mongoose.init();
 bot.login(process.env.TOKEN);

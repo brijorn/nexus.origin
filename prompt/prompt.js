@@ -9,14 +9,13 @@ module.exports = async (message, prompt) => {
 		.then(collected => {
 
 			// Ifs
-			if (content === 'cancel') return message.channel.send('Canceled');
-			if (content === 'cancel') return undefined;
+			const content = collected.first().content
 			return content;
 		})
 		.catch(_ => {
 			// If the author waited too long, delete the prompt
 			instance.delete();
 
-			return message.channel.send('You waited to long. (3m)');
+			return undefined;
 		});
 };
