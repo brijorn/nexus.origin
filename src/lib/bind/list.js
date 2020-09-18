@@ -9,12 +9,12 @@ exports.menu = async function(message, binds) {
 	console.log(binds);
 	const menu = new MessageEmbed()
 		.setTitle('Server Bindings');
-	for (i = 0;i < binds.RoleBinds.length; i++) {
+	for (let i = 0;i < binds.RoleBinds.length; i++) {
 		const group = binds.RoleBinds[i];
 		const name = (group.main === true) ? `📌${group.id}` : group.id;
 		menu.addField(name, `Type: **Group**\nBindings: **${group.binds.length}**`, true);
 	}
-	for (i = 0; i < binds.AssetBinds.length && binds.AssetBinds; i++) {
+	for (let i = 0; i < binds.AssetBinds.length && binds.AssetBinds; i++) {
 		const asset = binds.AssetBinds[i];
 		menu.addField(asset.assetId, `
         Type: **Asset**

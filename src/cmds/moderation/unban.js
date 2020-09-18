@@ -3,7 +3,6 @@
 const errors = require('../../lib/errors');
 const { success, failure, token } = require('../../config.json');
 const embed = require('../../functions/embed');
-const moderate = require('../../lib/moderation');
 const { MessageEmbed } = require('discord.js');
 const Axios = require('axios').default;
 async function getBan(guild) {

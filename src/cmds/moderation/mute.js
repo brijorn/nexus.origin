@@ -5,7 +5,6 @@ const parse = require('../../lib/parse/index');
 const errors = require('../../lib/errors');
 const { success, failure } = require('../../config.json');
 const embed = require('../../functions/embed');
-const moderate = require('../../lib/moderation');
 
 module.exports.run = async (bot, message, args, guild) => {
 	const error = await errors(message, guild);

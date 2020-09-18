@@ -2,7 +2,6 @@ const errors = require('../../lib/errors');
 const embed = require('../../functions/embed');
 const { success, checkemoji } = require('../../config.json');
 const { MessageEmbed } = require('discord.js');
-const moderate = require('../../lib/moderation');
 const parse = require('../../lib/parse/index');
 module.exports.run = async (bot, message, args, guild) => {
 	const error = await errors(message, guild);

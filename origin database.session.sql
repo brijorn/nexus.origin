@@ -1,0 +1,1 @@
+SELECT * FROM "guild" AND SELECT * FROM "ticketing"."ticket_interfaces"
