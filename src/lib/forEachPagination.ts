@@ -1,7 +1,10 @@
+import { Client, GuildMember, Message, MessageReaction } from "discord.js";
+import GuildSettings from "../db/guild/types";
+
 const embed = require('../functions/embed');
 const { MessageEmbed } = require('discord.js');
 const { enabled, disabled } = require('../config.json');
-module.exports = async (bot, message, args, guild, data, timeout = true) => {
+export default async (bot: Client, message: Message, guild: GuildSettings, data: any[], timeout = true) => {
 	const pages = data;
 	let page = 1;
 	const maxpage = pages.length - 1;
@@ -12,7 +15,7 @@ module.exports = async (bot, message, args, guild, data, timeout = true) => {
 		mainpage.react('⬅️');
 		mainpage.react('➡️');
 	}
-	const filter = (reaction, user) => {
+	const filter = (reaction: MessageReaction, user: GuildMember) => {
 		return ['⬅️', '➡️'].includes(reaction.emoji.name) && user.id === message.author.id;
 	};
 

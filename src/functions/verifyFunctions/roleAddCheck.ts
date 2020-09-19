@@ -1,10 +1,10 @@
 import embed from '../embed';
 import noblox, { getProductInfo } from 'noblox.js';
-import { ownsAsset } from '../../lib/roblox/user/index';
+import { CheckOwnership } from '../../lib/roblox/user/index';
+
 import { Client, Message } from 'discord.js';
 import GuildSettings from '../../db/guild/types';
-import { GetUser } from '../../db/verification/user/schema';
-import { VerificationSettings } from '../../db/verification/types';
+import { VerificationSettings, VerificationUser } from '../../db/verification/types';
 export default async (bot: Client, message: Message, guild: GuildSettings, verification: VerificationSettings, type: string = 'reg', extra: any = 'N/A') => {
 	const member = (type === 'reg') ? message.member : extra;
 	const id = (type === 'reg') ? message.author.id : extra.id;
@@ -31,22 +31,21 @@ export default async (bot: Client, message: Message, guild: GuildSettings, verif
 		if (asset === false) {highestrolename = name; highestroletype = 'rank';}
 		return;
 	}
-	if (verification.VerifiedRole) {
-		if (!member.roles.cache.has(verification.VerifiedRole)) {
+	if (verification.verifiedRole) {
+		if (!member.roles.cache.has(verification.verifiedRole)) {
 			try {
-			member.roles.add(verification.VerifiedRole);
-			rolesAdded.push(member.guild.roles.cache.get(verification.VerifiedRole).name);
+			member.roles.add(verification.verifiedRole);
+			rolesAdded.push(member.guild.roles.cache.get(verification.verifiedRole).name);
 			}
 			catch { return }
 		}
 	}
-	const rouser = (await GetUser(id)).PrimaryAccount;
-
+	const rouser = (await new VerificationUser().get(id)).primaryAccount;
 	// Check if they own any assets
 	async function ownedAssets(robloxUser: any, user: any, array: any[]) {
 		for (let i = 0; i < array.length; i++) {
 			const asset = array[i];
-			const owns = await ownsAsset(robloxUser, asset.assetId);
+			const owns: Boolean = false
 			if (owns === true) {
 				if (asset.hierarchy > highestrolehier) setHighest(asset, true);
 				asset.roles.forEach((r: any) => {
@@ -61,17 +60,17 @@ export default async (bot: Client, message: Message, guild: GuildSettings, verif
 			}
 		}
 	}
-	if (verification.AssetBinds.length > 0) {
-		await ownedAssets(rouser, member, verification.AssetBinds);
+	if (verification.roleBinds.length > 0) {
+		await ownedAssets(rouser, member, verification.roleBinds);
 	}
-	if (verification.GamePassBinds.length > 0) {
-		await ownedAssets(rouser, member, verification.GamePassBinds);
+	if (verification.roleBinds.length > 0) {
+		await ownedAssets(rouser, member, verification.roleBinds);
 	}
 	// Here begins Shit Hole
 
 	const currentRank = 0;
-	for (let b = 0; b < verification.RoleBinds.length; b++) {
-		const obj = verification.RoleBinds[b];
+	for (let b = 0; b < verification.roleBinds.length; b++) {
+		const obj = verification.roleBinds[b];
 		const roles = obj.binds;
 		const rank = await noblox.getRankInGroup(obj.id, rouser as any);
 		const rankname = await noblox.getRankNameInGroup(obj.id, rouser as any);

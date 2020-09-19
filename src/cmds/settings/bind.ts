@@ -1,58 +1,80 @@
-const bind = require('../../lib/bind/index');
-const embed = require('../../functions/embed');
+import { Client, Message } from "discord.js";
+import GuildSettings from "../../db/guild/types";
+import { VerificationSettings } from "../../db/verification/types";
 
-function escapeRegExp(string) {
+import bind from '../../lib/bind/index';
+import embed from '../../functions/embed';
+function escapeRegExp(string: string) {
 	return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-module.exports.run = async (bot, message, args, guild) => {
+export async function run(bot: Client, message: Message, args: string[], guild: GuildSettings) {
+	if (message.author.id !== message.guild!.owner!.id) return message.channel.send('You cannot run this command.')
+	const verification = await new VerificationSettings().get(message.guild!.id);
+	if (!verification) return message.channel.send('There are no verification settings for this guild, run !setup to setup.')
 	if (!args[0] || !args[1] || !args[2]) return message.channel.send(embed('none', `Missing Arguments, run ${guild.prefix}help bind for help with this command`, guild, 'failure', false));
 	const option = args[0].toLowerCase();
 	const type = args[1].toLowerCase();
 	if (option === 'asset' || option === 'gamepass' || option === 'rank') {
+		let bindType: any;
+		if (option !== 'gamepass') bindType = option + 'Binds'
+		else bindType = 'gamePassBinds'
 		const id = args[2].toLowerCase();
 
 		const types = ['add', 'remove', 'edit', 'create'];
-		if (!types.includes(type)) return message.channel.send('none', 'Invalid Option Given, Options: `add, remove, edit`', guild, 'failure', false);
+		if (!types.includes(type)) return message.channel.send(embed('none', 'Invalid Option Given, Options: `add, remove, edit`', guild, 'failure', false));
 
 		if (type === 'add') {
 			const roleId = args[3];
 			if (!args.find(o => o.startsWith('\'')) || !args.find(o => o.endsWith('\''))) return message.channel.send(embed('none', 'Missing nickname, make sure it is inside quotations.\nExample: `\'[VIP]{robloxname}\'`' + `\nFor more information run \`${guild.prefix}help binds\``, guild, 'failure', false));
 			// Find argument with quotes, get the index then split
-			const quotestart = args.find(o => o.startsWith('\'')); const quoteEnd = args.find(o => o.endsWith('\''));
-			const startIndex = args.indexOf(quotestart); const endIndex = args.indexOf(quoteEnd);
+			const quotestart = args.find(o => o.startsWith('\'')) as string; 
+			const quoteEnd = args.find(o => o.endsWith('\'')) as string;
+			const startIndex = args.indexOf(quotestart);
+			const endIndex = args.indexOf(quoteEnd);
+
 			let nickname = args.splice(startIndex, endIndex - 2).join('');
 			nickname = nickname.replace('{{s}}', ' ');
 			nickname = nickname.replace(new RegExp(escapeRegExp('\''), 'g'), '');
-			const hierarchy = args[3];
+
+			const hierarchy = parseInt(args[3]);
 			// Get the roles then create a new array with them
-			let roles = args.splice(4).join('');
-			roles = roles.split(','); roles = roles.filter(v=>v != '');roles = roles.map(p => p.trim());
-			await bind.addAsset(message, guild, option, type, id, nickname, hierarchy, roles);
+			let roles: any = args
+			.splice(4)
+			.join('')
+			.split(',')
+			.filter((v: any)=>v != '')
+			.map((p) => p.trim());
+			await bind.addAsset(message, guild, verification, bindType, type, parseInt(id), nickname, hierarchy, roles);
 		}
 
-		if (type === 'remove') await bind.removeAsset(message, guild, option, type, id);
+		if (type === 'remove') await bind.removeAsset(message, guild, verification, bindType, parseInt(id));
 	}
 	if (option === 'group') {
 		if (type === 'add') {
 			// Group Id
 			const id = args[2].toLowerCase();
 			// Ranks to Bind
-			let ranks = args[3];
-			ranks = ranks.split(',');
-			if (typeof ranks === String) ranks = [ranks];
+			let ranks: string[] = args[3].split(',');
 			// Nickname
-			const quotestart = args.find(o => o.startsWith('\'')); const quoteEnd = args.find(o => o.endsWith('\''));
-			const startIndex = args.indexOf(quotestart); const endIndex = args.indexOf(quoteEnd);
+			const quotestart = args.find(o => o.startsWith('\'')) as string; 
+			const quoteEnd = args.find(o => o.endsWith('\'')) as string;
+			const startIndex = args.indexOf(quotestart);
+			const endIndex = args.indexOf(quoteEnd);
+
 			let nickname = args.splice(startIndex, endIndex - 4).join('');
 			nickname = nickname.replace('{{s}}', ' ');
 
 			// Hierarchy Point
 			const hierarchy = args[5];
-			let roles = args.splice(6).join('');
-			roles = roles.split(','); roles = roles.filter(v=>v != '');roles = roles.map(p => p.trim());
+			let roles: any = args
+			.splice(4)
+			.join('')
+			.split(',')
+			.filter((v: any)=>v != '')
+			.map((p) => p.trim());
 
-			await bind.addGroup(message, guild, type, option, id, ranks, nickname, hierarchy, roles);
+			await bind.addGroup(message, guild, verification, parseInt(id), ranks, nickname, parseInt(hierarchy), roles);
 		}
 	}
 };

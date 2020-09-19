@@ -1,34 +1,104 @@
-export interface VerificationUser {
-    user_id: bigint | string;
-    PrimaryAccount: number;
-    RobloxAccounts: number[];
+import db from "..";
+
+interface VerificationUserInterface {
+    userId: bigint | string;
+    primaryAccount: number;
+    robloxAccounts: number[];
 
 }
 
-export class CreateVerificationUser implements VerificationUser {
-    constructor(user_id: bigint | string, RobloxAccount: number) {
-        this.user_id = user_id;
-        this.PrimaryAccount = RobloxAccount
-        this.RobloxAccounts = []
-        return this
+export class VerificationUser implements VerificationUserInterface {
+    constructor() {}
+    public readonly userId!: string;
+    public primaryAccount!: number;
+    public robloxAccounts!: number[];
+
+    public async create(userId: string, robloxAccount: number | string) {
+        const user: VerificationUser = await db.withSchema('verification').table('users')
+        .returning("*")
+        .insert({
+            userId: userId,
+            primaryAccount: robloxAccount,
+            robloxAccounts: []
+        })
+        return user
     }
-    user_id: bigint | string;
-    PrimaryAccount: number;
-    RobloxAccounts: number[];
+    
+    public async get(userId: string) {
+        const user: VerificationUser = await db.withSchema('verification').table('users')
+        .where('userId', '=', userId)
+        .first()
+        return user
+    }
 }
 
-export interface VerificationSettings {
-    enabled: boolean;
-    VerifiedRole: string;
-    UnVerifiedRole: string;
-    AutoVerify: boolean;
-    Nicknaming: boolean;
-    NicknameFormat: string;
-    DmVerification: boolean;
-    RoleBinds: RoleBindGroup[];
-    RankBinds: RankBindType[];
-    AssetBinds: AssetBindType[];
-    GamePassBinds: AssetBindType[];
+export class VerificationSettings {
+    constructor(data?: VerificationSettings) {
+        if (data) Object.assign(this, data)
+     };
+
+    public readonly guild_id!: bigint | string;
+    public enabled!: boolean;
+    public verifiedRole!: string;
+    public unVerifiedRole!: string;
+    public unVerifiedEnabled!: Boolean;
+    public autoVerify!: boolean;
+    public nicknaming!: boolean;
+    public nicknameFormat!: string;
+    public dmVerification!: boolean;
+    public roleBinds!: RoleBindGroup[];
+    public rankBinds!: RankBindType[];
+    public assetBinds!: AssetBindType[];
+    public gamePassBinds!: AssetBindType[];
+    public bypass!: {
+        bypassNickname: string;
+        update: string;
+    }
+
+    public async get(guildid: any) {
+        const settings = new VerificationSettings(await db.withSchema('modules').table('verification')
+        .where('guild_id' as any, '=', guildid)
+        .first()
+        )
+        return settings
+    }
+
+    public async update(guildid: any, setting: (keyof this), value: any) {
+        const settings = new VerificationSettings(await db.withSchema('modules').table('verification')
+        .returning("*")
+        .where('guild_id' as any, '=', guildid)
+        .first()
+        .update({
+            [setting]: value
+        })
+        )
+        return settings
+    }
+    
+    public async default(guildid: string | bigint, verifiedRole?: string | bigint, unVerifiedRole?: string | bigint) {
+        const settings = new VerificationSettings(await db.withSchema('modules').table('verification')
+        .returning("*")
+        .insert({
+            guild_id: BigInt(guildid),
+            enabled: true,
+            verifiedRole: (verifiedRole) ? verifiedRole : null,
+            unVerifiedRole: (unVerifiedRole) ? unVerifiedRole : null,
+            unVerifiedEnabled: (unVerifiedRole) ? true : false,
+            autoVerify: false,
+            nicknaming: true,
+            nicknameFormat: '{{robloxname}}',
+            dmVerification: false,
+            roleBinds: [],
+            rankBinds: [],
+            assetBinds: [],
+            gamePassBinds: [],
+            bypass: {
+                bypassNickname: '',
+                update: ''
+            }
+        })
+        )
+    }
 }
 
 // Interface for all regular asset binds

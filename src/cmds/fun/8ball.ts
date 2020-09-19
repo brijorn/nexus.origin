@@ -1,9 +1,13 @@
+import { Client, Message } from "discord.js";
+import GuildSettings from "../../db/guild/types";
+
 const Axios = require('axios').default;
 const cheerio = require('cheerio');
 const { MessageEmbed } = require('discord.js');
-module.exports.run = async (bot, message, args, guild) => {
-	if (!args[3]) return message.channel.send('You must ask a question');
-	responses = ['It is certain.',
+export async function run(bot: Client, message: Message, args: any[], guild: GuildSettings) {
+	if (!args[3] && !args.find((o => o.includes('?')))) return message.channel.send('You must ask a question');
+
+	const responses: string[] = ['It is certain.',
 		'It is decidedly so.',
 		'Without a doubt.',
 		'Yes, definitely.',
@@ -23,6 +27,7 @@ module.exports.run = async (bot, message, args, guild) => {
 		'My sources say no.',
 		'Outlook not so good.',
 		'Very doubtful.'];
+	
 	const answer = responses[Math.floor(Math.random() * responses.length)];
 	const res = new MessageEmbed()
 		.setTitle('8Ball')

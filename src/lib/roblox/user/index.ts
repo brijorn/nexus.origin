@@ -1,5 +1,3 @@
-const ownsAsset = require('./ownsAsset');
+const CheckOwnership = require('./ownsAsset');
 
-export {
-	ownsAsset,
-};
+export { CheckOwnership }

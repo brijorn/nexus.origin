@@ -31,7 +31,7 @@ module.exports.run = async (bot, message, args, db) => {
 		await permission(bot, message, args, db);
 	}
 	if (args[0].startsWith('veri')) {
-		const verification = require('../../functions/settingsFunctions/verifSettings/verificationSettings');
+		const verification = require('../../functions/settingsFunctions/verification/verificationSettings');
 		await verification(bot, message, args, db);
 	}
 	if (args[0].startsWith('welc')) {

@@ -1,7 +1,7 @@
 import { ColorResolvable, MessageEmbed } from "discord.js";
 import GuildSettings from "../db/guild/types";
 
-export default function (title: any, description: any, guild: GuildSettings, color?: any, footer?: boolean | string, timestamp?: boolean) {
+export default function (title: any, description: any, guild: GuildSettings, color?: ColorResolvable, footer?: boolean | string, timestamp?: boolean) {
 		const construct = new MessageEmbed();
 
 		if (title !== 'none') construct.setTitle(title)
@@ -13,7 +13,10 @@ export default function (title: any, description: any, guild: GuildSettings, col
 			(guild!.embed.footerlogo !== 'none') ? guild!.embed.footerlogo : ''
 			)
 		construct.setColor(
-			(!color || color === 'default') ? (guild.embed.color !== 'none') ? guild.embed.color : '' : ''
+			(!color || color === 'default') ? 
+			(guild.embed.color !== 'none') ? guild.embed.color : '' 
+			: 
+			(color === 'success') ? '#3bff86' : (color === 'failure') ? '#ff6257' : ''
 		)
 		return construct
 	};

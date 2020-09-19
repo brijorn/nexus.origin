@@ -7,26 +7,25 @@ import prompts from '../../prompt';
 import nicknaming from '../../functions/verifyFunctions/nicknaming';
 import thumbnail from '../../functions/thumbnailFunction';
 import GuildSettings from '../../db/guild/types';
-import db from '../../db';
-import { VerificationSettings } from '../../db/verification/types';
-import { GetUser } from '../../db/verification/user/schema';
+import nodefetch from 'node-fetch'
+import { VerificationSettings, VerificationUser } from '../../db/verification/types';
 
 export async function run(bot: Client, message: Message, args: any[], guild: GuildSettings) {
 	// Get the verification table
-	const verification: VerificationSettings = await db.withSchema('modules').table('verification').first()
+	const verification = await new VerificationSettings().get(message.guild!.id)
 	// Get the Type
-	const sendtype = (verification.DmVerification === true) ? await message.author : await message.channel;
-	const ask = (verification.DmVerification === true) ? prompts.dmprompt : prompts.prompt;
+	const sendtype = (verification.dmVerification === true) ? await message.author : await message.channel;
+	const ask = (verification.dmVerification === true) ? prompts.dmprompt : prompts.prompt;
 
 	await message.react('740748381223256075');
 	await(noblox as any).setCookie(process.env.DEFAULT_TOKEN)
 
-	const checkforAccount = await GetUser(message.author.id);
+	const checkforAccount = await new VerificationUser().get(message.author.id)
 
 	if (checkforAccount) {
 		const user = checkforAccount
 		const roleAdd = await roleCheck(bot, message, guild, verification);
-		const newUsername = await noblox.getUsernameFromId(user.PrimaryAccount as any);
+		const newUsername = await noblox.getUsernameFromId(user.primaryAccount as any);
 		const Verified = new Discord.MessageEmbed()
 			.setDescription(`You were successfully verified as ${newUsername}`)
 			.setColor(config.success);
@@ -40,19 +39,19 @@ export async function run(bot: Client, message: Message, args: any[], guild: Gui
 				Verified.addField('Roles Removed', eachrole, true);
 			}
 
-			if (verification.Nicknaming === true) {
-				const nick = await nicknaming(message, guild, newUsername, roleAdd.roleInfo);
+			if (verification.nicknaming === true) {
+				const nick = await nicknaming(message, guild, verification, newUsername, roleAdd.roleInfo);
 				Verified.setDescription(Verified.description + `\nNickname: \`${nick}\``);
 			}
 		}
-		const avatar = await thumbnail(user.PrimaryAccount, '420', 'user');
-		Verified.setAuthor(newUsername, avatar, `https://www.roblox.com/users/${user.PrimaryAccount}/profile`);
+		const avatar = await thumbnail(user.primaryAccount, '420', 'user');
+		Verified.setAuthor(newUsername, avatar, `https://www.roblox.com/users/${user.primaryAccount}/profile`);
 		message.reactions.cache.map(each => each.remove());
 		message.react('740751221782085655');
 		sendtype.send(Verified);
 	}
 	if (!checkforAccount) {
-		fetch(`https://api.blox.link/v1/user/${message.author.id}`, {}).then(async bod => {
+		nodefetch(`https://api.blox.link/v1/user/${message.author.id}`, {}).then(async bod => {
 			const body = await bod.json();
 
 			if (body.status === 'error') {
@@ -65,10 +64,13 @@ export async function run(bot: Client, message: Message, args: any[], guild: Gui
 			}
 			else {
 
-				const verificationcreate = require('../../models/verificationModel/verificationCreate');
-				await verificationcreate(message.author.id, body.primaryAccount);
+				// Create the user in the database
+				const create = await new VerificationUser().create(message.author.id, body.primaryAccount)
+
+				// Check them for the roles
 				const roleAdd = await roleCheck(bot, message, guild, verification);
 				const newUsername = await noblox.getUsernameFromId(body.primaryAccount);
+
 				const Verified = new Discord.MessageEmbed()
 					.setDescription(`You were successfully verified as ${newUsername}`)
 					.setColor(config.success);
@@ -82,8 +84,8 @@ export async function run(bot: Client, message: Message, args: any[], guild: Gui
 						Verified.addField('Roles Removed', eachrole, true);
 					}
 
-					if (verification.Nicknaming === true) {
-						const nick = await nicknaming(message, guild, newUsername, roleAdd.roleInfo);
+					if (verification.nicknaming === true) {
+						const nick = await nicknaming(message, guild, verification, newUsername, roleAdd.roleInfo);
 						Verified.setDescription(Verified.description + `\nNickname: \`${nick}\``);
 					}
 				}

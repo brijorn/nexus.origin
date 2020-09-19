@@ -1,7 +1,7 @@
-module.exports = (args, arr) => {
+export default (args: any[], arrayOfValues: number[]) => {
 	let time = 0;
-	const newarr = arr;
-	function Check(val) {
+	const newarrayOfValues = arrayOfValues;
+	function Check(val: any) {
 		if (val.match(/\d+/) === null) return false;
 
 		else return true;
@@ -13,7 +13,7 @@ module.exports = (args, arr) => {
 			days = days.match(/\d+/)[0];
 			days = days * 86400000; // 86,400,000
 			time = time + days;
-			newarr.splice(args.indexOf(args.find(o => o.includes('d'))), 1);
+			newarrayOfValues.splice(args.indexOf(args.find(o => o.includes('d'))), 1);
 		}
 	}
 	// Conv Hours
@@ -23,7 +23,7 @@ module.exports = (args, arr) => {
 			hours = hours.match(/\d+/)[0];
 			hours = (hours * 3600000); //  3,600,000
 			time = time + hours;
-			newarr.splice(newarr.indexOf(args.find(o => o.includes('h'))), 1);
+			newarrayOfValues.splice(newarrayOfValues.indexOf(args.find(o => o.includes('h'))), 1);
 		}
 
 	}
@@ -35,16 +35,16 @@ module.exports = (args, arr) => {
 			minutes = parseInt(minutes);
 			minutes = minutes * 60000; // 60,000
 			time = time + minutes;
-			newarr.splice(newarr.indexOf(args.find(o => o.includes('m')), 1), 1);
+			newarrayOfValues.splice(newarrayOfValues.indexOf(args.find(o => o.includes('m')), 1), 1);
 		}
 	}
-	function dhm(t) {
+	function dhm(t: number) {
 		var cd = 24 * 60 * 60 * 1000,
 			ch = 60 * 60 * 1000,
 			d = Math.floor(t / cd),
 			h = Math.floor((t - d * cd) / ch),
 			m = Math.round((t - d * cd - h * ch) / 60000),
-			pad = function(n) { return n < 10 ? '' + n : n; };
+			pad = function(n: number) { return n < 10 ? '' + n : n; };
 		if(m === 60) {
 			h++;
 			m = 0;
@@ -53,14 +53,14 @@ module.exports = (args, arr) => {
 			d++;
 			h = 0;
 		}
-		d = (d !== 0) ? d + 'd' : '';
-		h = (h !== 0) ? h + 'h' : '';
-		m = (m !== 0) ? m + 'm' : '';
+		(d as any) = (d !== 0) ? d + 'd' : '';
+		(h as any) = (h !== 0) ? h + 'h' : '';
+		(m as any) = (m !== 0) ? m + 'm' : '';
 		return [d, pad(h), pad(m)].join('');
 	}
 	const readable = dhm(time);
 	return {
-		newarr,
+		newarrayOfValues,
 		time,
 		readable,
 	};

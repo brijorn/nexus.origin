@@ -11,11 +11,12 @@ import {
 } from "discord.js";
 
 // Import Discord Creat Client
-const bot: Client = new Client({ partials: ["REACTION", "MESSAGE"] });
+const bot = new Client({ partials: ["REACTION", "MESSAGE"] });
 // File System
 import fs from "fs";
 
 import db from "./db";
+import { VerificationSettings } from "./db/verification/types";
 
 const env = require("dotenv").config();
 // Command Cooldowns
@@ -48,7 +49,7 @@ folders.forEach((c) => {
 		if (err) throw err;
 		const arr = [];
 		for (let i = 0; i < 100; i++) arr.push(i);
-		const tsfile = files.filter((f: any) => f.split(".").pop() === "ts");
+		const tsfile = files.filter((f: any) => f.split(".").pop() === "ts" || f.split(".").pop() === 'js');
 		tsfile.forEach((f: any, i: any) => {
 			const prop = require(`./cmds/${c}/${f}`);
 			(bot as any).cmds.set(prop.help.name, prop);
