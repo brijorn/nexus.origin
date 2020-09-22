@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const guildModel = require('../../models/guildModel/guild');
 const { enabled, disabled, failure } = require('../../config.json');
 const embed = require('../../functions/embed');
 module.exports.run = async (bot, message, args, db) => {

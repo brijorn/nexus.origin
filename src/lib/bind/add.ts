@@ -1,14 +1,13 @@
 import embed from "../../functions/embed";
 import rbx from "noblox.js";
 import { Message, MessageEmbed } from "discord.js";
-import { VerificationSettings } from "../../db/verification/types";
-import GuildSettings from "../../db/guild/types";
+import { VerificationSettings, GuildSettings, FetchedVerification } from "@lib/origin";
 import parse from '../../lib/parse'
 
 export async function addAsset(
 	message: Message,
 	guild: GuildSettings,
-	verification: VerificationSettings,
+	verification: FetchedVerification,
 	type: keyof VerificationSettings,
 	option: "add" | "remove",
 	assetId: number,
@@ -19,7 +18,7 @@ export async function addAsset(
 	let product: any;
 	if (
 		verification[type] &&
-		verification.assetBinds.find((a) => a.assetId === assetId)
+		verification.asset_binds.find((a) => a.assetId === assetId)
 	)
 		return message.channel.send(
 			embed(
@@ -62,7 +61,7 @@ export async function addAsset(
 	// Save to Database
 	const bindObject = verification[type] as object[];
 	bindObject.push(assetObj);
-	await verification.update(message.guild!.id, type, bindObject);
+	await verification.update(type, bindObject);
 	console.log('done')
 	return message.channel.send(
 		embed(
@@ -77,7 +76,7 @@ export async function addAsset(
 export async function addGroup(
 	message: Message,
 	guild: GuildSettings,
-	verification: VerificationSettings,
+	verification: FetchedVerification,
 	groupid: number,
 	ranks: string[],
 	nickname: string,
@@ -121,9 +120,9 @@ export async function addGroup(
 		main: false,
 		binds: [],
 	};
-	if (!verification.roleBinds.find((o) => o.id === groupid))
-		verification.roleBinds.push(newgroupObj);
-	const groupobj = verification.roleBinds.find((o) => o.id === groupid);
+	if (!verification.role_binds.find((o) => o.id === groupid))
+		verification.role_binds.push(newgroupObj);
+	const groupobj = verification.role_binds.find((o) => o.id === groupid);
 
 	for (let i = 0; i < foundranks.length; i++) {
 		const rank: any = foundranks[i];
@@ -146,9 +145,8 @@ export async function addGroup(
 	}
 
 	await verification.update(
-		message.guild!.id,
-		"roleBinds",
-		verification.roleBinds
+		"role_binds",
+		verification.role_binds
 	);
 	if (foundranks.length < 6) {
 		const endembed = new MessageEmbed()

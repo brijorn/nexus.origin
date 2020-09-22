@@ -3,7 +3,7 @@ import { Client, Message, MessageEmbed } from "discord.js";
 import roleCheck from '../../functions/verifyFunctions/roleAddCheck';
 import { getUsernameFromId } from 'noblox.js';
 import config from '../../config.json';
-import  { VerificationSettings, VerificationUser, GuildSettings } from "../../lib/origin";
+import  { VerificationSettings, VerificationUser, GuildSettings } from "@lib/origin";
 export async function run(bot: Client, message: Message, args: string[], guild: GuildSettings) {
 	// Get Verification Setting and Get User Data
 	const verification = await new VerificationSettings().get(message.guild!.id)

@@ -6,16 +6,15 @@ import roleCheck from '../../functions/verifyFunctions/roleAddCheck';
 import prompts from '../../prompt';
 import nicknaming from '../../functions/verifyFunctions/nicknaming';
 import thumbnail from '../../functions/thumbnailFunction';
-import GuildSettings from '../../db/guild/types';
 import nodefetch from 'node-fetch'
-import { VerificationSettings, VerificationUser } from '../../db/verification/types';
+import { VerificationSettings, VerificationUser, GuildSettings } from '@lib/origin';
 
 export async function run(bot: Client, message: Message, args: any[], guild: GuildSettings) {
 	// Get the verification table
 	const verification = await new VerificationSettings().get(message.guild!.id)
 	// Get the Type
-	const sendtype = (verification.dmVerification === true) ? await message.author : await message.channel;
-	const ask = (verification.dmVerification === true) ? prompts.dmprompt : prompts.prompt;
+	const sendtype = (verification.dm_verification === true) ? await message.author : await message.channel;
+	const ask = (verification.dm_verification === true) ? prompts.dmprompt : prompts.prompt;
 
 	await message.react('740748381223256075');
 	await(noblox as any).setCookie(process.env.DEFAULT_TOKEN)
@@ -24,8 +23,8 @@ export async function run(bot: Client, message: Message, args: any[], guild: Gui
 
 	if (checkforAccount) {
 		const user = checkforAccount
-		const roleAdd = await roleCheck(bot, message, guild, verification);
-		const newUsername = await noblox.getUsernameFromId(user.primaryAccount as any);
+		const roleAdd = await roleCheck(bot, message, guild, user, verification);
+		const newUsername = await noblox.getUsernameFromId(user.primary_account as any);
 		const Verified = new Discord.MessageEmbed()
 			.setDescription(`You were successfully verified as ${newUsername}`)
 			.setColor(config.success);
@@ -44,8 +43,8 @@ export async function run(bot: Client, message: Message, args: any[], guild: Gui
 				Verified.setDescription(Verified.description + `\nNickname: \`${nick}\``);
 			}
 		}
-		const avatar = await thumbnail(user.primaryAccount, '420', 'user');
-		Verified.setAuthor(newUsername, avatar, `https://www.roblox.com/users/${user.primaryAccount}/profile`);
+		const avatar = await thumbnail(user.primary_account, '420', 'user');
+		Verified.setAuthor(newUsername, avatar, `https://www.roblox.com/users/${user.primary_account}/profile`);
 		message.reactions.cache.map(each => each.remove());
 		message.react('740751221782085655');
 		sendtype.send(Verified);
@@ -65,10 +64,10 @@ export async function run(bot: Client, message: Message, args: any[], guild: Gui
 			else {
 
 				// Create the user in the database
-				const create = await new VerificationUser().create(message.author.id, body.primaryAccount)
+				const user = await new VerificationUser().create(message.author.id, body.primaryAccount)
 
 				// Check them for the roles
-				const roleAdd = await roleCheck(bot, message, guild, verification);
+				const roleAdd = await roleCheck(bot, message, guild, user, verification);
 				const newUsername = await noblox.getUsernameFromId(body.primaryAccount);
 
 				const Verified = new Discord.MessageEmbed()

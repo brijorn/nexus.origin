@@ -49,7 +49,7 @@ folders.forEach((c) => {
 		if (err) throw err;
 		const arr = [];
 		for (let i = 0; i < 100; i++) arr.push(i);
-		const tsfile = files.filter((f: any) => f.split(".").pop() === "ts" || f.split(".").pop() === 'js');
+		const tsfile = files.filter((f: any) => f.split(".").pop() === "ts");
 		tsfile.forEach((f: any, i: any) => {
 			const prop = require(`./cmds/${c}/${f}`);
 			(bot as any).cmds.set(prop.help.name, prop);

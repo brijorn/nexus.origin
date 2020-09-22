@@ -1,8 +1,7 @@
 import { MessageEmbed, Message } from 'discord.js'
-import GuildSettings from '../../../../db/guild/guild'
-import { Panel } from '../../../../db/types/ticketing'
-import embed from '../../../../functions/embed'
-import prompts from '../../../../prompt'
+import { Panel, GuildSettings } from '@lib/origin'
+import embed from '../../../functions/embed'
+import prompts from '../../../prompt/'
 
 export default async (message: Message, guild: GuildSettings, information: any, panel: Panel) => {
     let state: boolean = false

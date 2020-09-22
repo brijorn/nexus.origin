@@ -1,6 +1,5 @@
 import { Client, Message } from "discord.js";
-import GuildSettings from "../../db/guild/types";
-import { VerificationSettings, VerificationUser } from "../../db/verification/types";
+import { VerificationSettings, VerificationUser, GuildSettings } from "@lib/origin";
 
 import Discord from 'discord.js';
 import rbx from 'noblox.js';
@@ -11,8 +10,8 @@ import config from '../../config.json';
 
 export default async (message: Message, bot: Client, userName: string, guild: GuildSettings, verification: VerificationSettings) => {
 	let verifStatus = undefined;
-	const sendtype = (verification.dmVerification === true) ? await message.author : await message.channel;
-	const prompt = (verification.dmVerification === true) ? prompts.dmprompt : prompts.prompt;
+	const sendtype = (verification.dm_verification === true) ? await message.author : await message.channel;
+	const prompt = (verification.dm_verification === true) ? prompts.dmprompt : prompts.prompt;
 	const wait = require('util').promisify(setTimeout);
 	const id = await rbx.getIdFromUsername(userName);
 
@@ -39,8 +38,8 @@ export default async (message: Message, bot: Client, userName: string, guild: Gu
 		const verificationUpdate = require('../../models/verificationModel/verificationUpdate');
 		const updater = await verificationUpdate(message.author.id, id);
 		const user = checkforAccount
-		const roleAdd = await roleCheck(bot, message, guild, verification);
-		const newUsername = await rbx.getUsernameFromId(user.primaryAccount);
+		const roleAdd = await roleCheck(bot, message, guild, user, verification);
+		const newUsername = await rbx.getUsernameFromId(user.primary_account);
 		const Verified = new Discord.MessageEmbed()
 			.setDescription(`You were successfully verified as ${newUsername}`)
 			.setColor(config.success);
@@ -58,8 +57,8 @@ export default async (message: Message, bot: Client, userName: string, guild: Gu
 	}
 	if (!checkforAccount) {
 		const user = await new VerificationUser().create(message.author.id, id)
-		const roleAdd = await roleCheck(bot, message, guild, verification);
-		const newUsername = await rbx.getUsernameFromId(user.primaryAccount);
+		const roleAdd = await roleCheck(bot, message, guild, user, verification);
+		const newUsername = await rbx.getUsernameFromId(user.primary_account);
 		const Verified = new Discord.MessageEmbed()
 			.setDescription(`You were successfully verified as ${newUsername}`)
 			.setColor(config.success);
@@ -75,7 +74,7 @@ export default async (message: Message, bot: Client, userName: string, guild: Gu
 		}
 		sendtype.send(Verified);
 	}
-	message.member!.roles.add(verification.verifiedRole);
+	message.member!.roles.add(verification.verified_role);
 
 
 };

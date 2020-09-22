@@ -1,5 +1,10 @@
 import { ColorResolvable, MessageEmbed } from "discord.js";
-import GuildSettings from "../db/guild/types";
+import { GuildSettings } from "@lib/origin";
+
+enum Colors {
+	GREEN_SUCCESS='#3bff86',
+	RED_FAILURE='#ff6257'
+}
 
 export default function (title: any, description: any, guild: GuildSettings, color?: ColorResolvable, footer?: boolean | string, timestamp?: boolean) {
 		const construct = new MessageEmbed();
@@ -16,7 +21,7 @@ export default function (title: any, description: any, guild: GuildSettings, col
 			(!color || color === 'default') ? 
 			(guild.embed.color !== 'none') ? guild.embed.color : '' 
 			: 
-			(color === 'success') ? '#3bff86' : (color === 'failure') ? '#ff6257' : ''
+			(color === 'success') ? Colors.GREEN_SUCCESS : (color === 'failure') ? Colors.RED_FAILURE : ''
 		)
 		return construct
 	};

@@ -230,12 +230,9 @@ export class Panel {
 	claim_message!: Object;
     claim_allowed_roles!: BigInt[];
     
-    async get(guildId: string) {
-        const panel = new FetchedPanel(await db
-        .withSchema('ticketing')
-        .table('interfaces')
-        .where('guild_id', '=', guildId)
-        .first()
+    async get(opt: GetQueryOptions) {
+        const panel = new FetchedPanel(
+            await getTable('interfaces', 'ticketing', opt)
         )
         return panel
     }
@@ -322,7 +319,6 @@ export class Panel {
         return panel
     }
 }
-
 export class FetchedPanel extends Panel {
     constructor(data: Panel) {
         super();
@@ -344,7 +340,7 @@ export class FetchedPanel extends Panel {
 
 export class Ticket {
     constructor(data?: any) {
-        (data) ?? Object.assign(this, data)
+        if (data) Object.assign(this, data)
     }
 
     public readonly guild_id!: string;
@@ -438,7 +434,7 @@ export class FetchedTicket extends Ticket {
 
 export class ClaimTicket {
     constructor(data?: any) {
-        (data) ?? Object.assign(this, data);
+        if (data) Object.assign(this, data);
     }
 
     public readonly guild_id!: string;
@@ -595,10 +591,11 @@ export class ApplicationSettings {
     public applications!: Application[];
     public reviewer_roles!: string[];
 
-    public async get(guildId: string) {
+    public async get(opt: GetQueryOptions) {
         const settings = new FetchedApplication(
-            await getTable('application', 'modules', guildId)
+            await getTable('application', 'modules', opt)
         )
+        return settings
     }
 
 }
@@ -624,6 +621,8 @@ interface Application {
     name: string;
     available: boolean;
     require_verification: boolean;
+    questions: string[];
+    response_channel: string;
     
 }
 
@@ -635,8 +634,8 @@ export class GuildSettings {
     public embed!: GuildEmbedSettings;
     public token!: any;
 
-    async get(guildId: string) {
-        const guild: GuildSettings = await getTable('guild', 'public', guildId)
+    async get(opt: GetQueryOptions) {
+        const guild: GuildSettings = await getTable('guild', 'public', opt)
 
         return guild
     }
@@ -662,13 +661,22 @@ export interface GuildEmbedSettings {
 }
 
 
-async function getTable(tableName: string, schema: string, guildId: string) {
+async function getTable(tableName: string, schema: string, opt: GetQueryOptions) {
     const data = await db
     .withSchema(schema)
     .table(tableName)
-    .where('guild_id', '=', guildId)
-    .first()
+    .where(opt.field, '=', opt.value)
+    .then(data => {
+        if (opt.type === 'all') return data
+        else return data[0]
+    })
     return data as any
+}
+
+interface GetQueryOptions {
+    field: string;
+    value: string;
+    type: 'all' | 'first'
 }
 
 interface updateTableData {

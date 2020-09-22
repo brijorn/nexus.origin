@@ -1,9 +1,8 @@
-import { Panel } from "../../../../db/types/ticketing"
+import { Panel, GuildSettings } from "@lib/origin"
 
 import { Message, MessageEmbed } from 'discord.js'
-import embed from '../../../../functions/embed'
-import formatEmbed from '../functions/formatEmbed'
-import GuildSettings from "../../../../db/guild/guild"
+import embed from '../../../functions/embed'
+import formatEmbed from './functions/formatEmbed'
 
 
 export default async (message: Message, guild: GuildSettings, information: any, panel: Panel) => {

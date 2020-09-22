@@ -8,14 +8,14 @@ import thumbnail from '../../functions/thumbnailFunction';
 import { GuildSettings, VerificationSettings, VerificationUser } from '@lib/origin';
 import { member } from '../../lib/util/parse/index.js'
 export async function run(bot: Client, message: Message, args: string[], guild: GuildSettings) {
-	const verification = await new VerificationSettings().get(message.guild?.id)
+	const verification = await new VerificationSettings().get(message.guild!.id)
 
 	let nick = '';
 	let mentioned: any;
-	if (!message.member?.hasPermission('MANAGE_MESSAGES', { checkAdmin: true, checkOwner: true })) {
+	if (!message.member!.hasPermission('MANAGE_MESSAGES', { checkAdmin: true, checkOwner: true })) {
 		return message.channel.send(embed('Permissions Error', 'You do not have the required permissions for this command.\nRequired Permission: \`MANAGE_MESSAGES` or `ADMIN` OR `OWNER`', guild, config.failure));
 	}
-	if (message.mentions.users.first()) mentioned = message.guild?.members.cache.get(message.mentions.users.first()!.id) as GuildMember
+	if (message.mentions.users.first()) mentioned = message.guild!.members.cache.get(message.mentions.users.first()!.id) as GuildMember
 	else mentioned = await member(message, 
 		(args.length > 0) ? args.splice(0).join(' ') : args[0] )
 	
@@ -30,12 +30,12 @@ export async function run(bot: Client, message: Message, args: string[], guild: 
 	const roleAdd = await roleCheck(bot, message, guild, user, verification, 'upd', member);
 	console.log(roleAdd);
 	const newUsername = await noblox.getUsernameFromId(user.primary_account);
-	if (roleAdd?.roleInfo.obj && verification.nicknaming === true) {
-		nick = await nicknaming(mentioned, guild, verification, newUsername, roleAdd.roleInfo, 'upd');
+	if (roleAdd!.roleInfo.obj && verification.nicknaming === true) {
+		nick = await nicknaming(mentioned, guild, verification, newUsername, roleAdd!.roleInfo, 'upd');
 	}
 	const Verified = new Discord.MessageEmbed()
 		.setDescription(`Member successfully updated as ${newUsername}\n\`Nickname: ${nick}\nCurrent Rank: ${roleAdd!.roleInfo.name} ${(roleAdd!.roleInfo.obj) ? `- ${roleAdd!.roleInfo.obj.rank}` : ''}\``)
-		.setTitle(`${mentioned.user!.username}#${mentioned.user?.discriminator} Updated`)
+		.setTitle(`${mentioned.user!.username}#${mentioned.user!.discriminator} Updated`)
 		.setColor(config.success);
 	if (roleAdd !== undefined) {
 		if (roleAdd.rolesAdded.length !== 0) {

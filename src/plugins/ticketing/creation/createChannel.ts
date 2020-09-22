@@ -1,7 +1,7 @@
 import { Channel, GuildChannel, Message, MessageEmbed, PermissionOverwrites, TextChannel } from 'discord.js'
 import { Panel, GuildSettings } from '@lib/origin'
 import embed from '../../../functions/embed'
-import formatEmbed from '../functions/formatEmbed'
+import formatEmbed from './functions/formatEmbed'
 
 export default async (message: Message, guild: GuildSettings, information: any, panel: Panel) => {
     let state = false

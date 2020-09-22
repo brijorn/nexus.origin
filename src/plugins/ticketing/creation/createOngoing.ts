@@ -1,6 +1,5 @@
 import { Client, Message } from "discord.js"
-import GuildSettings from "../../../../db/guild/guild"
-import { Panel } from "../../../../db/types/ticketing"
+import { Panel, GuildSettings } from "@lib/origin"
 
 export default async (bot: Client, message: Message, guild: GuildSettings, panel: Panel, inofrmation: any) => {
     let state: Boolean = false

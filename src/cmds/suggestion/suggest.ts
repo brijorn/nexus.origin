@@ -1,8 +1,7 @@
 import embed from "../../functions/embed";
 import { Client, Message, MessageEmbed, TextChannel } from "discord.js";
 
-import GuildSettings from "../../db/guild/guild";
-import { SuggestionSettings } from "../../db/types/suggestion";
+import { SuggestionSettings, GuildSettings } from "@lib/origin";
 
 export async function run(
 	bot: Client,
@@ -50,8 +49,8 @@ export async function run(
 		.setTimestamp();
 	const msg = await channel.send(suggestion);
 	try {
-		await msg.react(settings.firstReaction);
-		await msg.react(settings.secondReaction);
+		await msg.react(settings.first_reaction);
+		await msg.react(settings.second_reaction);
 	} catch {}
 	await settings.increment(amount, {
 		log: true,

@@ -17,10 +17,10 @@ export default async (message: Message, prompt: any, returnAll: Boolean = false)
 			}
 			: 
 			content
-			return values
+			return values as any
 		})
 		.catch(_ => {
 			instance.delete();
-			return channel.send('You waited to long. (3m)');
+			return undefined as any;
 		});
 };
