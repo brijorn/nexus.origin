@@ -35,7 +35,7 @@ export class VerificationUser implements VerificationUserInterface {
 
 export class VerificationSettings {
     constructor(data?: VerificationSettings) {
-        if (data) Object.assign(this, data)
+        if (data) return Object.assign(this, data)
      };
 
     public readonly guild_id!: bigint | string;
@@ -55,6 +55,7 @@ export class VerificationSettings {
         bypass_nickname: string;
         update: string;
     }
+    [key: string]: any;
 
     public async get(guildId: any) {
         const settings = new FetchedVerification(await db.withSchema('modules').table('verification')
@@ -93,7 +94,7 @@ export class VerificationSettings {
 export class FetchedVerification extends VerificationSettings {
     constructor(data: VerificationSettings) {
         super();
-        Object.assign(this, data)
+        return Object.assign(this, data)
     }
 
     public async update(setting: (keyof this), value: any) {
@@ -138,13 +139,24 @@ interface GroupBinds {
 
 }
 
+export interface NewAssetBindInterface {
+	type: 'asset' | 'gamepass' | 'rank';
+	method: 'add' | 'remove' | 'edit';
+	assetId: number;
+
+	
+	hierarchy: number;
+	nickname: string;
+	roles: string[];
+}
+
 export interface TicketInformation {
     
 }
 
 export class Panel {
     constructor(data?: Panel) {
-        if (data) Object.assign(this, data)
+        if (data) return Object.assign(this, data)
     }
 	// Guild
 	guild_id!: string;
@@ -322,7 +334,7 @@ export class Panel {
 export class FetchedPanel extends Panel {
     constructor(data: Panel) {
         super();
-        Object.assign(this, data)
+        return Object.assign(this, data)
     }
 
     public async update(setting: (keyof this), value: any) {
@@ -340,7 +352,7 @@ export class FetchedPanel extends Panel {
 
 export class Ticket {
     constructor(data?: any) {
-        if (data) Object.assign(this, data)
+        if (data) return Object.assign(this, data)
     }
 
     public readonly guild_id!: string;
@@ -403,7 +415,7 @@ export class Ticket {
 export class FetchedTicket extends Ticket {
     constructor(data: any) {
         super();
-        Object.assign(this, data)
+        return Object.assign(this, data)
     }
 
     public async update(guildId: string, ticketId: string, setting: (keyof this), value: any) {
@@ -434,7 +446,7 @@ export class FetchedTicket extends Ticket {
 
 export class ClaimTicket {
     constructor(data?: any) {
-        if (data) Object.assign(this, data);
+        if (data) return Object.assign(this, data);
     }
 
     public readonly guild_id!: string;
@@ -467,7 +479,7 @@ export class ClaimTicket {
 export class FetchedClaimTicket extends ClaimTicket {
     constructor(data: any) {
         super();
-        Object.assign(this, data);
+        return Object.assign(this, data);
     }
 
     public async update(guildId: string, ticketId: string, setting: (keyof this), value: any) {
@@ -527,7 +539,7 @@ export class SuggestionSettings {
 class FetchedSuggestion extends SuggestionSettings {
 	constructor(data?: any) {
 		super();
-		if (data) Object.assign(this, data);
+		if (data) return Object.assign(this, data);
 	}
 
 	public async increment(amount?: any, log: LogOpt = { log: false }) {
@@ -583,7 +595,7 @@ class LogOpt {
 
 export class ApplicationSettings {
     constructor(data?: ApplicationSettings) {
-        if (data) Object.assign(this, data)
+        if (data) return Object.assign(this, data)
     }
 
     public readonly guild_id!: string | bigint
@@ -603,7 +615,7 @@ export class ApplicationSettings {
 export class FetchedApplication extends ApplicationSettings {
     constructor(data: ApplicationSettings) {
         super();
-        Object.assign(this, data);
+        return Object.assign(this, data);
     }
 
     public async update(setting: (keyof this), value: any) {

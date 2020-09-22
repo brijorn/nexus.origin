@@ -1,6 +1,9 @@
 import { Client, Message } from "discord.js";
-import { GuildSettings, VerificationSettings } from "@lib/origin";
+import { GuildSettings, NewAssetBindInterface, VerificationSettings } from "@lib/origin";
 import embed from "../../functions/embed";
+
+import { NewAssetBind } from '@plugins/verification/binding/CreateBind'
+import { AssetBindType } from "db/verification/types";
 
 export async function run(
 	bot: Client,
@@ -26,7 +29,7 @@ export async function run(
 		console.log(getArguments)
 		getArguments.shift();
 		let [type, method, assetId, hierarchy, nickname, roles] = getArguments as any;
-		const bindingObject: BindingInterface = await checkValidation(message, guild,
+		const bindingObject: NewAssetBindInterface = await checkValidation(message, guild,
 			{
 				type: type,
 				method: method,
@@ -37,6 +40,15 @@ export async function run(
 			}) as any
 		if (!bindingObject) return
 		console.log(bindingObject)
+		if (verification[type + '_binds'].find((bind: AssetBindType) => { bind.assetId === assetId })) return message.channel.send(
+			embed(
+				'Binding Already Exists',
+				`A binding already exists for the asset ${assetId}. If you wish to edit it use the command:
+				\`${guild.prefix}assetbind edit ${assetId} <role, nickname, hierarchy> <newvalue>\``,
+				guild, 'failure', false, true
+			)
+		)
+		return await  NewAssetBind(bot, message, guild, verification, bindingObject)
 	}
 }
 
@@ -115,19 +127,9 @@ async function checkValidation(
 		}
 		if (valid==false) return valid
 
-		return opt as BindingInterface
+		return opt as NewAssetBindInterface
 }
 
 function error(message: string, guild: GuildSettings) {
 	return embed('Error', message, guild, 'failure', false, true)
-}
-interface BindingInterface {
-	type: 'asset' | 'gamepass' | 'rank';
-	method: 'add' | 'remove' | 'edit';
-	assetId: number;
-
-	
-	hiearchy: number;
-	nickname: string;
-	roles: string[];
 }
