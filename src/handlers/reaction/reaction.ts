@@ -1,7 +1,6 @@
-import db from "../../db";
-import { Panel } from "../../db/ticketing/types";
+import db from "../DatabaseHandler";
+import { Panel } from "typings/origin";
 import { MessageReaction, Client, User } from "discord.js";
-import { message } from "noblox.js";
 
 module.exports = async (bot: Client, reaction: MessageReaction, user: User) => {
 	if (user.bot === true) return;

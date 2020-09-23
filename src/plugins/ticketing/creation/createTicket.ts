@@ -1,5 +1,5 @@
 import { Message, Client } from 'discord.js'
-import { FetchedPanel, GuildSettings, Ticket } from '@lib/origin'
+import { FetchedPanel, GuildSettings, Ticket } from 'typings/origin'
 import embed from '../../../functions/embed'
 
 

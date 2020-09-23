@@ -3,7 +3,7 @@ import noblox, { getProductInfo } from 'noblox.js';
 import { CheckOwnership } from '../../lib/roblox/user/index';
 
 import { Client, Message } from 'discord.js';
-import { VerificationSettings, VerificationUser, GuildSettings } from '@lib/origin';
+import { VerificationSettings, VerificationUser, GuildSettings } from 'typings/origin';
 export default async (bot: Client, message: Message, guild: GuildSettings, user: VerificationUser, verification: VerificationSettings, type: string = 'reg', extra: any = 'N/A') => {
 	const member = (type === 'reg') ? message.member : extra;
 	const id = (type === 'reg') ? message.author.id : extra.id;

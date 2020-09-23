@@ -5,8 +5,8 @@ import nicknaming from '../../functions/verifyFunctions/nicknaming';
 import noblox from 'noblox.js';
 import Discord, { Client, GuildMember, Message } from 'discord.js';
 import thumbnail from '../../functions/thumbnailFunction';
-import { GuildSettings, VerificationSettings, VerificationUser } from '@lib/origin';
-import { member } from '../../lib/util/parse/index.js'
+import { GuildSettings, VerificationSettings, VerificationUser } from 'typings/origin';
+import { member } from '@lib/parse'
 export async function run(bot: Client, message: Message, args: string[], guild: GuildSettings) {
 	const verification = await new VerificationSettings().get(message.guild!.id)
 

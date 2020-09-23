@@ -1,5 +1,5 @@
 import { Client, Message } from "discord.js";
-import { GuildSettings } from "@lib/origin";
+import { GuildSettings } from "typings/origin";
 
 import embed from "../../functions/embed";
 import moment from 'moment-timezone';

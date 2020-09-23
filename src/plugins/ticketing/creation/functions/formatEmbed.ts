@@ -1,5 +1,5 @@
 import { Message } from "discord.js"
-import { Panel } from "@lib/origin"
+import { Panel } from "typings/origin"
 
 const moment = require('moment-timezone')
 export default async (data: any, message: Message, panel: Panel, information: any) => {

@@ -11,8 +11,9 @@ const cooldownCheck = require('../functions/useful/cooldown');
 const cooldowns = new Discord.Collection();
 
 // Economy
-const economy = '';
+
 export default async (bot: Client, message: Message) => {
+	console.log('here 1')
 	const start = Date.now();
 	// Early Returns
 	if (message.channel.type === 'dm') return;

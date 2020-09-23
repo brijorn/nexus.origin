@@ -15,8 +15,8 @@ const bot = new Client({ partials: ["REACTION", "MESSAGE"] });
 // File System
 import fs from "fs";
 
-import db from "./db";
-import { VerificationSettings } from "./db/verification/types";
+import db from "./handlers/DatabaseHandler";
+import { VerificationSettings } from "typings/origin";
 
 const env = require("dotenv").config();
 // Command Cooldowns
@@ -45,6 +45,7 @@ const folders = [
 ];
 
 folders.forEach((c) => {
+	console.log('Loaded ' + c)
 	fs.readdir(`./src/cmds/${c}`, (err: any, files: any) => {
 		if (err) throw err;
 		const arr = [];
@@ -98,12 +99,13 @@ bot.on(
 	"messageReactionAdd",
 	async (reaction: MessageReaction, user: User | PartialUser) => {
 		if (reaction.partial) reaction = await reaction.fetch();
+		if (user.partial) user = await user.fetch();
 		return await handlers.reaction(bot, reaction, user);
 	}
 );
 
 bot.on("message", async (message: Message) => {
-	handlers.message(bot, message);
+	return handlers.message(bot, message)
 });
 
 bot.login(process.env.TOKEN);

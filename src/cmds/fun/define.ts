@@ -1,5 +1,5 @@
 import { Client, Message, MessageEmbed } from "discord.js";
-import GuildSettings from "../../db/guild/types";
+import { GuildSettings } from "typings/origin";
 import nodefetch from 'node-fetch'
 const Axios = require('axios').default;
 

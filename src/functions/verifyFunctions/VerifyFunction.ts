@@ -1,5 +1,5 @@
 import { Client, Message } from "discord.js";
-import { VerificationSettings, VerificationUser, GuildSettings } from "@lib/origin";
+import { VerificationSettings, VerificationUser, GuildSettings } from "typings/origin";
 
 import Discord from 'discord.js';
 import rbx from 'noblox.js';

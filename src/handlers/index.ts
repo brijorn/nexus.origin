@@ -1,5 +1,5 @@
-const message = require('./message');
-const reaction = require('./reaction/reaction');
+import message from './MessageHandler';
+import reaction from './ReactionHandler';
 export default {
 	message,
 	reaction,

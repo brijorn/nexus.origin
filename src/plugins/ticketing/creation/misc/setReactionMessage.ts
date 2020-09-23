@@ -1,5 +1,5 @@
-import { GuildSettings, Panel } from "@lib/origin"
-import { Client, Message } from "discord.js"
+import { GuildSettings, Panel } from "typings/origin"
+import { Client, Message, MessageEmbed, TextChannel } from "discord.js"
 
 import embed from '../../../../functions/embed'
 import { editStart, editPrompt } from '../../../../prompt'
@@ -21,8 +21,7 @@ export default async (bot: Client, message: Message, guild: GuildSettings, panel
         m.delete({ timeout: 10000 } ))
     
     const channelId = getChannel!.value
-    const foundChannel = await message.guild!.channels.fetch()
-    foundChannel.me
+    const foundChannel = await message.guild!.channels.cache.get(channelId)?.fetch() as TextChannel
 
     const msg = await editPrompt(
         message,
@@ -33,28 +32,28 @@ export default async (bot: Client, message: Message, guild: GuildSettings, panel
         guild, '', false, false)) as any;
     
     if (msg.toLowerCase() === 'cancel') return start.message.delete({ timeout: 5000 })
-    let foundMessage = ''
+    let foundMessage: any = '';
     if (isNaN(msg) === false) {
-        try { foundMessage = foundChannel!.messages.cache.get(msg); foundMessage.react(panel.message_reaction) }
-        catch { return message.channel.send(embed('Error', `Message ${msg} could not be found in the channel <#${getChannel.id}>`, guild, 
+        try { foundMessage = foundChannel!.messages.cache.get(msg); foundMessage.react(panel.create_reaction) }
+        catch { return message.channel.send(embed('Error', `Message ${msg} could not be found in the channel <#${foundChannel!.id}>`, guild, 
         'failure', false, true))}
     }
     if (msg.toLowerCase() === 'default') {
-        foundMessage = await getChannel.send(embed(`${panel.interface_name} Ticket`, `React to open a ${panel.interface_name} ticket`,
+        foundMessage = await foundChannel!.send(embed(`${panel.interface_name} Ticket`, `React to open a ${panel.interface_name} ticket`,
         guild, 'defualt', true))
-        .then(m => m.react(panel.message_reaction))
+        .then(m => m.react(panel.create_reaction))
     }
     else {
         let parsed = JSON.parse(msg)
         console.log(parsed.embeds[0])
         foundMessage = new MessageEmbed(parsed.embeds[0])
-        foundMessage = await getChannel.send((parsed.content) ? parsed.content : '', foundMessage)
+        foundMessage = await foundChannel.send((parsed.content) ? parsed.content : '', foundMessage)
     }
 
-    await updatePanel(message, panel.interface_name, ['message_id'], [getChannel.id])
+    await updatePanel(message, panel.interface_name, ['message_id'], [foundChannel!.id])
     start.message.edit(embed(
         'Reaction Listener Updated',
-        `The reaction listener has been set to the message \`${foundMessage.id}\` and the reaction \`${panel.message_reaction}\``,
+        `The reaction listener has been set to the message \`${foundMessage.id}\` and the reaction \`${panel.create_reaction}\``,
         guild, 'success', false, false
     ))
     return start.message.delete({ timeout: 20000 })

@@ -1,5 +1,5 @@
 import { Client, Message } from "discord.js";
-import GuildSettings from "../../db/guild/types";
+import { GuildSettings } from "typings/origin";
 
 const Axios = require('axios').default;
 const cheerio = require('cheerio');

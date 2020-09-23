@@ -1,5 +1,5 @@
 import { Client, Message } from "discord.js";
-import GuildSettings from "../../db/guild/types";
+import { GuildSettings } from "typings/origin";
 
 const { MessageEmbed } = require("discord.js");
 import nodefetch from "node-fetch";

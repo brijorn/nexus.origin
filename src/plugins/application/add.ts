@@ -1,7 +1,8 @@
-import { FetchedApplication, GuildSettings } from "@lib/origin";
+import { FetchedApplication, GuildSettings } from "typings/origin";
 import { Message } from "discord.js";
 import embed from "functions/embed";
 import { editPrompt, editStart } from "prompt";
+import { channel } from "@lib/parse";
 
 const MAX_APPLICATIONS: number = 10;
 const MAX_QUESTIONS: number = 20;
@@ -11,7 +12,11 @@ export default async (
 	application: FetchedApplication,
 	guild: GuildSettings
 ) => {
-	application.get(message.guild!.id);
+	application.get({
+		field: 'guild_id',
+		value: message.guild!.id,
+		type: 'first'
+	});
 	if (application.applications.length == MAX_APPLICATIONS)
 		return message.channel.send(
 			embed(
@@ -40,6 +45,18 @@ export default async (
 	if (getQuestions.cancelled === true)
 		return start.message.delete({ timeout: 5000 });
 	const questions: string[] = getQuestions.questions;
+	let responseChannel = editPrompt(
+		message,
+		start.message,
+		embed(
+			"Application Creation",
+			"Would you like users to be verified to apply?",
+			guild,
+			""
+		),
+		"lower"
+	) as any;
+	// responseChannel = channel(message, responseChannel)
 
 	let requireVerification = editPrompt(
 		message,
@@ -64,11 +81,13 @@ export default async (
 		)
 	);
 
+
 	const newApplication = {
 		available: true,
 		name: start.content,
 		require_verification: requireVerification,
 		questions: questions,
+		response_channel: responseChannel
 	};
 
 	application.applications.push(newApplication);

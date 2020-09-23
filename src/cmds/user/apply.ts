@@ -7,7 +7,7 @@ import {
 	TextChannel,
 } from "discord.js";
 import config from "../../config.json";
-import { ApplicationSettings, GuildSettings } from "@lib/origin";
+import { ApplicationSettings, GuildSettings } from "typings/origin";
 import { prompt } from "prompt";
 import pmprompt from "prompt/pmprompt";
 

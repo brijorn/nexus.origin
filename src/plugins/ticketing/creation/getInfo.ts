@@ -1,5 +1,5 @@
 import { MessageEmbed, Message } from 'discord.js'
-import { Panel, GuildSettings } from '@lib/origin'
+import { Panel, GuildSettings } from 'typings/origin'
 import embed from '../../../functions/embed'
 import prompts from '../../../prompt/'
 

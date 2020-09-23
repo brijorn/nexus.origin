@@ -1,4 +1,4 @@
-import { Panel, GuildSettings } from "@lib/origin";
+import { Panel, GuildSettings } from "typings/origin";
 import { Client, Message } from "discord.js";
 
 import embed from "../../functions/embed";

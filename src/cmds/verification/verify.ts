@@ -7,7 +7,7 @@ import prompts from '../../prompt';
 import nicknaming from '../../functions/verifyFunctions/nicknaming';
 import thumbnail from '../../functions/thumbnailFunction';
 import nodefetch from 'node-fetch'
-import { VerificationSettings, VerificationUser, GuildSettings } from '@lib/origin';
+import { VerificationSettings, VerificationUser, GuildSettings } from 'typings/origin';
 
 export async function run(bot: Client, message: Message, args: any[], guild: GuildSettings) {
 	// Get the verification table

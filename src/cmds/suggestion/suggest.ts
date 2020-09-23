@@ -1,7 +1,7 @@
 import embed from "../../functions/embed";
 import { Client, Message, MessageEmbed, TextChannel } from "discord.js";
 
-import { SuggestionSettings, GuildSettings } from "@lib/origin";
+import { SuggestionSettings, GuildSettings } from "typings/origin";
 
 export async function run(
 	bot: Client,
