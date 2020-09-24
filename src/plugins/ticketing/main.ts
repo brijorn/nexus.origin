@@ -1,7 +1,8 @@
-import { FetchedPanel, GuildSettings, Panel } from "typings/origin";
+import { GuildSettings, Panel } from "../../typings/origin";
 import { Client, Message } from "discord.js";
 import steps from './creation/index'
-export default async (bot: Client, message: Message, guild: GuildSettings, type: 'reaction' | 'command', panel: FetchedPanel, supportObj: SupportObject) => {
+import OriginClient from "../../lib/OriginClient";
+export default async (bot: OriginClient, message: Message, guild: GuildSettings, type: 'reaction' | 'command', panel: Panel, supportObj: SupportObject) => {
     // Connect Support Information
     let information = {
         type: type,

@@ -1,13 +1,13 @@
-import { GuildSettings, Panel } from "typings/origin"
+import { GuildSettings, Panel } from "../../../../typings/origin"
 import { Client, Message, MessageEmbed, TextChannel } from "discord.js"
 
 import embed from '../../../../functions/embed'
-import { editStart, editPrompt } from '../../../../prompt'
-import { channel } from '@lib/util/parse'
-import { updatePanel } from '../../../../db/ticketing/panel'
+import { editStart, editPrompt } from '../../../../lib/util/prompt'
+import { channel } from '../../../../lib/util/parse'
+import OriginClient from "../../../../lib/OriginClient"
 
 
-export default async (bot: Client, message: Message, guild: GuildSettings, panel: Panel) => {
+export default async (bot: OriginClient, message: Message, guild: GuildSettings, panel: Panel) => {
     const start = await new editStart(
         message,
         embed('Ticket Reaction Listener',
@@ -49,8 +49,11 @@ export default async (bot: Client, message: Message, guild: GuildSettings, panel
         foundMessage = new MessageEmbed(parsed.embeds[0])
         foundMessage = await foundChannel.send((parsed.content) ? parsed.content : '', foundMessage)
     }
+    await bot.handlers.database.updateOne('ticketing', 'interfaces', {
+        guild_id: message.guild!.id,
+        interface_id: panel.interface_id
+    }, { message_id: foundChannel!.id })
 
-    await updatePanel(message, panel.interface_name, ['message_id'], [foundChannel!.id])
     start.message.edit(embed(
         'Reaction Listener Updated',
         `The reaction listener has been set to the message \`${foundMessage.id}\` and the reaction \`${panel.create_reaction}\``,

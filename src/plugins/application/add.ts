@@ -1,22 +1,18 @@
-import { FetchedApplication, GuildSettings } from "typings/origin";
+import { ApplicationSettings, GuildSettings } from "../../typings/origin";
 import { Message } from "discord.js";
-import embed from "functions/embed";
-import { editPrompt, editStart } from "prompt";
-import { channel } from "@lib/parse";
+import embed from "../../functions/embed";
+import { editPrompt, editStart } from "../../lib/util/prompt";
+import OriginClient from "../../lib/OriginClient";
 
 const MAX_APPLICATIONS: number = 10;
 const MAX_QUESTIONS: number = 20;
 
 export default async (
+	bot: OriginClient,
 	message: Message,
-	application: FetchedApplication,
+	application: ApplicationSettings,
 	guild: GuildSettings
 ) => {
-	application.get({
-		field: 'guild_id',
-		value: message.guild!.id,
-		type: 'first'
-	});
 	if (application.applications.length == MAX_APPLICATIONS)
 		return message.channel.send(
 			embed(

@@ -1,30 +1,29 @@
-import db from "./DatabaseHandler";
-import { Panel } from "typings/origin";
-import { MessageReaction, Client, User } from "discord.js";
-import ticketing from "@plugins/ticketing/reaction/";
-export default async (bot: Client, reaction: MessageReaction, user: User) => {
+import { DatabaseHandler } from "./DatabaseHandler";
+import { Panel } from "../typings/origin";
+import { MessageReaction, User } from "discord.js";
+import ticketing from "../plugins/ticketing/reaction/";
+import OriginClient from "../lib/OriginClient";
+export default async (
+	bot: OriginClient,
+	reaction: MessageReaction,
+	user: User
+) => {
 	if (user.bot === true) return;
 
-	const ticketpanel = await new Panel().get()
+	const ticketpanel = await bot.handlers.database.getOne('ticketing', 'interfaces', {
+		guild_id: reaction.message.guild!.id,
+		create_reation: reaction.emoji.id || reaction.emoji.name
+	}) as Panel
+
 	if (ticketpanel.interface_enabled === true) {
-		const guild = await db
-		.table("guild")
-		.where("guild_id", "=", reaction.message.guild!.id)
-		.first();
+		const guild = await bot.handlers.database.getOne("public", "guild", {
+			guild_id: reaction.message.guild!.id,
+		});
 		await ticketing(bot, guild, reaction, user, ticketpanel);
 	}
 	// If its claim
-	const claim = await db
-		.withSchema("ticketing")
-		.table("ticket_awaitingclaim")
-		.where("guild_id", "=", reaction.message.guild!.id)
-		.where("message_id", "=", reaction.message.id)
-		.first();
+	const claim = await bot.handlers.ticket.claim.fetch(reaction.message.guild!.id, { message_id: reaction.message.guild!.id })
 	if (claim) {
-		const claimpanel = await db
-			.withSchema("ticketing")
-			.table("ticket_interfaces")
-			.where("guild_id", "=", reaction.message.guild!.id)
-			.where("panel_id");
+		const claimpanel = await claim.panel()
 	}
 };

@@ -1,9 +1,9 @@
 import embed from '../embed';
 import noblox, { getProductInfo } from 'noblox.js';
-import { CheckOwnership } from '../../lib/roblox/user/index';
+import { CheckOwnership } from '../../lib/util/roblox/user/index';
 
 import { Client, Message } from 'discord.js';
-import { VerificationSettings, VerificationUser, GuildSettings } from 'typings/origin';
+import { VerificationSettings, VerificationUser, GuildSettings } from '../../typings/origin';
 export default async (bot: Client, message: Message, guild: GuildSettings, user: VerificationUser, verification: VerificationSettings, type: string = 'reg', extra: any = 'N/A') => {
 	const member = (type === 'reg') ? message.member : extra;
 	const id = (type === 'reg') ? message.author.id : extra.id;
@@ -39,7 +39,6 @@ export default async (bot: Client, message: Message, guild: GuildSettings, user:
 			catch { return }
 		}
 	}
-	const rouser = (await new VerificationUser().get(id)).primary_account;
 	// Check if they own any assets
 	async function ownedAssets(robloxUser: any, user: any, array: any[]) {
 		for (let i = 0; i < array.length; i++) {
@@ -60,10 +59,10 @@ export default async (bot: Client, message: Message, guild: GuildSettings, user:
 		}
 	}
 	if (verification.role_binds.length > 0) {
-		await ownedAssets(rouser, member, verification.role_binds);
+		await ownedAssets(user, member, verification.role_binds);
 	}
 	if (verification.role_binds.length > 0) {
-		await ownedAssets(rouser, member, verification.role_binds);
+		await ownedAssets(user, member, verification.role_binds);
 	}
 	// Here begins Shit Hole
 
@@ -71,8 +70,8 @@ export default async (bot: Client, message: Message, guild: GuildSettings, user:
 	for (let b = 0; b < verification.role_binds.length; b++) {
 		const obj = verification.role_binds[b];
 		const roles = obj.binds;
-		const rank = await noblox.getRankInGroup(obj.id, rouser as any);
-		const rankname = await noblox.getRankNameInGroup(obj.id, rouser as any);
+		const rank = await noblox.getRankInGroup(obj.id, user as any);
+		const rankname = await noblox.getRankNameInGroup(obj.id, user as any);
 		const objrank = roles.find((a: any) => a.rank === rank);
 	
 		if (objrank) {

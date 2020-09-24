@@ -1,16 +1,17 @@
-import { Client, Message } from "discord.js";
-import GuildSettings from "../../../db/guild/types";
-import { VerificationSettings } from "../../../db/verification/types";
+import { Message } from "discord.js";
+import { VerificationSettings, GuildSettings } from "../../../typings/origin";
 
-import config from '../../../config.json';
+import config from '../../../lib/util/json/config.json';
 import { MessageEmbed } from 'discord.js';
-import { editStart } from "../../../prompt";
+import { editStart } from "../../../lib/util/prompt";
 import embed from "../../embed";
+import OriginClient from "../../../lib/OriginClient";
 
 const role = require('../../../lib/parse/index').role;
-module.exports = async (bot: Client, message: Message, args: any[], guild: GuildSettings) => {
-	const verification = await new VerificationSettings().get(message.guild!.id)
-	const mainGroup = verification.roleBinds.find(o => o.main === true)
+module.exports = async (bot: OriginClient, message: Message, args: any[], guild: GuildSettings) => {
+	const verification = await bot.handlers.verification.settings.fetch(message.guild!.id)
+	bot.handlers.verification
+	const mainGroup = verification.role_binds.find((o) => o.main === true)
 	if (!args[1]) {
 		const unverifiedStatus = (verification.unVerifiedEnabled === true) ? `${config.enabled} Enabled` : `${config.disabled} Disabled`;
 		const dmVerificationStatus = (verification.dmVerification === true) ? `${config.enabled} Enabled` : `${config.disabled} Disabled`;
@@ -62,7 +63,7 @@ module.exports = async (bot: Client, message: Message, args: any[], guild: Guild
 	}
 };
 
-async function enabledisable(bot: Client, message: Message, args: string[],guild: GuildSettings, verification: VerificationSettings, setting: (keyof VerificationSettings)) {
+async function enabledisable(bot: OriginClient, message: Message, args: string[],guild: GuildSettings, verification: VerificationSettings, setting: (keyof VerificationSettings)) {
 	const requiredResponse: string[] = ['enable', 'disable', 'true', 'false']
 	let state: boolean = false
 	let value: any
@@ -72,11 +73,11 @@ async function enabledisable(bot: Client, message: Message, args: string[],guild
 		value = (argument === 'true' || argument == 'false') ? true : false
 	}
 	else {
-		const startPrompt = await new editStart().init(message, embed(
+		const startPrompt = await new editStart(message, embed(
 			`${setting} Configuration`,
 			`Would you like to \`enable\` or \`disable\` ${setting}?\n\nRespond **cancel** to cancel.`,
 			guild, '', false, false
-		))
+		)).init()
 		const argument: string = startPrompt!.content.toLowerCase()
 		if (startPrompt!.content.toLowerCase() === 'cancel' || !startPrompt) return startPrompt!.message.delete({ timeout: 5000 })
 		state = (requiredResponse.includes(argument)) ? true : false
@@ -94,6 +95,6 @@ async function enabledisable(bot: Client, message: Message, args: string[],guild
 			`Successfully ${enabled_disabled} ${setting}`,
 			guild, 'success', false, true
 		))
-		return await verification.update(message.guild!.id, setting, value)
+		return await verification.save()
 	}
 }

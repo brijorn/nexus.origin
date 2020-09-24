@@ -1,5 +1,5 @@
 import { ColorResolvable, MessageEmbed } from "discord.js";
-import { GuildSettings } from "typings/origin";
+import { GuildSettings } from "../typings/origin";
 
 enum Colors {
 	GREEN_SUCCESS='#3bff86',

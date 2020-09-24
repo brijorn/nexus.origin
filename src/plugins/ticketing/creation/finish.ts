@@ -1,6 +1,6 @@
 import embed from "../../../functions/embed"
 import { Channel, Client, Message, MessageEmbed, TextChannel } from 'discord.js'
-import { Panel, GuildSettings } from "typings/origin"
+import { Panel, GuildSettings } from "../../../typings/origin"
 
 export default async (bot: Client, message: Message, guild: GuildSettings, panel: Panel, information: any) => {
     const content = (panel.claim_system === true) ? `Your ticket has successfully been submitted. You will be notified when someone has tkaen it` :

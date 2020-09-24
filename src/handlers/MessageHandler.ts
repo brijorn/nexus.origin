@@ -1,15 +1,9 @@
 import { Client, Message } from "discord.js";
 
 // Require
-const Discord = require('discord.js');
-const embed = require('../functions/embed');
+import embed from '../functions/embed';
 // Database
 const db = require('../handlers/DatabaseHandler').default;
-
-// Cooldown
-const cooldownCheck = require('../functions/useful/cooldown');
-const cooldowns = new Discord.Collection();
-
 // Economy
 
 export default async (bot: Client, message: Message) => {
@@ -41,8 +35,8 @@ export default async (bot: Client, message: Message) => {
 	const args = messageArray.slice(1);
 	if (cmdFile.help.slice !== undefined && cmdFile.help.slice === false) args.unshift(cmd);
 
-	const cooldown = await cooldownCheck(message, cooldowns, cmdFile, prefix);
-	if (cmdFile && cooldown === false) await cmdFile.run(bot, message, args, guild);
+
+	await cmdFile.run(bot, message, args, guild);
 
 	// Time
 	const end = Date.now();

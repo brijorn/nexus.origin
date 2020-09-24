@@ -1,11 +1,11 @@
 const rbx = require('noblox.js');
-import prompts from '../../prompt/'
+import prompts from '../../lib/util/prompt'
 import { Message, MessageEmbed } from "discord.js";
-import GuildSettings from '../../db/guild/types'
-import { VerificationSettings } from '../../db/verification/types'
+import { VerificationSettings, GuildSettings } from '../../typings/origin'
 import embed from '../embed';
+import OriginClient from '../../lib/OriginClient';
 
-export default async (message: Message, guild: GuildSettings, verification: VerificationSettings, userId: any, sendtype: any) => {
+export default async (bot: OriginClient, message: Message, guild: GuildSettings, verification: VerificationSettings, userId: any, sendtype: any) => {
 	const prompt = (verification.DmVerification === true) ? prompts.dmprompt : prompts.prompt;
 	let status = false;
 	const keywords = ['cow', 'moo', 'nexus', 'origin', 'bear', 'goose', 'jack', 'supreme'];

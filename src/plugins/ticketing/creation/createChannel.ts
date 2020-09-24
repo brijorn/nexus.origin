@@ -1,5 +1,5 @@
 import { Channel, GuildChannel, Message, MessageEmbed, PermissionOverwrites, TextChannel } from 'discord.js'
-import { Panel, GuildSettings } from 'typings/origin'
+import { Panel, GuildSettings } from '../../../typings/origin'
 import embed from '../../../functions/embed'
 import formatEmbed from './functions/formatEmbed'
 

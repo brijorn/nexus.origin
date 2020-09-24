@@ -9,7 +9,7 @@ console.log(string)
 const [
     time,
     hours,
-    minutes, 
+    minutes,
     seconds
 ] = string
 
@@ -18,22 +18,19 @@ console.log(hours)
 */
 const Regex = {
 	NICKNAME_REGEX: /(['])(?:(?=(\\?))\2.)*?\1/,
-	
+
+};
+
+const args = 'asset add 1-250 5 \'Big Potato\' 3456654321,2565786543';
+
+
+const options = ['all', 'nickname', 'hierarchy'];
+const element = '--editexisting(all,idiot)';
+const BRACKET_REGEX = /\((.*?)\)/g;
+const insideBrackets = BRACKET_REGEX.exec(element);
+console.log(insideBrackets);
+if (insideBrackets == null) {
+	valid = false;
+	return console.log('no brackets');
 }
-
-let args = "asset add 1-250 5 'Big Potato' 3456654321,2565786543"
-
-
-const options = ['all', 'nickname', 'hierarchy']
-const element = '--editexisting(all,idiot)'
-            const BRACKET_REGEX = /\((.*?)\)/g
-            const insideBrackets = BRACKET_REGEX.exec(element)
-            console.log(insideBrackets)
-				if (insideBrackets == null) {
-					valid = false
-                return console.log('no brackets')
-                }
-                else {
-                if (insideBrackets[1].split(',').forEach(e => {if (options.includes(e)==false) console.log('Invalid')}))
-                console.log(insideBrackets[1].split(','))
-                }
+else if (insideBrackets[1].split(',').forEach(e => {if (options.includes(e) == false) console.log('Invalid');})) {console.log(insideBrackets[1].split(','));}

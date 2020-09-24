@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { VerificationSettings,GuildSettings } from "typings/origin";
+import { VerificationSettings,GuildSettings } from "../../typings/origin";
 
 const formats = require('../../json/formats.json');
 

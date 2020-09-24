@@ -1,21 +1,22 @@
 import {
-	FetchedVerification,
 	NewAssetBindInterface,
 	GuildSettings,
 	AssetBindType,
 	NewRoleBindInterface,
 	GroupBinds,
-} from "typings/origin";
+	VerificationSettings
+} from "../../../typings/origin";
 import { Role } from "noblox.js";
 
 import { Client, Message } from "discord.js";
-import embed from "functions/embed";
+import embed from "../../../functions/embed";
 import { getProductInfo, ProductInfo } from "noblox.js";
+import { VerificationHandler } from "../../../handlers/VerificationHandler";
 export async function NewAssetBind(
 	bot: Client,
 	message: Message,
 	guild: GuildSettings,
-	verification: FetchedVerification,
+	verification: VerificationSettings,
 	newBindObject: NewAssetBindInterface
 ) {
 	// Check if the roles Exist
@@ -92,12 +93,12 @@ export async function NewRoleBind(
 	bot: Client,
 	message: Message,
 	guild: GuildSettings,
-	verification: FetchedVerification,
+	verification: VerificationSettings,
 	newBindObject: NewRoleBindInterface,
 	groupRanks: Role[]
 ) {
 	if (
-		!verification.role_binds.find((group) => group.id === newBindObject.groupId)
+		!verification.role_binds.find((group: any) => group.id === newBindObject.groupId)
 	)
 		verification.role_binds.push({
 			id: newBindObject.groupId,
@@ -112,7 +113,7 @@ export async function NewRoleBind(
 
 	if (newBindObject.flags && newBindObject.flags!.includes("--deleteprev"))
 		verification.role_binds.find(
-			(group) => group.id === newBindObject.groupId
+			(group: any) => group.id === newBindObject.groupId
 		)!.binds = [];
 
 	for (let i = 0; i < newBindObject.ranks.length; i++) {
@@ -126,26 +127,26 @@ export async function NewRoleBind(
 		// If bind isn't found
 		if (
 			!verification.role_binds
-				.find((group) => group.id === newBindObject.groupId)!
+				.find((group: any) => group.id === newBindObject.groupId)!
 				.binds.find((abind) => abind.id === bind.id)
 		)
 			verification.role_binds
-				.find((group) => group.id === newBindObject.groupId)!
+				.find((group: any) => group.id === newBindObject.groupId)!
 				.binds.push(newBind);
 		if (
 			newBindObject.flags &&
 			newBindObject.flags!.includes("--editexisting")
 		) {
 			const pastExisting = verification.role_binds
-				.find((group) => group.id === newBindObject.groupId)!
+				.find((group: any) => group.id === newBindObject.groupId)!
 				.binds.find((abind) => abind.id === bind.id)!;
 
 			const index = verification.role_binds
-				.find((group) => group.id === newBindObject.groupId)!
+				.find((group: any) => group.id === newBindObject.groupId)!
 				.binds.indexOf(pastExisting);
 
 			verification.role_binds
-				.find((group) => group.id === newBindObject.groupId)!
+				.find((group: any) => group.id === newBindObject.groupId)!
 				.binds.splice(index, 1);
 			const presentExisting = {
 				id: bind.id,
@@ -165,7 +166,7 @@ export async function NewRoleBind(
 						: pastExisting.roles,
 			};
 			verification.role_binds
-				.find((group) => group.id === newBindObject.groupId)!
+				.find((group: any) => group.id === newBindObject.groupId)!
 				.binds.push(presentExisting)
 		}
 	}
