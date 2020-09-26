@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import OriginClient from "../lib/OriginClient";
-import { Client } from "discord.js";
+
 import Knex from "knex"
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const env = require("dotenv").config();
 
 export class DatabaseHandler {
@@ -24,21 +27,21 @@ export class DatabaseHandler {
 		})
 		return this
 	}
-	public insert(schema: string, table: string, data: object): Promise<any> {
+	public insert<T>(schema: string, table: string, data: Record<string, any>): Promise<T> {
 		return this.connection
 		.withSchema(schema)
 		.table(table)
 		.insert(data)
-		.returning("*")
+		.returning('*') as any as Promise<T>
 	}
-	public get(schema: string, table: string, where: {}): Promise<any> {
+	public get(schema: string, table: string, where: Record<string, any>): Promise<any> {
 		return this.connection
 		.withSchema(schema)
 		.table(where)
 		.where(where)
 	}
 
-	public getOne(schema: string, table: string, where: {}): Promise<any> {
+	public getOne(schema: string, table: string, where: Record<string, any>): Promise<any> {
 		return this.connection
 		.withSchema(schema)
 		.table(table)
@@ -46,14 +49,14 @@ export class DatabaseHandler {
 		.first()
 	}
 
-	public has(schema: string, table: string, where: {}): Promise<any> | undefined {
+	public has(schema: string, table: string, where: Record<string, any>): Promise<any> | undefined {
 		return this.connection
 		.withSchema(schema)
 		.table(table)
 		.where(where) || undefined
 	}
 
-	public update(schema: string, table: string, where: {}, data: object): Promise<any> {
+	public update(schema: string, table: string, where: Record<string, any>, data: Record<string, any>): Promise<any> {
 		return this.connection
 		.withSchema(schema)
 		.table(table)
@@ -61,7 +64,7 @@ export class DatabaseHandler {
 		.update(data)
 	}
 
-	public updateOne(schema: string, table: string, where: {}, data: object): Promise<any> {
+	public updateOne(schema: string, table: string, where: Record<string, any>, data: Record<string, any>): Promise<any> {
 		return this.connection
 		.withSchema(schema)
 		.table(table)
@@ -69,7 +72,7 @@ export class DatabaseHandler {
 		.update(data)
 	}
 
-	public delete(schema: string, table: string, where: {}): Promise<any> {
+	public delete(schema: string, table: string, where: Record<string, any>): Promise<any> {
 		return this.connection
 		.withSchema(schema)
 		.table(table)
@@ -77,7 +80,7 @@ export class DatabaseHandler {
 		.delete()
 	}
 
-	public deleteOne(schema: string, table: string, where: {}): Promise<any> {
+	public deleteOne(schema: string, table: string, where: Record<string, any>): Promise<any> {
 		return this.connection
 		.withSchema(schema)
 		.table(table)
@@ -86,7 +89,7 @@ export class DatabaseHandler {
 		.delete()
 	}
 
-	public save(schema: string, table: string, where: {}, data: {}): Promise<void> {
+	public save(schema: string, table: string, where: Record<string, any>, data: Record<string, any>): Promise<void> {
 		return this.connection
 		.withSchema(schema)
 		.table(table)

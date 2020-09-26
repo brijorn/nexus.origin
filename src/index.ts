@@ -1,22 +1,24 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-var-requires */
 import {
 	Guild,
 	GuildMember,
 	Message,
 	MessageReaction,
-	Collection,
-	Client,
 	PartialGuildMember,
 	PartialUser,
 	User,
 } from "discord.js";
 
 import OriginClient from './lib/OriginClient';
-import ReactionHandler from './handlers/ReactionHandler';
-import MessageHandler from './handlers/MessageHandler';
-// Import Discord Creat Client
-const bot = new OriginClient()
-
+import ReactionHandler from './events/reaction';
+import MessageHandler from './events/message';
+import OriginMessage from "./lib/extensions/OriginMessage";
 const env = require("dotenv").config();
+// New Bot
+const bot = new OriginClient()
+bot.commands.init()
+
 // Command Cooldowns
 
 bot.on("guildCreate", (guild: Guild) => {
@@ -26,7 +28,6 @@ bot.on("guildCreate", (guild: Guild) => {
 
 bot.on("ready", async () => {
 	console.log("I am Ready");
-	console.log(await bot.commands.init())
 });
 
 bot.on("guildMemberAdd", async (member: GuildMember | PartialGuildMember) => {
@@ -50,11 +51,11 @@ bot.on("guildMemberAdd", async (member: GuildMember | PartialGuildMember) => {
 	if (verification.unverifiedEnabled === true) {
 		member.roles
 			.add(verification.unverifiedRole)
-			.catch(() =>
-				member.guild.owner!.send(
+			.catch(() => {
+				if (member.guild.owner) member.guild.owner.send(
 					"There seems to be a problem with the **Unverified** role."
 				)
-			);
+				});
 	}
 });
 
@@ -68,7 +69,9 @@ bot.on(
 );
 
 bot.on("message", async (message: Message) => {
-	return MessageHandler(bot, message)
+	if (!message.guild) return;
+	const guild =  await bot.handlers.database.getOne('public', 'guild', { guild_id: message.guild.id })
+	return MessageHandler(bot, message as OriginMessage)
 });
 
-bot.login(process.env.TOKEN!);
+(process.env.TOKEN) ? bot.login(process.env.TOKEN) : new Error('Missing Token')

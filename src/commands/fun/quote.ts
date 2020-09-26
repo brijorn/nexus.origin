@@ -1,34 +1,34 @@
-import { Client, Message } from "discord.js";
-import { GuildSettings } from "../../typings/origin";
+import { Message } from "discord.js";
 
-const { MessageEmbed } = require("discord.js");
+import { MessageEmbed } from "discord.js";
 import nodefetch from "node-fetch";
+import Command from "../../lib/structures/Command";
+import OriginClient from "../../lib/OriginClient";
 
-export async function run(
-	bot: Client,
-	message: Message,
-	args: any,
-	guild: GuildSettings
-) {
-	const data: object[] = (await nodefetch(
-		"https://type.fit/api/quotes"
-	)) as any;
+export default class extends Command {
+	constructor(bot: OriginClient) {
+		super(bot, {
+			name: 'quote',
+			aliases!: ['def'],
+			description!: 'Gives you an inspiraitonal quote',
+			syntax!: ['!quote']
+		})
+	}
+	async run(message: Message): Promise<Message> {
+		const data = (await nodefetch(
+			"https://type.fit/api/quotes"
+		)) as unknown as Quote[];
 
-	const quote: object = data[Math.round(Math.random() * data.length) - 1];
+		const quote = data[Math.round(Math.random() * data.length) - 1];
 
-	build(message, quote);
+		const built = new MessageEmbed()
+			.setDescription(quote.text)
+			.setFooter(quote.author);
+		return message.channel.send(built);
+	}
 }
-function build(message: Message, quote: any | object) {
-	const built = new MessageEmbed()
-		.setDescription(quote.text)
-		.setFooter(quote.author);
-	message.channel.send(built);
-}
 
-module.exports.help = {
-	name: "quote",
-	module: "fun",
-	syntax: ["!quote"],
-	description: "Get a random quote",
-	cooldown: 3,
-};
+interface Quote {
+	text: string,
+	author: string
+}

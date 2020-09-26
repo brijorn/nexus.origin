@@ -1,22 +1,21 @@
 import embed from "../../functions/embed";
 import { Channel, Message, MessageEmbed, TextChannel } from "discord.js";
-import { ApplicationSettings, GuildSettings } from "../../typings/origin";
-import { prompt } from "../../lib/util/prompt";
+import { Application, ApplicationSettings, GuildSettings } from "../../typings/origin";
+import { editStart, prompt } from "../../lib/util/prompt";
 import pmprompt from "../../lib/util/prompt/pmprompt";
 import OriginClient from "../../lib/OriginClient";
+import OriginMessage from "../../lib/extensions/OriginMessage";
 
 export async function run(
 	bot: OriginClient,
-	message: Message,
+	message: OriginMessage,
 	args: string[],
 	guild: GuildSettings
-) {
-	const application = new ApplicationSettings(
-		bot.handlers.database,
+): Promise<void|Message> {
+	const application: ApplicationSettings =
 		await bot.handlers.database.getOne("modules", "applications", {
-			guild_id: message.guild!.id,
+			guild_id: message.guild?.id,
 		})
-	);
 	const app = application.applications;
 	if (!application || application.enabled === false)
 		return message.reply(
@@ -26,7 +25,7 @@ export async function run(
 				guild
 			)
 		);
-
+	
 	const applicationList = app
 		.map((app) => {
 			if (app.available === false) return;
@@ -34,25 +33,22 @@ export async function run(
 		})
 		.join(", ");
 
-	let start: any;
+	let promptArgument = '';
 	if (!args[0]) {
-		start = await prompt(
+		const start = await editStart(
 			message,
-			embed(
-				"Application",
-				"What is the name of the application you wish to apply for?",
-				guild,
-				"default"
-			)
+			{
+				title: "Application",
+				description: "What is the name of the application you wish to apply for?",
+				color: guild.embed.color as unknown as number
+			}, true
 		);
-		if (!start) return start.delete({ timeout: 5000 });
+		if (!start) return;
+		promptArgument = start.content
 	}
 
-	const arg = start ? start : args.length > 1 ? args.join(" ") : args[0];
-
-	const findApplication = app.find(
-		(one) => one.name.toLowerCase() === arg.toLowerCase()
-	);
+	const argument = (args.length > 1) ? args.join(' ') : args[0]
+	const findApplication = app.find(form => form.name.toLowerCase() == (argument.toLowerCase() || promptArgument))
 
 	if (!findApplication)
 		return message.channel.send(
@@ -84,12 +80,11 @@ export async function run(
 			", are you sure?\n\nRespond `y` or `n`\nSay **cancel** at any time during the application to cancel",
 		guild
 	);
-	const startApplication = await pmprompt(message, startApplicationMessage);
-
-	if (start.content.toLowerCase().includes("y") === false)
+	const startApplication = await message.dmprompt(startApplicationMessage);
+	if (startApplication.includes("y") === false)
 		return startApplication.message.delete({ timeout: 5000 });
 	const questions = findApplication.questions;
-	let cancelled: boolean = false;
+	let cancelled = false;
 	for (let i = 0; i < questions.length && cancelled === false; i++) {
 		const question = embed(
 			`${name}`,
@@ -99,17 +94,17 @@ export async function run(
 			`Question ${i + 1}/${questions.length}`
 		);
 
-		const response = await pmprompt(message, question);
+		const response = await message.dmprompt(question);
 		if (response.content.toLowerCase() === "cancel") {
 			cancelled = true;
 		} else responses.push(response.content);
 	}
-	if ((cancelled = true)) return;
+	if ((cancelled == true)) return;
 
 	let place = 1;
 	let i = 0;
 	const matcher = questions
-		.map((r) => `\`${place++}\` **${r}**\n${responses[i++]}`)
+		.map((r: string) => `\`${place++}\` **${r}**\n${responses[i++]}`)
 		.join("\n");
 
 	const confirm = embed(
@@ -126,16 +121,15 @@ export async function run(
 		.setTitle(findApplication.name)
 		.setAuthor(
 			`${message.author.username}#${message.author.discriminator}`,
-			message.author.avatarURL()!
+			message.author.avatarURL() as string
 		)
 		.setDescription(matcher)
 		.setColor("#ffad3b")
 		.setFooter("Application")
 		.setTimestamp();
 	try {
-		let fetchedChannel = (await message
-			.guild!.channels.cache.get(findApplication.response_channel)!
-			.fetch(true)) as TextChannel;
+		const fetchedChannel = (await message
+			.guild?.channels.cache.get(findApplication.response_channel)?.fetch(true)) as TextChannel;
 		fetchedChannel.send(req);
 	} catch {
 		message.channel.send(

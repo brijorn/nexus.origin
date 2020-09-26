@@ -5,6 +5,7 @@ import embed from '../embed';
 import noblox from 'noblox.js';
 import roleCheck from './roleAddCheck';
 import OriginClient from "../../lib/OriginClient";
+import nicknaming from './nicknaming'
 module.exports = async (bot: OriginClient, member: GuildMember, guild: GuildSettings) => {
 	const verification = await bot.handlers.verification.settings.fetch(member.guild.id)
 	const answer = await bot.handlers.verification.users.fetch(member.id);
@@ -13,25 +14,24 @@ module.exports = async (bot: OriginClient, member: GuildMember, guild: GuildSett
 		const user = answer;
 		const username = await noblox.getUsernameFromId(user.primary_account)
 		member.send(embed('Auto Verification', 'You have successfully been verified in ' + `**${member.guild.name}** as ` + username, guild));
-		await roleCheck(undefined as any, undefined as any, guild, user, verification, 'upd', member);
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const roleInfo = await roleCheck(member, member.guild, user, verification)
 		if (verification.nicknaming === true) {
-			const nicknaming = require('./nicknaming');
-			return await nicknaming(member, guild, username);
+			if (!roleInfo) return;
+			return await nicknaming(member, member.guild, verification, username, roleInfo.roleInfo);
 		}
 	}
 	if (!answer) {
-		fetch(`https://api.blox.link/v1/user/${member.id}`).then(async (bod: any) => {
+		fetch(`https://api.blox.link/v1/user/${member.id}`).then(async bod => {
 			const body = await bod.json();
 
 			if (body.status === 'error') {return;}
 			else {
-				const verificationcreate = require('../../models/verificationModel/verificationCreate');
-				await verificationcreate(member.id, body.primaryAccount);
-				const roleCheck = require('./roleAddCheck');
-				const roleAdd = roleCheck(undefined, undefined, guild, 'upd', member);
+				const verificationcreate = await bot.handlers.verification.users.create(member.id, body.primaryAccount)
+				const roleAdd = await roleCheck(member, member.guild, verificationcreate, verification);
 				if (verification.nicknaming === true) {
-					const nicknaming = require('./nicknaming');
-					return await nicknaming(member, guild, await noblox.getUsernameFromId(body.primaryAccount));
+					if (!roleAdd) return
+					return await nicknaming(member, member.guild, verification, await noblox.getUsernameFromId(body.primaryAccount), roleAdd.roleInfo);
 				}
 				member.send(`Welcome to **${member.guild.name}** you were successfully verified with Bloxlink.`);
 			}

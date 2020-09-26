@@ -1,24 +1,25 @@
-import { Message } from "discord.js";
+import { Guild, GuildMember, Message, User } from "discord.js";
 import { VerificationSettings,GuildSettings } from "../../typings/origin";
 
-const formats = require('../../json/formats.json');
+import formats from '../../lib/util/json/formats.json';
 
-export default async (message: Message, guild: GuildSettings, verification: VerificationSettings, newUsername: string, roleInfo: any, type = 'Def') => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async (member: GuildMember, guild: Guild, verification: VerificationSettings, newUsername: string, roleInfo: Record<string, any>, type = 'Def'): Promise<string> => {
 	console.log(verification)
 	let format: string = roleInfo.obj.nickname;
 	if (format === 'default') format = verification.nickname_format;
-	formats.nicknameformats.forEach((each: any) => {
+	formats.nicknameformats.forEach((each) => {
 		if (format.includes(each.name)) {
 			format = format.replace(each.name, eval(each.changeto));
 		}
 	});
 	const special = (type === 'rank') ? formats.rank : formats.asset;
-	special.forEach((each: any) => {
+	special.forEach((each) => {
 		if (format.includes(each.name)) {
 			format = format.replace(each.name, eval(each.changeto));
 		}
-	});
-	message.member!
+	}); 
+	member
 	.setNickname(format)
 		.catch((err) => {return});
 	return format;

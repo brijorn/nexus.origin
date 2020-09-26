@@ -1,17 +1,17 @@
 [
     {
         "name": "{{user}}",
-        "changeto": "(information.type === 'claim') ? user.user : user.author",
+        "changeto": "user",
         "description": "Mentions the user"
     },
     {
         "name": "{{user.name}}",
-        "changeto": "(information.type === 'claim') ? user.user.username : user.author.username",
+        "changeto": "user.username",
         "description": "Changes to the user's nickname"
     },
     {
         "name": "{{user.avatar}}",
-        "changeto": "(information.type === 'claim') ? user.user.avatarURL() : user.author.avatarURL()",
+        "changeto": "user.author.avatarURL()",
         "description": "Changes to user's avatar"
     },
     {

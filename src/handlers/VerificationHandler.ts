@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import OriginClient from "../lib/OriginClient";
-import { CreateVerificationSettings, VerificationSettings, VerificationUser } from "../typings/origin";
+import { RoleBindGroup, RankBindType, AssetBindType } from "../typings/origin";
 import { DatabaseHandler } from "./DatabaseHandler";
 
 export class VerificationHandler {
@@ -61,5 +63,85 @@ class VerificationUserManager {
             roblox_accounts: []
         }), this.database
         )
+    }
+}
+
+class VerificationUser {
+	constructor(data: VerificationUser, database: DatabaseHandler) {
+		Object.assign(this, data)
+		this.database = database
+	}
+	private database?: DatabaseHandler
+	public user_id!: string;
+	public primary_account!: number;
+	public roblox_accounts!: number[];
+
+	public save(): Promise<void> {
+		const obj = { ...this }
+		delete obj.database
+		if (this.database) this.database.save('verification', 'users', { user_id: this.user_id }, obj)
+		return Promise.resolve()
+	}
+}
+
+export class VerificationSettings {
+	constructor(data: VerificationSettings, database: DatabaseHandler) {
+		Object.assign(this, data)
+		this.database = database
+	}
+	private database?: DatabaseHandler;
+	public readonly guild_id!: string;
+	public enabled!: boolean;
+	public verified_role!: string;
+	public unverified_role!: string;
+	public unverified_enabled!: boolean;
+	public autoVerify!: boolean;
+	public nicknaming!: boolean;
+	public nickname_format!: string;
+	public dm_verification!: boolean;
+	public role_binds!: RoleBindGroup[];
+	public rank_binds!: RankBindType[];
+	public asset_binds!: AssetBindType[];
+	public gamepass_binds!: AssetBindType[];
+	public bypass!: {
+		bypass_nickname: string;
+		update: string;
+	};
+	[key: string]: any;
+
+	public update(field: keyof this, value: Record<string, string> | Record<any, any>[]): Promise<VerificationSettings> {
+        const db = this.database
+        return db!
+        .updateOne('modules', 'verification', { guild_id: this.guild_id }, { [field]: value })
+		.then((result: VerificationSettings) => new VerificationSettings(result, db!))
+	}
+
+	public save(): Promise<void> {
+		const obj = { ...this }
+		delete obj.database
+		if (this.database) this.database.save('modules', 'verification', { guild_id: this.guild_id }, obj)
+		return Promise.resolve()
+	}
+}
+
+function CreateVerificationSettings(guildId: string, verifiedRole: string, unverifiedRole?: string) {
+    return {
+        guild_id: guildId,
+        enabled: true,
+        verified_role: (verifiedRole) ? verifiedRole : null,
+        unverified_role: (unverifiedRole) ? verifiedRole : null,
+        unverified_enabled: (unverifiedRole) ? unverifiedRole : false,
+        autoVerify: false,
+        nicknaming: true,
+        nickname_format: "{{robloxname}}",
+        dm_verification: false,
+        role_binds: [],
+        rank_binds: [],
+        asset_binds: [],
+        gamepass_binds: [],
+        bypass: {
+            bypass_nickname: "",
+            update: "",
+        }
     }
 }

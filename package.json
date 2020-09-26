@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/ws": "^7.2.6",
     "axios": "^0.19.2",
+    "browserslist": "^4.14.0",
     "cheerio": "^1.0.0-rc.3",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
@@ -25,6 +26,7 @@
     "pg": "^8.3.3"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.22",
     "@types/klaw": "^3.0.1",
     "@types/node-fetch": "^2.5.7",
     "@typescript-eslint/eslint-plugin": "^4.2.0",

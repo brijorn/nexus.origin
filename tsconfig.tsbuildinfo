@@ -532,23 +532,73 @@
         "affectsGlobalScope": false
       },
       "./src/handlers/databasehandler.ts": {
-        "version": "44726038b877af850fdc45e2ebd05bf0eefe34c36c3008866d82e56759657b80",
-        "signature": "023025e293ad103b606c397650a9ac6fb1bec665e116ef02ac003ad4de33308e",
+        "version": "5f2a4de262c378f2aaf6d3144c19eac397f975f677ac6fc0b57bb75dd25cce0b",
+        "signature": "eb6a7d6776a099df8ef00eb2a61f7068f808bceb0eff4415c009948ada719604",
         "affectsGlobalScope": false
       },
       "./src/handlers/verificationhandler.ts": {
-        "version": "884c2497feda1cca29632a3e8a00cb496ba784c46ee1a5db4eecb17c965f930e",
-        "signature": "1de6380f0604d03c7584877582e755533db5539ee49251c6fa0a85018d73c80e",
+        "version": "18b1e12720be596aa9def1a791d63458b7afee59021711e599e76acaa6bc85a7",
+        "signature": "69e3f5229fc44984fdbf9a5bd2c8a511714bcfce6a2990c55a4a4e769d030220",
         "affectsGlobalScope": false
       },
-      "./src/typings/origin.ts": {
-        "version": "2a9eeebc7ad8acae38730f39dab3babf2d126a6661df0dc5ca1e6b44794b008a",
-        "signature": "882830b2a4010a8a4370e137a0a6ce9aab883c486e528170cfb7d2c5f41b8694",
+      "./src/lib/util/prompt/editstartprompt.ts": {
+        "version": "910a1b9ea922a5943617d3eeba8c6b262e4716bd45c4972f30b4a537f8d18b04",
+        "signature": "fa9e666566ce9f511c6ff2b9b999871926b05749068cf57ef40b623450e40fbe",
+        "affectsGlobalScope": false
+      },
+      "./src/lib/util/prompt/editprompt.ts": {
+        "version": "00aae35de7ce6c1aa3a46c58d67a7b0c4e99e95d31b5569956a65a33b552a02d",
+        "signature": "f5a839e2c5d66a6ea36b3a49a3e27238bc971ac08540c45d117bede67964ebcb",
+        "affectsGlobalScope": false
+      },
+      "./src/lib/util/prompt/delprompt.ts": {
+        "version": "76b5299e8913aa832b167e3d7a8f19f75e76afa62c51ecdc613af24e25018385",
+        "signature": "7364d728f7a593c01b1dc49e598a3b3508d50e8a371586eee91917fab2f3db32",
+        "affectsGlobalScope": false
+      },
+      "./src/lib/util/prompt/tokenprompt.ts": {
+        "version": "df8d51b372fc76534797f313f7804e762ca70eeda66989a4edf2d21c5190f50d",
+        "signature": "c4e55c9fc485edb2226403fb9eedd5e050e8c359387c00d5ec232d93cfdd9a02",
+        "affectsGlobalScope": false
+      },
+      "./src/lib/util/prompt/prompt.ts": {
+        "version": "67c466fa1263977298e80990196fe11a58977efb4cfa09a81efa34af37b03c88",
+        "signature": "e7f0985effe82319bbb49cc57fa6427f0822c0d52d787580c27940e7fca129ac",
+        "affectsGlobalScope": false
+      },
+      "./src/lib/util/prompt/pmprompt.ts": {
+        "version": "bcf5923d1803fcb5273e5705d188ce5231c54d95b5020063982695dabe0d0e19",
+        "signature": "67c9c550ae3e988e64256c3e7c76f45ffe70e1179838bbcdc335c8e02935af60",
+        "affectsGlobalScope": false
+      },
+      "./src/lib/util/prompt/index.ts": {
+        "version": "5eeb8a7245552ad2931556a3244e53649a9d3bd2a47bde6a1e248a8aeb661bb1",
+        "signature": "83163dc57a81810fc5b33a0abb0ca0cdb6f2ace715e628f42f823490c446f7ca",
+        "affectsGlobalScope": false
+      },
+      "./src/functions/embed.ts": {
+        "version": "7b923301fa0d76c14d445f61f188d1ac2873790607a7ab22b18812a06e426b61",
+        "signature": "af3e9767a3b89fe8b2b7e76bbdd385b14ee96f17c45d1b57ba6cb187ce6d2248",
+        "affectsGlobalScope": false
+      },
+      "./src/lib/extensions/originmessage.ts": {
+        "version": "4ca6244dbede1c42cadee72dd21a884bd8abfc09ce9f4ffebbe94365417aeba4",
+        "signature": "3379e4e6a8ffdf5dfdbd3c1b655dc84093f64276761ada6d68dc6ffa1403acc1",
+        "affectsGlobalScope": false
+      },
+      "./src/plugins/ticketing/ticketmanager.ts": {
+        "version": "347f5411b3bd8275fc7d2a368e4d47ddbea9a4fa0ade83b0a87b494f45641c49",
+        "signature": "04bf1696322f9242848958a2b71cbbe15bf178807d197e202321d07a78bb0df2",
+        "affectsGlobalScope": false
+      },
+      "./src/typings/origin.d.ts": {
+        "version": "4abd2f231b936cf0cf9546d72057fb8609c0535d4b412664cd75d1464d696e61",
+        "signature": "4abd2f231b936cf0cf9546d72057fb8609c0535d4b412664cd75d1464d696e61",
         "affectsGlobalScope": false
       },
       "./src/lib/structures/command.ts": {
-        "version": "3211f6bc0f76cfff045ef2b81b60869748446ecdb2707caf8e5a30901943647d",
-        "signature": "c944daceb05404eebec90dfa34a3bbea76db4e898fcea3475ccbdc98a500f4ec",
+        "version": "3a55f5c26ed9e9bd062aafb3a4c3d4d4761c46e88adfb5b49beb683b43263dba",
+        "signature": "00ec4f0192187b34055c212fc99b73dc5784213b23d1574769144dde31034a51",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/klaw/index.d.ts": {
@@ -557,48 +607,33 @@
         "affectsGlobalScope": false
       },
       "./src/handlers/commandhandler.ts": {
-        "version": "57c8414c479991ba9c8c9b9c7a1fc664a5937f51330af1e19efd95f13132622e",
-        "signature": "bedd1bf6c72dedd682705dc3a92d363e615c469be229b2a26ccb2b10e788673e",
-        "affectsGlobalScope": false
-      },
-      "./src/handlers/tickethandler.ts": {
-        "version": "7c1129a986c5a3b00173f23f05e87d4cca6f28bf9137d02f417495ac5e5c31d1",
-        "signature": "d3b11a276cca0f79650170eda9aa12ab8d635e491471df91bab2fda02b339e75",
+        "version": "4de1cd1d0534753e56d5a8cdacff2482dc5e84258803f3aa8b391244bccec321",
+        "signature": "00a8fd42a3c9a70bffc0d0442b70fe0943ed13a73f51f2c847e12e373c9e83c4",
         "affectsGlobalScope": false
       },
       "./src/lib/originclient.ts": {
-        "version": "54efbe31f3c8b5500378015aea1623d67812a4e0ff0f5ee742848e3192117ef2",
-        "signature": "2458ac4ee8c49eebfdd549ff8925a5358bfc842e5ee2c4b2e36f5fce01a2a1d5",
+        "version": "83ea2ddfcf7313699b9dcd3d90916b9f842d2b3e6ddcb32fcb31ac9243458cc9",
+        "signature": "500dfdbe2070724e9005d9ba44010029ab4eddc81d0f66d69b01481be33d2b2f",
         "affectsGlobalScope": false
       },
-      "./src/plugins/ticketing/reaction/index.ts": {
-        "version": "10a6c1f6e6695d4a325f0d835942d4dd32c99a45af45e6ee17c73bbcb83cda57",
-        "signature": "e9507699b47524af3d027aa5ce612a5d3f0df5ee5d45b2a5dca3c58050a20e3e",
-        "affectsGlobalScope": false
-      },
-      "./src/handlers/reactionhandler.ts": {
-        "version": "87661a006448eb05f0277f15bfd5e0858cdee27d7fec31874b185f5326eab93c",
+      "./src/events/reaction.ts": {
+        "version": "5cf9e0981b38a4aa6b689eb0a80ef0c8c36d365b08348f94112d1ea4291afcf6",
         "signature": "c3158b00e0fa080cf7a2d9244eb920b7646c492f5c35a1addde40e3b908e79b6",
         "affectsGlobalScope": false
       },
-      "./src/functions/embed.ts": {
-        "version": "3aa25f4c41d7e22d8cd49bf7b3f74ecb8d9168490b3b045b9e85d7240f0dabf7",
-        "signature": "dfda8496efc4bfb6068156b6adece5754af3467c8ee15b37649abda4f542a553",
-        "affectsGlobalScope": false
-      },
-      "./src/handlers/messagehandler.ts": {
-        "version": "c19c147a10d453a952dd285089cc2842e4dd396336885a9242eaafe0d195c463",
-        "signature": "c412ac097c14e432ba70f4287368c17c9e5c06d969263742db7179f6d0b79da9",
+      "./src/events/message.ts": {
+        "version": "e32e62e6250882cbfef47f05a5d7e694129d890645134679e663a1c475b52cdf",
+        "signature": "4d6ac20373d39b0335de3c2513fa78599b51f1e5870a505dfaf928732bda013c",
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
-        "version": "95d0118713ae625782be5ec82b0769ce81a903cba2442b65f0b7eac9b7f033e2",
+        "version": "129501f79cb8b20a687430690678cd67de9e6085e723b6ca7b5ec2f24f690bd3",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
         "affectsGlobalScope": false
       },
       "./src/commands/fun/8ball.ts": {
-        "version": "9d80b7940574083d25f119447bec9df33db4aa6be15e9b10426ced7832acc85a",
-        "signature": "f39d837b29096742f928bbdde88734ae663f4346ca7de0d9285cabe29f5b9a16",
+        "version": "6bfd7febc6734cf3688b0f0a4bce0034df238c1dcaf89289b0fac6d41ca9bceb",
+        "signature": "b8388b4f420b1f2473676457e25e1dae8b1650af22bd3ac33e7a574345fff9ea",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/node-fetch/node_modules/form-data/index.d.ts": {
@@ -617,13 +652,13 @@
         "affectsGlobalScope": false
       },
       "./src/commands/fun/define.ts": {
-        "version": "aed72b9b870a4163a713becab93df526cbb286b462c6c9e6fb9ce5981fa9710c",
-        "signature": "e3216c0733cc310a63339eab91c2fea0d2b8ec8677db07d46269fb7329e63d08",
+        "version": "82fa0f68c7e90021131e425ff4f8ada2862cdf6780aa44cdf0d839b2af224d30",
+        "signature": "9dcbb238f931b75ceb1664555be0e1c7521cbdce92231ff08e98a7802b557d29",
         "affectsGlobalScope": false
       },
       "./src/commands/fun/quote.ts": {
-        "version": "c365d455965492cd4fa6cff7876dbbfdd4fbdd9c55db180b77e36944519cd0cc",
-        "signature": "1bf4da59684672d9e1017108170fc52f8ef5cbbe6ac0aeb25e32900cb7a912d6",
+        "version": "b0028971bdbc2ebce84bab39d06d166d64ced1406e38f30c42a2bb8a82d803d1",
+        "signature": "0da87d8addfe3e18b007baa2b7cadb5d35007e662731bfc9ffa45ac23ed1f3c6",
         "affectsGlobalScope": false
       },
       "./node_modules/moment/ts3.1-typings/moment.d.ts": {
@@ -637,113 +672,38 @@
         "affectsGlobalScope": false
       },
       "./src/commands/fun/urban.ts": {
-        "version": "e9d1820aa84bd2ce4f974653552a98b027632e4fa1b82b217ff8a17c343b9f1e",
-        "signature": "13375792fe351c1330274abaa3e9efd71c4d695d3751cb653000a7d0a4877fec",
+        "version": "6a828f510204502314dabcb2ee3233a310b0ee71cc15abcd643344ee9ba65cbb",
+        "signature": "c93180f0f6e750b564003611514151e825b3f8aeabe875b5d12426255f9419f6",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/axios/index.d.ts": {
+        "version": "e7df7eb51c5090db4bdcdbf9efe053530dff0e33796f40b08b1a3be6c3a351d0",
+        "signature": "e7df7eb51c5090db4bdcdbf9efe053530dff0e33796f40b08b1a3be6c3a351d0",
         "affectsGlobalScope": false
       },
       "./src/commands/fun/weather.ts": {
-        "version": "6f919aa6d4c6bc9d1f1f618838c431edde4c52ec17afaaba401215214ef7a0cb",
-        "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
+        "version": "8ea2b2e5772a0e11f4ae83388380234130c3d367e8c15ee02820044cec39d9a7",
+        "signature": "725d59da56b91a0ff2ff0208143a859a7e923f4295840b67cfb0001aa4393eac",
         "affectsGlobalScope": false
       },
-      "./src/commands/suggestion/suggest.ts": {
-        "version": "7a715ef0db62a4aa15c0290e60d97de78872c2ac246b58cfd340342d9930e097",
-        "signature": "8841ad3a83bd446cbd6dc3f8f658d0915e72ae0a12249abf528dbc8edb12b7fe",
+      "./node_modules/@types/cheerio/index.d.ts": {
+        "version": "4bb076d48d0dc20d1970b7df2b1e1545a12b1ac6f1fc628f0cc297f311aeb04f",
+        "signature": "4bb076d48d0dc20d1970b7df2b1e1545a12b1ac6f1fc628f0cc297f311aeb04f",
+        "affectsGlobalScope": true
+      },
+      "./src/commands/fun/wyr.ts": {
+        "version": "184215e3856d55b9889d9dce5c077bdac7367c8bf0d72920c08612a57f06938c",
+        "signature": "cbedb46a56fd3ca97b5190544891d516011ab2533ea2de31bff3c3a316878a37",
         "affectsGlobalScope": false
       },
-      "./src/lib/util/prompt/editstartprompt.ts": {
-        "version": "3952c81cfcc59ed91e64daa358293799f1c23cc561e7a968e5da1fdd46761cd5",
-        "signature": "25de5448091f6f8380f5010e1b0501bfd44c162a49e34a170cdc8086b67cbb43",
+      "./src/plugins/suggestion/settings.ts": {
+        "version": "24eee85d234ad821cd6b7d8b7ff06f50d84c8ce75d46ba5e588e89e4b24adc1d",
+        "signature": "3a3742a6f08cb9d56444cd533588a798a322585bbfa8f4028bafac7feb78b973",
         "affectsGlobalScope": false
       },
-      "./src/lib/util/prompt/editprompt.ts": {
-        "version": "00aae35de7ce6c1aa3a46c58d67a7b0c4e99e95d31b5569956a65a33b552a02d",
-        "signature": "a8bec91bc1ebaea7207b14a111ce2da436b6be9da2d931ef9b5fb52b35560e0b",
-        "affectsGlobalScope": false
-      },
-      "./src/lib/util/prompt/delprompt.ts": {
-        "version": "76b5299e8913aa832b167e3d7a8f19f75e76afa62c51ecdc613af24e25018385",
-        "signature": "7364d728f7a593c01b1dc49e598a3b3508d50e8a371586eee91917fab2f3db32",
-        "affectsGlobalScope": false
-      },
-      "./src/lib/util/prompt/tokenprompt.ts": {
-        "version": "df8d51b372fc76534797f313f7804e762ca70eeda66989a4edf2d21c5190f50d",
-        "signature": "e82b6faaaeb693a271f0e8c304a9d2d999801921d088250b54c33a6b541be2d9",
-        "affectsGlobalScope": false
-      },
-      "./src/lib/util/prompt/prompt.ts": {
-        "version": "5b3e77994454d9e0b636a8b95dde3a77db37c35eaf58e3fc7bb6c0554eec5feb",
-        "signature": "f65858c758da15b6be7f21d437b06114262e7d5a8f8811f5e36b90ae4fffc8b4",
-        "affectsGlobalScope": false
-      },
-      "./src/lib/util/prompt/pmprompt.ts": {
-        "version": "bcf5923d1803fcb5273e5705d188ce5231c54d95b5020063982695dabe0d0e19",
-        "signature": "67c9c550ae3e988e64256c3e7c76f45ffe70e1179838bbcdc335c8e02935af60",
-        "affectsGlobalScope": false
-      },
-      "./src/lib/util/prompt/index.ts": {
-        "version": "5eeb8a7245552ad2931556a3244e53649a9d3bd2a47bde6a1e248a8aeb661bb1",
-        "signature": "de27360b1a0a6e0787cbbee24048c7396a5b05de71e1bcfa4b9d5acf646d201b",
-        "affectsGlobalScope": false
-      },
-      "./src/plugins/ticketing/creation/getinfo.ts": {
-        "version": "60037f6b16d8ce24eb6e62a9716b9f89d99f7e20eb87ed2266e871e6b855ec7a",
-        "signature": "00e38372abb8432814b947d200d729de47ba43122f8f237e188ca8831f23493d",
-        "affectsGlobalScope": false
-      },
-      "./src/plugins/ticketing/creation/functions/formatembed.ts": {
-        "version": "fc4eaae513ed3fd72e4b52a8511bb266e975ecd4120b4da62db2a9e672aec2da",
-        "signature": "5ca1d664718c63df06213d7606cc02e8642349533564f05b719faf6e7fa3ce9f",
-        "affectsGlobalScope": false
-      },
-      "./src/plugins/ticketing/creation/createchannel.ts": {
-        "version": "e12addb31f337ec9e7933074e2581a28841666da2d29a7d1a04d79bfd7c679d6",
-        "signature": "0aa5e1824ebce33a345ace7548f14694f11537fc1db0b91b94119e99a9205e15",
-        "affectsGlobalScope": false
-      },
-      "./src/plugins/ticketing/creation/createclaim.ts": {
-        "version": "0afaae21765defd0987c8c5983a59aaf458ab88288bf3da25cc85cd937e0e14f",
-        "signature": "c4edf85c13c0fb348c1a0aef89ebd8f1e6f976b510c506bb148ebfdd83f93f77",
-        "affectsGlobalScope": false
-      },
-      "./src/plugins/ticketing/creation/createticket.ts": {
-        "version": "d03b39ba1780a029c2f968c7c73e496c420d9a667e2c6dd7c748bdabd9ef2e6c",
-        "signature": "f09ded12b9fbfc67264f7cfc0ae2bb41f657a2c530054bb40c9011dffe971a76",
-        "affectsGlobalScope": false
-      },
-      "./src/plugins/ticketing/creation/createongoing.ts": {
-        "version": "141fcf9c1df963dc912127aa4cf646d93679c0bb3019badc86b2d5c76d222096",
-        "signature": "1cd96ac862d4699eb24f83e26530023f675580e87f5c9c920f9504fbe8478e2d",
-        "affectsGlobalScope": false
-      },
-      "./src/plugins/ticketing/creation/finish.ts": {
-        "version": "9eaf23d3f401cdf4ef0badcc58fdbc6b9d3077f97c2d6d9603107689012c8f35",
-        "signature": "1f2a74504b9db885eae7bce989e3503a97166d959e51879a636c3917352da206",
-        "affectsGlobalScope": false
-      },
-      "./src/plugins/ticketing/creation/index.ts": {
-        "version": "133bea5a4151d4cb1d031f8e31beb79c65011f6570a1e29b5ecc3ffc45cb8d29",
-        "signature": "d82cf36aad1160655dd5bac9ef930c024c5973f69ef499f2e50b9bc29d43f370",
-        "affectsGlobalScope": false
-      },
-      "./src/plugins/ticketing/creation/main.ts": {
-        "version": "445bc7b6a783f1f23185922eab98cfde99a2877b94bf15b791bdcf01ea96ebfd",
-        "signature": "97fdd8e583f3fd305313381773d1180b808505b2a0de758ea260cc9a302a183c",
-        "affectsGlobalScope": false
-      },
-      "./src/commands/ticketing/new.ts": {
-        "version": "2d22fb9faba537e12d3379a653d5231de1a829d48a7b12a6581feffa8319d446",
-        "signature": "2efd1721f6a0ebb294e3fdde7dfcc4c484906635bcca025be198c35864295ba6",
-        "affectsGlobalScope": false
-      },
-      "./src/commands/user/apply.ts": {
-        "version": "5c41744fb14f33e1ba40dfc08b8dc6a3cf58c5fd55731fb8fadb8ba8463b07a9",
-        "signature": "e12b50e45afa7b90bf25a6df76bf57465f6b36fb4cc81f7036074232cc635eac",
-        "affectsGlobalScope": false
-      },
-      "./src/commands/utility/uptime.ts": {
-        "version": "c689bdbd32e56447e46efad89c669f93506576ec47d153cdd07a2cca230f5a01",
-        "signature": "1143084abd195aa855aa51ea5ec3086f0cc43e8300e9ac8f6835482f43601b0d",
+      "./src/commands/settings/settings.ts": {
+        "version": "e790300011603a237dc46c73fd3cff44210f3b61ec68d2ee6dd20c07abb0b5e0",
+        "signature": "122946a81ab608e692640008c8a4f3895673f4cd23a6572af07d789729a0e97e",
         "affectsGlobalScope": false
       },
       "./node_modules/noblox.js/typings/index.d.ts": {
@@ -751,14 +711,64 @@
         "signature": "4336bc1b286890e9a9eb9215ff3212e628f0bbc0a973b47958c8030d5e9b1d0b",
         "affectsGlobalScope": false
       },
+      "./src/commands/suggestion/suggest.ts": {
+        "version": "16db76ef0348a287722cfc8268c85c58abe1d29e408e82ae816becd3102bfe20",
+        "signature": "ef64d0cb9ddbe340abfed25e0f2ff08326aab971c8ea5e709109b4ec285abd5d",
+        "affectsGlobalScope": false
+      },
+      "./src/plugins/ticketing/titleanddescription.ts": {
+        "version": "c2dc5ffb66e603593396d9fb27eb861ee0ee5eb9c77bfee08badc03386794fde",
+        "signature": "e84cbdd3de1b220286272caed95cfadb9d236d98c3a870645e3ac2dabab2ff78",
+        "affectsGlobalScope": false
+      },
+      "./src/plugins/ticketing/functions/createoverwrites.ts": {
+        "version": "61c84612ba9107faffa692152b17d254f418acc5e25e0cb2d62da41ed6b7552e",
+        "signature": "3b94b52b8108b63801e726aa51e4006ccab656797145fc5cdde85dd231d2dcc2",
+        "affectsGlobalScope": false
+      },
+      "./src/plugins/ticketing/functions/formats.json": {
+        "version": "a0759324387ff28dcbe287f1626f8a0b084f8e20e2d0ffdf667c39d52b7bbecf",
+        "signature": "0d489bf035ba48bdf083bf59d20f9648a2e798a5b6df34081e034248063b1433",
+        "affectsGlobalScope": true
+      },
+      "./src/plugins/ticketing/functions/formatembed.ts": {
+        "version": "800dc9741e71b7c94ec02afce95a80b25cb689d4f1dcd4dfc41f64b67c0c6279",
+        "signature": "ea8e51c3c9a5675d375463a034e47519f9c13ef77215a8015e0f4ea4de373672",
+        "affectsGlobalScope": false
+      },
+      "./src/plugins/ticketing/createticketchannel.ts": {
+        "version": "3378a0b07f1752af384ef7f30898df1aab28531e5c7cf8f90bc1ead1a12552c7",
+        "signature": "4b511066529f25ce34f07327d97309ad9522652b6cd96227babadb4d272da927",
+        "affectsGlobalScope": false
+      },
+      "./src/plugins/ticketing/createticketcommand.ts": {
+        "version": "4175e595a727d7312a2776c0b92a06700853fdf186de23ae25c8accf3d29b6c8",
+        "signature": "128f9d3353d8e1b4a129c17b912c100f5841ea01dcb1fab1642d7a3d9b18a37d",
+        "affectsGlobalScope": false
+      },
+      "./src/commands/ticketing/new.ts": {
+        "version": "6efb4bb8e24a7a8438eceab95e3b27bc47023eabab9217a278082d259cc4e5b4",
+        "signature": "d9f4b564ddaefd7ac17b94f42f9b629ad351d4fa3db1491b8d4e3e8773d75060",
+        "affectsGlobalScope": false
+      },
+      "./src/commands/user/apply.ts": {
+        "version": "4eff159dd8317c31ddfd0bb96d69851f6e8f2a1c6d26b4990cf535d17df1d55e",
+        "signature": "d7ff0190ee8753b7f195a0078d9295eec2b60691892ec53309c2e9bfda449597",
+        "affectsGlobalScope": false
+      },
+      "./src/commands/utility/uptime.ts": {
+        "version": "c689bdbd32e56447e46efad89c669f93506576ec47d153cdd07a2cca230f5a01",
+        "signature": "1143084abd195aa855aa51ea5ec3086f0cc43e8300e9ac8f6835482f43601b0d",
+        "affectsGlobalScope": false
+      },
       "./src/plugins/verification/binding/createbind.ts": {
-        "version": "b15f21603c7bb63e86c920c52122103bea8ff0bb38b5eeff28eb605071fb07e7",
-        "signature": "c146172680d2a63fc95db9de197dace19d21ad4686f442aa9ac9e1c0a94c6a69",
+        "version": "0816d570dd42306374f5506731f307d3d26c484dfab8cd0ab0e11824126590c7",
+        "signature": "acef03201c334d068e63a04f55b51365d017c18f24f6e7dec0576cd29454fe42",
         "affectsGlobalScope": false
       },
       "./src/commands/verification/assetbind.ts": {
-        "version": "e6421e45bd92bfef57c4eaad22bd4b4b846276eed03ede64366791acd379bfb6",
-        "signature": "8841ad3a83bd446cbd6dc3f8f658d0915e72ae0a12249abf528dbc8edb12b7fe",
+        "version": "d0950fcebfa28e6a08b5e12790b31ed0f62a6dc0b3534dbf6e82afe790a95228",
+        "signature": "7a0f899f2578d0a174c97f13074797a8077cdb92e27e3a25bb585acb2bba9e4f",
         "affectsGlobalScope": false
       },
       "./src/lib/util/roblox/user/index.ts": {
@@ -767,8 +777,8 @@
         "affectsGlobalScope": false
       },
       "./src/functions/verifyfunctions/roleaddcheck.ts": {
-        "version": "c0918848be8210e4567b5dfee56190dbc487f66afd2e1c64a3254dda88237d12",
-        "signature": "9b09b0705d370f8becbaf890a9216db81174bcb48f0e7307809384649d35906e",
+        "version": "579e308246f505c15fde018e4a655f9be7fc9e12745f19ba0dddb3790dbb62f2",
+        "signature": "0230193398b035f97e769e2937e7e0a2bd3ae2b94251dd4dc0e45b5ea118c4e7",
         "affectsGlobalScope": false
       },
       "./src/lib/util/json/config.json": {
@@ -777,8 +787,8 @@
         "affectsGlobalScope": true
       },
       "./src/commands/verification/getroles.ts": {
-        "version": "5d824a368920ef365027b7a0285919ed1940b3ac4a790c828965de58e20d2a59",
-        "signature": "8841ad3a83bd446cbd6dc3f8f658d0915e72ae0a12249abf528dbc8edb12b7fe",
+        "version": "1106b8db67f77198bd404d7de0d8d620715641b37897c6a785ec990aacae82cf",
+        "signature": "e58e7a0436902ec7cf13246b442603b35faff47b217ec4343d5efa09f373f86c",
         "affectsGlobalScope": false
       },
       "./src/commands/verification/groupbind.ts": {
@@ -786,9 +796,14 @@
         "signature": "944b8618fabbe3c5f87f8f8285a7f2b6b88bb203f4f6db5bd1122f8a55e9cb22",
         "affectsGlobalScope": false
       },
+      "./src/lib/util/json/formats.json": {
+        "version": "11844956385bb85a2ec6320c512e30e4b38c60e010b9367c7e8eed746c03a85a",
+        "signature": "dff60ddb853947213ca4f3e5e7cb154aef5fce95fd488b79d39f2dca776e4ec4",
+        "affectsGlobalScope": true
+      },
       "./src/functions/verifyfunctions/nicknaming.ts": {
-        "version": "7b5fa4ad7df70b24f080eda0e5379d9343b1cd19d3784e129232aaacc9d8105c",
-        "signature": "ccc28bb3b797341997f7375aebdbe5f92a1d29a65193057fba7e9f89a9707e10",
+        "version": "41712c025cd2e7e2dc29da5cfad0a39b361ba711573093d42f5842f5ad66d95b",
+        "signature": "afbed6f4f854825bf117b94b5835d96bfe33f1f84b633cf82f3d024bad3e213c",
         "affectsGlobalScope": false
       },
       "./src/functions/thumbnailfunction.ts": {
@@ -812,43 +827,18 @@
         "affectsGlobalScope": false
       },
       "./src/lib/util/parse/channel.ts": {
-        "version": "dfce880c5b728aa353bab7a8dc35cef65f2a630a65267176139e477b37b7632a",
-        "signature": "6e5606218f647682956b8e700fd533c5274ab61f7500b71c54b3911a447d0eba",
+        "version": "18fe7e6f1826a609f0bf36678b165bea858a0a7916c4a1b2e56d696c2ec79061",
+        "signature": "ca07c4a3b03dcc63410f5fbf979a24f22f871dbe0e4e6654bf7e42dccac15854",
         "affectsGlobalScope": false
       },
       "./src/lib/util/parse/index.ts": {
         "version": "ddcaf945f15d0c9831a6101faf83da1ac820927879de49833d448dc852b97ae5",
-        "signature": "3b756c6d02ea793c32e412aa752411f72ff856dd836db09beb8da1b530d8df68",
+        "signature": "26f2591b47e27765b627ff9fef219b88803e3f10c9a9d9e3e2711364ce6a895d",
         "affectsGlobalScope": false
       },
       "./src/commands/verification/update.ts": {
-        "version": "a5537f75ca163a9d1e87a026bd7d103023b44643e72df6bf147b12502ff6c5b9",
-        "signature": "04bc029043d7b13aab0a0174a35e6e8eede342145baca876ab573746a960da0f",
-        "affectsGlobalScope": false
-      },
-      "./src/functions/verifyfunctions/verifyfunction.ts": {
-        "version": "02802db70becca7c1c342762e075cdb8967499d948eba115ac54b507d6bc9466",
-        "signature": "e99579ea910dd211fa2eb01e767c003128632ef9faa842bad0e665134401d8a1",
-        "affectsGlobalScope": false
-      },
-      "./src/commands/verification/verify.ts": {
-        "version": "59d04a8eff392a9b0d186c9998026c57d8be1cea27c219b2ec0e1e8cd4ff79c6",
-        "signature": "8e41387c0e5948daebf4ab441dcfdda482078fac2aff88840c109b5fa82e5348",
-        "affectsGlobalScope": false
-      },
-      "./src/lib/util/json/formats.json": {
-        "version": "11844956385bb85a2ec6320c512e30e4b38c60e010b9367c7e8eed746c03a85a",
-        "signature": "dff60ddb853947213ca4f3e5e7cb154aef5fce95fd488b79d39f2dca776e4ec4",
-        "affectsGlobalScope": true
-      },
-      "./src/functions/settingsfunctions/verification/nicknameformat.ts": {
-        "version": "3834cf54f9ebe66de6a7ec0fd9c32844a9b0bdae86c538df493e52347fba3e90",
-        "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
-        "affectsGlobalScope": false
-      },
-      "./src/functions/settingsfunctions/verification/verificationsettings.ts": {
-        "version": "4d5a3675ea83ecf16c31c7493dbdd1aea2806a49aabeb5bcd589c52a73815204",
-        "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
+        "version": "63b26af1c03db764cb56dcdd04f6d137863298823946b24672ff027bb2ef0da1",
+        "signature": "01d257eb798985b88624e348abd848427ecd15ba16135223a2b8349443f1fa16",
         "affectsGlobalScope": false
       },
       "./src/functions/verifyfunctions/codeverify.ts": {
@@ -856,9 +846,44 @@
         "signature": "c2c3ccac468bf9c792b93f2b5a4f27f803c51a1bf91a38163dd324a54e94d8c4",
         "affectsGlobalScope": false
       },
-      "./src/functions/verifyfunctions/joinverify.ts": {
-        "version": "6210d483d120a66a28e87643f69a32122d550c628ceff3cced24b47c81264ed5",
+      "./src/functions/verifyfunctions/verifyfunction.ts": {
+        "version": "ed2efb99dda09bc2dc496ab4e05fd923946856e72fc98f5ae6c4c503c61802bf",
+        "signature": "8a9aacda4bd34f63d477692a388ce016afdd92cbbcc8c570708a9858f1f9d650",
+        "affectsGlobalScope": false
+      },
+      "./src/commands/verification/verify.ts": {
+        "version": "19a07567ccd59e7ff0556eb56b296b0bc062cbec43a9846336e76b9e6a586f76",
+        "signature": "7f4c4d8ac190c4da8adc0ecc65ac156f98e4d102bfdf3467abd970eed2212f37",
+        "affectsGlobalScope": false
+      },
+      "./src/functions/settingsfunctions/verification/nicknameformat.ts": {
+        "version": "039f11ef7d8bdb86d651e9312a41f221a4caa80f3319fe4566e33c4bdf97724e",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
+        "affectsGlobalScope": false
+      },
+      "./src/functions/verifyfunctions/joinverify.ts": {
+        "version": "ec6e10fef7015d85a248cce7853757db6acb11da399cdf0acdf1a3756e6d8270",
+        "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
+        "affectsGlobalScope": false
+      },
+      "./src/handlers/eventhandler.ts": {
+        "version": "ae4c63d4e22e60a26a334cca4834cc1af88f00a671c365b7fa95dcc1374aae32",
+        "signature": "91f448c259b20e9bc596c6c4ad0aea0477060a04e5200d134aa3d49fdb8fe95a",
+        "affectsGlobalScope": false
+      },
+      "./src/lib/structures/application.ts": {
+        "version": "f2f46455b28fcfdbcd9b99ea1f8dddc3e4e34248ef66c0939cbb08e629d0e6eb",
+        "signature": "0a289edcbaa58d35cdae75f7f641f143c00263d771d5509d025e9a8b45a7e89d",
+        "affectsGlobalScope": false
+      },
+      "./src/lib/structures/suggestionsettings.ts": {
+        "version": "68850a28d34df463b8af22f271e5eaeed45ae053ec85bf8292bc2f73e506e75c",
+        "signature": "ddd40321654556636fdd0f4cca83d4494b35dae031774834e2b34ddbd4d9f63c",
+        "affectsGlobalScope": false
+      },
+      "./src/lib/util/enabledisable.ts": {
+        "version": "a5fd6f7a19f275fade67de93308ecd1c3805f0ad36ee1c4b0c263cd36bf30af9",
+        "signature": "a6e7df58c5f58295b1fc4e051e1b1c6c8db1fe164bbe79bd4878f35ff3f31bb2",
         "affectsGlobalScope": false
       },
       "./src/lib/util/foreachpagination.ts": {
@@ -872,23 +897,33 @@
         "affectsGlobalScope": false
       },
       "./src/plugins/application/add.ts": {
-        "version": "1db20747b60551e8f2218078d540584104afa7bca4fccd38a91c34b3d9f4a322",
-        "signature": "e45a5146f54e611ed8cd955d17b9210506c19878d2ba711ea7c33ed0160517e0",
+        "version": "163571e5a19b18fdf3eb465d2c155cc3b049f9762ee61e65510e4500981d7514",
+        "signature": "557c9e229ce870e1016a91ffa142e22f9fb4a6ad3aa56c953fe764b9ece068ce",
         "affectsGlobalScope": false
       },
-      "./src/plugins/ticketing/main.ts": {
-        "version": "3c64a84749557c192ac411a6d3dbc321bbbf28589047e023443e80b820665d15",
-        "signature": "f85fd3cc6f8d4eea932db7ca7146b553e091c28fb5673524cddc258e23acd5fe",
+      "./src/plugins/ticketing/claimticket.ts": {
+        "version": "ef12ac80fd09e171f4e02961573e811d6387b5c248462bc617be98c0410f10e8",
+        "signature": "87ec9998cab069644b779bf94665a489d0458e10d99cf2c6b6e6fc19ebfd40b4",
         "affectsGlobalScope": false
       },
-      "./src/plugins/ticketing/creation/misc/setreactionmessage.ts": {
-        "version": "83a520cabb86c5d2fbf5eee90fac3adec770b52b271668d704581e065a08bb93",
-        "signature": "39fe6de581dfe8c38f077b0dba90b5715830e2105453891d815b119dc64512e5",
+      "./src/plugins/ticketing/createticketreaction.ts": {
+        "version": "47dcc44383b611184cc5fdeb2ec664f983caab8e7ef003717627370724d12878",
+        "signature": "87ec9998cab069644b779bf94665a489d0458e10d99cf2c6b6e6fc19ebfd40b4",
         "affectsGlobalScope": false
       },
-      "./src/types/origin.ts": {
-        "version": "2a9eeebc7ad8acae38730f39dab3babf2d126a6661df0dc5ca1e6b44794b008a",
-        "signature": "882830b2a4010a8a4370e137a0a6ce9aab883c486e528170cfb7d2c5f41b8694",
+      "./src/plugins/ticketing/functions/format.ts": {
+        "version": "a7633e0be9876fb2764a0e56129274243f8a7942ef5ae27f97af4e138b4ae221",
+        "signature": "199b30bd4dbed90e62eab351d0201a849f20887dd39ed4707237332d100b4c16",
+        "affectsGlobalScope": false
+      },
+      "./src/plugins/ticketing/functions/reaction.ts": {
+        "version": "861b8c1f49b06f722f49c2de966bffcece54eb1eef30e1c3fcd43e3e9af5bb3e",
+        "signature": "44c1febdc3db55f0122aeb70c506f4fb130258f0ba6458cd852aa39c27a4926c",
+        "affectsGlobalScope": false
+      },
+      "./src/plugins/verification/settings.ts": {
+        "version": "81178ddb809b1aee703c81fe10d481dd1ef3899683c9283d9076f6d0a4c6d681",
+        "signature": "ea22b540c45823cb5090b957eeb92c9b07b992d88a1ae6c9abe700b97059c184",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/color-name/index.d.ts": {
@@ -1267,6 +1302,15 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts"
       ],
+      "./node_modules/@types/cheerio/index.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/ts3.7/index.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
       "./node_modules/@types/color-name/index.d.ts": [
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/process.d.ts",
@@ -1860,6 +1904,14 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/zlib.d.ts"
       ],
+      "./node_modules/axios/index.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
       "./node_modules/discord.js/typings/index.d.ts": [
         "./node_modules/@discordjs/collection/dist/index.d.ts",
         "./node_modules/@types/node/child_process.d.ts",
@@ -1996,8 +2048,9 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/lib/structures/command.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts",
+        "./src/lib/structures/command.ts"
       ],
       "./src/commands/fun/define.ts": [
         "./node_modules/@types/node-fetch/index.d.ts",
@@ -2008,8 +2061,9 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/lib/structures/command.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts",
+        "./src/lib/structures/command.ts"
       ],
       "./src/commands/fun/quote.ts": [
         "./node_modules/@types/node-fetch/index.d.ts",
@@ -2020,7 +2074,8 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/originclient.ts",
+        "./src/lib/structures/command.ts"
       ],
       "./src/commands/fun/urban.ts": [
         "./node_modules/@types/node-fetch/index.d.ts",
@@ -2032,7 +2087,7 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
         "./node_modules/moment-timezone/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/structures/command.ts"
       ],
       "./src/commands/fun/weather.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2041,9 +2096,39 @@
         "./node_modules/@types/node/ts3.2/process.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
+        "./node_modules/axios/index.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/structures/command.ts"
+      ],
+      "./src/commands/fun/wyr.ts": [
+        "./node_modules/@types/cheerio/index.d.ts",
+        "./node_modules/@types/node-fetch/index.d.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/originclient.ts",
+        "./src/lib/structures/command.ts",
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/commands/settings/settings.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/functions/embed.ts",
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts",
+        "./src/lib/structures/command.ts",
+        "./src/plugins/suggestion/settings.ts",
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/suggestion/suggest.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2053,9 +2138,12 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
+        "./node_modules/noblox.js/typings/index.d.ts",
         "./src/functions/embed.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/structures/command.ts",
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/ticketing/new.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2065,10 +2153,10 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/functions/embed.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
-        "./src/plugins/ticketing/creation/main.ts",
-        "./src/typings/origin.ts"
+        "./src/plugins/ticketing/createticketcommand.ts",
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/user/apply.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2079,10 +2167,11 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
         "./src/functions/embed.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
         "./src/lib/util/prompt/index.ts",
         "./src/lib/util/prompt/pmprompt.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/utility/uptime.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2094,7 +2183,7 @@
         "./node_modules/discord.js/typings/index.d.ts",
         "./node_modules/moment-timezone/index.d.ts",
         "./src/functions/embed.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/verification/assetbind.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2105,9 +2194,12 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
         "./src/functions/embed.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
+        "./src/lib/structures/command.ts",
+        "./src/lib/util/prompt/index.ts",
         "./src/plugins/verification/binding/createbind.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/verification/getroles.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2121,7 +2213,7 @@
         "./src/functions/verifyfunctions/roleaddcheck.ts",
         "./src/lib/originclient.ts",
         "./src/lib/util/json/config.json",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/verification/groupbind.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2135,7 +2227,7 @@
         "./src/functions/embed.ts",
         "./src/lib/originclient.ts",
         "./src/plugins/verification/binding/createbind.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/verification/update.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2150,10 +2242,11 @@
         "./src/functions/thumbnailfunction.ts",
         "./src/functions/verifyfunctions/nicknaming.ts",
         "./src/functions/verifyfunctions/roleaddcheck.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
         "./src/lib/util/json/config.json",
         "./src/lib/util/parse/index.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/verification/verify.ts": [
         "./node_modules/@types/node-fetch/index.d.ts",
@@ -2169,10 +2262,32 @@
         "./src/functions/verifyfunctions/nicknaming.ts",
         "./src/functions/verifyfunctions/roleaddcheck.ts",
         "./src/functions/verifyfunctions/verifyfunction.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
         "./src/lib/util/json/config.json",
-        "./src/lib/util/prompt/index.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/events/message.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/functions/embed.ts",
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts"
+      ],
+      "./src/events/reaction.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/originclient.ts"
       ],
       "./src/functions/embed.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2182,7 +2297,7 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/functions/settingsfunctions/verification/nicknameformat.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2192,26 +2307,12 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/functions/embed.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
         "./src/lib/util/json/config.json",
         "./src/lib/util/json/formats.json",
         "./src/lib/util/prompt/index.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/functions/settingsfunctions/verification/verificationsettings.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/process.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/process.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/functions/embed.ts",
-        "./src/lib/originclient.ts",
-        "./src/lib/util/json/config.json",
-        "./src/lib/util/prompt/index.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/functions/thumbnailfunction.ts": [
         "./node_modules/@types/node-fetch/index.d.ts",
@@ -2233,7 +2334,7 @@
         "./src/functions/embed.ts",
         "./src/lib/originclient.ts",
         "./src/lib/util/prompt/index.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/functions/verifyfunctions/joinverify.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2245,9 +2346,10 @@
         "./node_modules/discord.js/typings/index.d.ts",
         "./node_modules/noblox.js/typings/index.d.ts",
         "./src/functions/embed.ts",
+        "./src/functions/verifyfunctions/nicknaming.ts",
         "./src/functions/verifyfunctions/roleaddcheck.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/functions/verifyfunctions/nicknaming.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2257,7 +2359,8 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/util/json/formats.json",
+        "./src/typings/origin.d.ts"
       ],
       "./src/functions/verifyfunctions/roleaddcheck.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2269,8 +2372,9 @@
         "./node_modules/discord.js/typings/index.d.ts",
         "./node_modules/noblox.js/typings/index.d.ts",
         "./src/functions/embed.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/util/roblox/user/index.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/functions/verifyfunctions/verifyfunction.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2282,11 +2386,14 @@
         "./node_modules/discord.js/typings/index.d.ts",
         "./node_modules/noblox.js/typings/index.d.ts",
         "./src/functions/embed.ts",
+        "./src/functions/verifyfunctions/codeverify.ts",
         "./src/functions/verifyfunctions/roleaddcheck.ts",
+        "./src/handlers/verificationhandler.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
         "./src/lib/util/json/config.json",
         "./src/lib/util/prompt/index.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/handlers/commandhandler.ts": [
         "./node_modules/@types/klaw/index.d.ts",
@@ -2308,42 +2415,20 @@
         "./node_modules/@types/node/ts3.2/process.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
-        "./node_modules/discord.js/typings/index.d.ts",
         "./node_modules/knex/types/index.d.ts",
         "./src/lib/originclient.ts"
       ],
-      "./src/handlers/messagehandler.ts": [
+      "./src/handlers/eventhandler.ts": [
+        "./node_modules/@types/klaw/index.d.ts",
         "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/path.d.ts",
         "./node_modules/@types/node/process.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
         "./node_modules/@types/node/ts3.2/process.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/functions/embed.ts"
-      ],
-      "./src/handlers/reactionhandler.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/process.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/process.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/handlers/databasehandler.ts",
-        "./src/lib/originclient.ts",
-        "./src/plugins/ticketing/reaction/index.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/handlers/tickethandler.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/process.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/process.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/originclient.ts"
       ],
       "./src/handlers/verificationhandler.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2354,7 +2439,7 @@
         "./node_modules/@types/node/util.d.ts",
         "./src/handlers/databasehandler.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/index.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2364,9 +2449,22 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/handlers/messagehandler.ts",
-        "./src/handlers/reactionhandler.ts",
+        "./src/events/message.ts",
+        "./src/events/reaction.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts"
+      ],
+      "./src/lib/extensions/originmessage.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/functions/embed.ts",
+        "./src/lib/util/prompt/index.ts",
+        "./src/typings/origin.d.ts"
       ],
       "./src/lib/originclient.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2378,8 +2476,18 @@
         "./node_modules/discord.js/typings/index.d.ts",
         "./src/handlers/commandhandler.ts",
         "./src/handlers/databasehandler.ts",
-        "./src/handlers/tickethandler.ts",
-        "./src/handlers/verificationhandler.ts"
+        "./src/handlers/verificationhandler.ts",
+        "./src/plugins/ticketing/ticketmanager.ts",
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/lib/structures/application.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./src/handlers/databasehandler.ts"
       ],
       "./src/lib/structures/command.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2388,8 +2496,29 @@
         "./node_modules/@types/node/ts3.2/process.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts",
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/lib/structures/suggestionsettings.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./src/handlers/databasehandler.ts"
+      ],
+      "./src/lib/util/enabledisable.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./src/functions/embed.ts",
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/util/prompt/index.ts"
       ],
       "./src/lib/util/foreachpagination.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2399,7 +2528,7 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/lib/util/json/config.json": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2489,7 +2618,9 @@
         "./node_modules/@types/node/ts3.2/process.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
-        "./node_modules/discord.js/typings/index.d.ts"
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
+        "./src/typings/origin.d.ts"
       ],
       "./src/lib/util/prompt/index.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2522,7 +2653,8 @@
         "./node_modules/@types/node/ts3.2/process.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
-        "./node_modules/discord.js/typings/index.d.ts"
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/typings/origin.d.ts"
       ],
       "./src/lib/util/prompt/tokenprompt.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2559,130 +2691,118 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
         "./src/functions/embed.ts",
-        "./src/lib/originclient.ts",
-        "./src/lib/util/prompt/index.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/plugins/ticketing/creation/createchannel.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/process.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/process.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/functions/embed.ts",
-        "./src/plugins/ticketing/creation/functions/formatembed.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/plugins/ticketing/creation/createclaim.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/process.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/process.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/functions/embed.ts",
-        "./src/plugins/ticketing/creation/functions/formatembed.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/plugins/ticketing/creation/createongoing.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/process.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/process.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/plugins/ticketing/creation/createticket.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/process.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/process.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/functions/embed.ts",
-        "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/plugins/ticketing/creation/finish.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/process.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/process.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/functions/embed.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/plugins/ticketing/creation/functions/formatembed.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/process.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/process.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/plugins/ticketing/creation/getinfo.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/process.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/process.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/functions/embed.ts",
-        "./src/lib/util/prompt/index.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/plugins/ticketing/creation/index.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/process.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/process.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./src/plugins/ticketing/creation/createchannel.ts",
-        "./src/plugins/ticketing/creation/createclaim.ts",
-        "./src/plugins/ticketing/creation/createongoing.ts",
-        "./src/plugins/ticketing/creation/createticket.ts",
-        "./src/plugins/ticketing/creation/finish.ts",
-        "./src/plugins/ticketing/creation/getinfo.ts"
-      ],
-      "./src/plugins/ticketing/creation/main.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/process.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/process.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/lib/originclient.ts",
-        "./src/plugins/ticketing/creation/index.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/plugins/ticketing/creation/misc/setreactionmessage.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/process.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/process.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/functions/embed.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
         "./src/lib/util/parse/index.ts",
         "./src/lib/util/prompt/index.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
-      "./src/plugins/ticketing/main.ts": [
+      "./src/plugins/suggestion/settings.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/functions/embed.ts",
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts",
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/plugins/ticketing/claimticket.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/originclient.ts"
+      ],
+      "./src/plugins/ticketing/createticketchannel.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/plugins/ticketing/functions/createoverwrites.ts",
+        "./src/plugins/ticketing/functions/formatembed.ts",
+        "./src/plugins/ticketing/ticketmanager.ts",
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/plugins/ticketing/createticketcommand.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts",
+        "./src/plugins/ticketing/createticketchannel.ts",
+        "./src/plugins/ticketing/ticketmanager.ts",
+        "./src/plugins/ticketing/titleanddescription.ts",
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/plugins/ticketing/createticketreaction.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/originclient.ts"
+      ],
+      "./src/plugins/ticketing/functions/createoverwrites.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/plugins/ticketing/ticketmanager.ts",
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/plugins/ticketing/functions/format.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
+        "./src/plugins/ticketing/functions/formats.json",
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/plugins/ticketing/functions/formatembed.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./node_modules/moment-timezone/index.d.ts",
+        "./src/plugins/ticketing/functions/formats.json",
+        "./src/plugins/ticketing/ticketmanager.ts",
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/plugins/ticketing/functions/formats.json": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "./src/plugins/ticketing/functions/reaction.ts": [
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/process.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
@@ -2691,10 +2811,10 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
         "./src/lib/originclient.ts",
-        "./src/plugins/ticketing/creation/index.ts",
-        "./src/typings/origin.ts"
+        "./src/plugins/ticketing/claimticket.ts",
+        "./src/plugins/ticketing/createticketreaction.ts"
       ],
-      "./src/plugins/ticketing/reaction/index.ts": [
+      "./src/plugins/ticketing/ticketmanager.ts": [
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/process.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
@@ -2702,7 +2822,20 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts",
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/plugins/ticketing/titleanddescription.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
+        "./src/typings/origin.d.ts"
       ],
       "./src/plugins/verification/binding/createbind.ts": [
         "./node_modules/@types/node/fs.d.ts",
@@ -2715,9 +2848,11 @@
         "./node_modules/noblox.js/typings/index.d.ts",
         "./src/functions/embed.ts",
         "./src/handlers/verificationhandler.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts",
+        "./src/typings/origin.d.ts"
       ],
-      "./src/types/origin.ts": [
+      "./src/plugins/verification/settings.ts": [
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/process.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
@@ -2725,12 +2860,16 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
-        "./node_modules/knex/types/index.d.ts",
-        "./src/handlers/databasehandler.ts",
-        "./src/handlers/verificationhandler.ts",
-        "./src/lib/originclient.ts"
+        "./src/functions/embed.ts",
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts",
+        "./src/lib/util/enabledisable.ts",
+        "./src/lib/util/json/config.json",
+        "./src/lib/util/parse/index.ts",
+        "./src/lib/util/prompt/index.ts",
+        "./src/typings/origin.d.ts"
       ],
-      "./src/typings/origin.ts": [
+      "./src/typings/origin.d.ts": [
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/process.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
@@ -2738,10 +2877,10 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
-        "./node_modules/knex/types/index.d.ts",
+        "./src/handlers/commandhandler.ts",
         "./src/handlers/databasehandler.ts",
         "./src/handlers/verificationhandler.ts",
-        "./src/lib/originclient.ts"
+        "./src/plugins/ticketing/ticketmanager.ts"
       ]
     },
     "exportedModulesMap": {
@@ -3089,6 +3228,15 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts"
       ],
+      "./node_modules/@types/cheerio/index.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/ts3.7/index.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
       "./node_modules/@types/color-name/index.d.ts": [
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/process.d.ts",
@@ -3682,6 +3830,14 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/zlib.d.ts"
       ],
+      "./node_modules/axios/index.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
       "./node_modules/discord.js/typings/index.d.ts": [
         "./node_modules/@discordjs/collection/dist/index.d.ts",
         "./node_modules/@types/node/child_process.d.ts",
@@ -3812,35 +3968,61 @@
       ],
       "./src/commands/fun/8ball.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/lib/structures/command.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts",
+        "./src/lib/structures/command.ts"
       ],
       "./src/commands/fun/define.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts",
         "./src/lib/structures/command.ts"
       ],
       "./src/commands/fun/quote.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/originclient.ts",
+        "./src/lib/structures/command.ts"
       ],
       "./src/commands/fun/urban.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/structures/command.ts"
+      ],
+      "./src/commands/fun/weather.ts": [
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/originclient.ts",
+        "./src/lib/structures/command.ts"
+      ],
+      "./src/commands/fun/wyr.ts": [
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/originclient.ts",
+        "./src/lib/structures/command.ts",
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/commands/settings/settings.ts": [
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts",
+        "./src/lib/structures/command.ts",
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/suggestion/suggest.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/structures/command.ts",
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/ticketing/new.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/user/apply.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/utility/uptime.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
@@ -3848,50 +4030,64 @@
       ],
       "./src/commands/verification/assetbind.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/structures/command.ts",
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/verification/getroles.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/verification/groupbind.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/verification/update.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/commands/verification/verify.ts": [
-        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/events/message.ts": [
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts"
+      ],
+      "./src/events/reaction.ts": [
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/originclient.ts"
       ],
       "./src/functions/embed.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/functions/verifyfunctions/codeverify.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/functions/verifyfunctions/nicknaming.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/functions/verifyfunctions/roleaddcheck.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/extensions/originmessage.ts",
+        "./src/typings/origin.d.ts"
       ],
       "./src/functions/verifyfunctions/verifyfunction.ts": [
-        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/handlers/verificationhandler.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
       "./src/handlers/commandhandler.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
@@ -3902,32 +4098,37 @@
         "./node_modules/knex/types/index.d.ts",
         "./src/lib/originclient.ts"
       ],
-      "./src/handlers/messagehandler.ts": [
-        "./node_modules/discord.js/typings/index.d.ts"
-      ],
-      "./src/handlers/reactionhandler.ts": [
+      "./src/handlers/eventhandler.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
         "./src/lib/originclient.ts"
-      ],
-      "./src/handlers/tickethandler.ts": [
-        "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
       ],
       "./src/handlers/verificationhandler.ts": [
         "./src/handlers/databasehandler.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/lib/extensions/originmessage.ts": [
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/typings/origin.d.ts"
       ],
       "./src/lib/originclient.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
         "./src/handlers/commandhandler.ts",
-        "./src/handlers/databasehandler.ts",
-        "./src/handlers/tickethandler.ts",
-        "./src/handlers/verificationhandler.ts"
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/lib/structures/application.ts": [
+        "./src/handlers/databasehandler.ts"
       ],
       "./src/lib/structures/command.ts": [
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts",
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/lib/structures/suggestionsettings.ts": [
+        "./src/handlers/databasehandler.ts"
+      ],
+      "./src/lib/util/enabledisable.ts": [
+        "./src/lib/extensions/originmessage.ts"
       ],
       "./src/lib/util/foreachpagination.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
@@ -3956,100 +4157,118 @@
         "./node_modules/discord.js/typings/index.d.ts"
       ],
       "./src/lib/util/prompt/editstartprompt.ts": [
-        "./node_modules/discord.js/typings/index.d.ts"
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
+        "./src/typings/origin.d.ts"
       ],
       "./src/lib/util/prompt/index.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/util/prompt/delprompt.ts",
         "./src/lib/util/prompt/editprompt.ts",
         "./src/lib/util/prompt/editstartprompt.ts",
         "./src/lib/util/prompt/pmprompt.ts",
         "./src/lib/util/prompt/prompt.ts",
-        "./src/lib/util/prompt/tokenprompt.ts"
+        "./src/lib/util/prompt/tokenprompt.ts",
+        "./src/typings/origin.d.ts"
       ],
       "./src/lib/util/prompt/pmprompt.ts": [
         "./node_modules/discord.js/typings/index.d.ts"
       ],
       "./src/lib/util/prompt/prompt.ts": [
-        "./node_modules/discord.js/typings/index.d.ts"
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/typings/origin.d.ts"
       ],
       "./src/lib/util/prompt/tokenprompt.ts": [
         "./node_modules/discord.js/typings/index.d.ts"
       ],
       "./src/plugins/application/add.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
-      "./src/plugins/ticketing/creation/createchannel.ts": [
+      "./src/plugins/suggestion/settings.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/plugins/ticketing/creation/createclaim.ts": [
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/plugins/ticketing/creation/createongoing.ts": [
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/plugins/ticketing/creation/createticket.ts": [
-        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
-      "./src/plugins/ticketing/creation/finish.ts": [
+      "./src/plugins/ticketing/claimticket.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/originclient.ts"
       ],
-      "./src/plugins/ticketing/creation/functions/formatembed.ts": [
+      "./src/plugins/ticketing/createticketchannel.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/plugins/ticketing/ticketmanager.ts",
+        "./src/typings/origin.d.ts"
       ],
-      "./src/plugins/ticketing/creation/getinfo.ts": [
+      "./src/plugins/ticketing/createticketcommand.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/plugins/ticketing/creation/index.ts": [
-        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
-      "./src/plugins/ticketing/creation/main.ts": [
+      "./src/plugins/ticketing/createticketreaction.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/originclient.ts"
+      ],
+      "./src/plugins/ticketing/functions/createoverwrites.ts": [
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/plugins/ticketing/ticketmanager.ts",
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/plugins/ticketing/functions/format.ts": [
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/plugins/ticketing/functions/formatembed.ts": [
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/plugins/ticketing/ticketmanager.ts",
+        "./src/typings/origin.d.ts"
+      ],
+      "./src/plugins/ticketing/functions/reaction.ts": [
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/originclient.ts"
+      ],
+      "./src/plugins/ticketing/ticketmanager.ts": [
+        "./node_modules/discord.js/typings/index.d.ts",
+        "./src/lib/extensions/originmessage.ts",
         "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
+        "./src/typings/origin.d.ts"
       ],
-      "./src/plugins/ticketing/creation/misc/setreactionmessage.ts": [
+      "./src/plugins/ticketing/titleanddescription.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
-        "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/plugins/ticketing/main.ts": [
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/lib/originclient.ts",
-        "./src/typings/origin.ts"
-      ],
-      "./src/plugins/ticketing/reaction/index.ts": [
-        "./node_modules/discord.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/lib/extensions/originmessage.ts",
+        "./src/typings/origin.d.ts"
       ],
       "./src/plugins/verification/binding/createbind.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
         "./node_modules/noblox.js/typings/index.d.ts",
-        "./src/typings/origin.ts"
+        "./src/handlers/verificationhandler.ts",
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts",
+        "./src/typings/origin.d.ts"
       ],
-      "./src/types/origin.ts": [
+      "./src/plugins/verification/settings.ts": [
         "./node_modules/discord.js/typings/index.d.ts",
-        "./node_modules/knex/types/index.d.ts",
-        "./src/handlers/databasehandler.ts",
-        "./src/lib/originclient.ts"
+        "./src/lib/extensions/originmessage.ts",
+        "./src/lib/originclient.ts",
+        "./src/typings/origin.d.ts"
       ],
-      "./src/typings/origin.ts": [
+      "./src/typings/origin.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/process.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/process.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
         "./node_modules/discord.js/typings/index.d.ts",
-        "./node_modules/knex/types/index.d.ts",
+        "./src/handlers/commandhandler.ts",
         "./src/handlers/databasehandler.ts",
-        "./src/lib/originclient.ts"
+        "./src/handlers/verificationhandler.ts",
+        "./src/plugins/ticketing/ticketmanager.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -4096,6 +4315,7 @@
       "../appdata/roaming/npm/node_modules/typescript/lib/lib.scripthost.d.ts",
       "../appdata/roaming/npm/node_modules/typescript/lib/lib.webworker.importscripts.d.ts",
       "./node_modules/@discordjs/collection/dist/index.d.ts",
+      "./node_modules/@types/cheerio/index.d.ts",
       "./node_modules/@types/color-name/index.d.ts",
       "./node_modules/@types/json-schema/index.d.ts",
       "./node_modules/@types/json5/index.d.ts",
@@ -4156,6 +4376,7 @@
       "./node_modules/@types/node/worker_threads.d.ts",
       "./node_modules/@types/node/zlib.d.ts",
       "./node_modules/@types/ws/index.d.ts",
+      "./node_modules/axios/index.d.ts",
       "./node_modules/discord.js/typings/index.d.ts",
       "./node_modules/knex/types/index.d.ts",
       "./node_modules/knex/types/result.d.ts",
@@ -4174,6 +4395,8 @@
       "./src/commands/fun/quote.ts",
       "./src/commands/fun/urban.ts",
       "./src/commands/fun/weather.ts",
+      "./src/commands/fun/wyr.ts",
+      "./src/commands/settings/settings.ts",
       "./src/commands/suggestion/suggest.ts",
       "./src/commands/ticketing/new.ts",
       "./src/commands/user/apply.ts",
@@ -4183,9 +4406,10 @@
       "./src/commands/verification/groupbind.ts",
       "./src/commands/verification/update.ts",
       "./src/commands/verification/verify.ts",
+      "./src/events/message.ts",
+      "./src/events/reaction.ts",
       "./src/functions/embed.ts",
       "./src/functions/settingsfunctions/verification/nicknameformat.ts",
-      "./src/functions/settingsfunctions/verification/verificationsettings.ts",
       "./src/functions/thumbnailfunction.ts",
       "./src/functions/verifyfunctions/codeverify.ts",
       "./src/functions/verifyfunctions/joinverify.ts",
@@ -4194,13 +4418,15 @@
       "./src/functions/verifyfunctions/verifyfunction.ts",
       "./src/handlers/commandhandler.ts",
       "./src/handlers/databasehandler.ts",
-      "./src/handlers/messagehandler.ts",
-      "./src/handlers/reactionhandler.ts",
-      "./src/handlers/tickethandler.ts",
+      "./src/handlers/eventhandler.ts",
       "./src/handlers/verificationhandler.ts",
       "./src/index.ts",
+      "./src/lib/extensions/originmessage.ts",
       "./src/lib/originclient.ts",
+      "./src/lib/structures/application.ts",
       "./src/lib/structures/command.ts",
+      "./src/lib/structures/suggestionsettings.ts",
+      "./src/lib/util/enabledisable.ts",
       "./src/lib/util/foreachpagination.ts",
       "./src/lib/util/json/config.json",
       "./src/lib/util/json/formats.json",
@@ -4219,21 +4445,21 @@
       "./src/lib/util/roblox/user/checkownership.ts",
       "./src/lib/util/roblox/user/index.ts",
       "./src/plugins/application/add.ts",
-      "./src/plugins/ticketing/creation/createchannel.ts",
-      "./src/plugins/ticketing/creation/createclaim.ts",
-      "./src/plugins/ticketing/creation/createongoing.ts",
-      "./src/plugins/ticketing/creation/createticket.ts",
-      "./src/plugins/ticketing/creation/finish.ts",
-      "./src/plugins/ticketing/creation/functions/formatembed.ts",
-      "./src/plugins/ticketing/creation/getinfo.ts",
-      "./src/plugins/ticketing/creation/index.ts",
-      "./src/plugins/ticketing/creation/main.ts",
-      "./src/plugins/ticketing/creation/misc/setreactionmessage.ts",
-      "./src/plugins/ticketing/main.ts",
-      "./src/plugins/ticketing/reaction/index.ts",
+      "./src/plugins/suggestion/settings.ts",
+      "./src/plugins/ticketing/claimticket.ts",
+      "./src/plugins/ticketing/createticketchannel.ts",
+      "./src/plugins/ticketing/createticketcommand.ts",
+      "./src/plugins/ticketing/createticketreaction.ts",
+      "./src/plugins/ticketing/functions/createoverwrites.ts",
+      "./src/plugins/ticketing/functions/format.ts",
+      "./src/plugins/ticketing/functions/formatembed.ts",
+      "./src/plugins/ticketing/functions/formats.json",
+      "./src/plugins/ticketing/functions/reaction.ts",
+      "./src/plugins/ticketing/ticketmanager.ts",
+      "./src/plugins/ticketing/titleanddescription.ts",
       "./src/plugins/verification/binding/createbind.ts",
-      "./src/types/origin.ts",
-      "./src/typings/origin.ts"
+      "./src/plugins/verification/settings.ts",
+      "./src/typings/origin.d.ts"
     ]
   },
   "version": "4.0.2"

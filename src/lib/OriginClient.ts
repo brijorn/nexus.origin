@@ -1,13 +1,10 @@
 import { Client } from "discord.js";
 import CommandHandler from "../handlers/CommandHandler";
 import { DatabaseHandler } from "../handlers/DatabaseHandler";
-import TicketHandler from "../handlers/TicketHandler";
+import TicketManager from "../plugins/ticketing/TicketManager";
 import { VerificationHandler } from "../handlers/VerificationHandler";
-interface OriginHandlers {
-    database: DatabaseHandler,
-    ticket: TicketHandler,
-    verification: VerificationHandler
-}
+import { OriginHandlers } from "../typings/origin";
+
 export default class OriginClient extends Client {
     public commands: CommandHandler = new CommandHandler(this);
 
@@ -18,12 +15,13 @@ export default class OriginClient extends Client {
             partials:  ['MESSAGE', 'REACTION'],
             disableMentions: 'everyone',
         })
-        this.login(process.env.TOKEN!).catch((err) => console.log(err))
+        if (process.env.TOKEN) this.login(process.env.TOKEN).catch((err) => console.log(err))
+        else throw new Error('Missing Token')
     }
 
     public async login(token: string): Promise<string> {
         this.handlers.database = new DatabaseHandler(this)
-        this.handlers.ticket = new TicketHandler(this)
+        this.handlers.ticket = new TicketManager(this)
         this.handlers.verification = new VerificationHandler(this)
         return super.login(token)
     }

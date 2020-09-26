@@ -1,28 +1,30 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
 	NewAssetBindInterface,
 	GuildSettings,
 	AssetBindType,
 	NewRoleBindInterface,
-	GroupBinds,
-	VerificationSettings
-} from "../../../typings/origin";
+	GroupBinds} from "../../../typings/origin";
 import { Role } from "noblox.js";
-
+import { Role as DiscordRole } from 'discord.js'
 import { Client, Message } from "discord.js";
 import embed from "../../../functions/embed";
 import { getProductInfo, ProductInfo } from "noblox.js";
-import { VerificationHandler } from "../../../handlers/VerificationHandler";
+import { VerificationSettings } from "../../../handlers/VerificationHandler";
+import OriginClient from "../../../lib/OriginClient";
+import OriginMessage from "../../../lib/extensions/OriginMessage";
 export async function NewAssetBind(
-	bot: Client,
-	message: Message,
+	bot: OriginClient,
+	message: OriginMessage,
 	guild: GuildSettings,
 	verification: VerificationSettings,
 	newBindObject: NewAssetBindInterface
-) {
+): Promise<void|Message> {
 	// Check if the roles Exist
 	const [roles, missingRoles] = getRoles(message, newBindObject.roles);
 	const roleIdArray: string[] = [];
-	roles.forEach((role: any) => roleIdArray.push(role.id));
+	(roles as DiscordRole[]).forEach((role: DiscordRole) => roleIdArray.push(role.id));
 
 	// Check if the asset exists
 	let asset: ProductInfo;
@@ -52,28 +54,24 @@ export async function NewAssetBind(
 			AssetbindObject
 		);
 
+		const mappedRoles = (roles as any).map((i: Role) => `${i.name}(${i})`).join(', ')
+
 		await verification.update(newBindObject.type + "_binds", newObject);
-		await message.channel.send(
-			embed(
-				"Bind Successfully Created",
-				`A binding has successfully been created for the asset **${
-					asset.Name
-				}(${asset.AssetId})** by ${asset.Creator.Name}
-                Hierarchy: ${AssetbindObject.hierarchy}
-                Nickname: ${AssetbindObject.nickname}
-                ${roles.length > 1 ? "Roles" : "Role"}: ${roleIdArray
-					.map(
-						(role: any) =>
-							`${message.guild!.roles.cache.get(role)!.name}(${role})`
-					)
-					.join(", ")}
-                `,
-				guild,
-				"success",
-				true,
-				true
-			)
-		);
+		await message.guildembed(
+			"Bind Successfully Created",
+			`A binding has successfully been created for the asset **${
+				asset.Name
+			}(${asset.AssetId})** by ${asset.Creator.Name}
+			Hierarchy: ${AssetbindObject.hierarchy}
+			Nickname: ${AssetbindObject.nickname}
+			${roles.length > 1 ? "Roles" : "Role"}:
+			${mappedRoles}
+			`,
+			guild,
+			"success",
+			true,
+			true
+		)
 	}
 	if (missingRoles.length > 0) {
 		message.channel.send(
@@ -96,7 +94,7 @@ export async function NewRoleBind(
 	verification: VerificationSettings,
 	newBindObject: NewRoleBindInterface,
 	groupRanks: Role[]
-) {
+): Promise<void> {
 	if (
 		!verification.role_binds.find((group: any) => group.id === newBindObject.groupId)
 	)
@@ -107,14 +105,15 @@ export async function NewRoleBind(
 		});
 	const [roles, missingRoles] = getRoles(message, newBindObject.roles);
 	const roleIdArray: string[] = [];
-	roles.forEach((role: any) => roleIdArray.push(role.id));
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	roles.forEach((r: any) => roleIdArray.push(r.id));
 
-	const bindings: object[] = [];
-
-	if (newBindObject.flags && newBindObject.flags!.includes("--deleteprev"))
-		verification.role_binds.find(
-			(group: any) => group.id === newBindObject.groupId
-		)!.binds = [];
+	if (newBindObject.flags && newBindObject.flags?.includes("--deleteprev")) {
+		const group = verification.role_binds.find(o => {
+			o.id == newBindObject.groupId;
+		}) 
+		if (group) group.binds = []
+	}
 
 	for (let i = 0; i < newBindObject.ranks.length; i++) {
 		const bind = (newBindObject.ranks[i] as any) as Role;
@@ -171,11 +170,7 @@ export async function NewRoleBind(
 		}
 	}
 	// Update
-	await verification.update('role_binds', {
-		fields: {
-			'role_binds': verification.role_binds
-		}
-	})
+	await verification.update('role_binds', verification.role_binds)
 
 	// Finish Message
 	await message.channel.send(
@@ -207,7 +202,7 @@ export async function NewRoleBind(
 }
 
 function getRoles(message: Message, binds: string[]) {
-	const foundRoles: object[] = [];
+	const foundRoles: DiscordRole[] = [];
 	const missingRoles: string[] = [];
 
 	for (let value of binds) {

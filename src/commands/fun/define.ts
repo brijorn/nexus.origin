@@ -1,15 +1,20 @@
-import { Client, Message, MessageEmbed } from "discord.js";
-import { GuildSettings } from "../../typings/origin";
+import { Message, MessageEmbed } from "discord.js";
 import nodefetch from 'node-fetch'
-const Axios = require('axios').default;
+import OriginClient from "../../lib/OriginClient";
 import Command from '../../lib/structures/Command'
+import OriginMessage from "../../lib/extensions/OriginMessage";
 
 export default class extends Command {
-	aliases!: ['def'];
-	description!: 'Gives you the dictionary definition of a word.';
-	syntax!: ['!define <word>'];
+	constructor(bot: OriginClient) {
+		super(bot, {
+			name: 'define',
+			aliases!: ['def'],
+			description!: 'Gives you the dictionary definition of a word.',
+			syntax!: ['!define <word>'],
+		})
+	}
 	
-	async run(message: Message, args: string[]) {
+	async run(message: OriginMessage, args: string[]): Promise<Message|undefined> {
 		async function getDefinition(word: string) {
 			const word_information = await nodefetch('https://owlbot.info/api/v4/dictionary/' + word, {
 				headers: {
@@ -17,12 +22,12 @@ export default class extends Command {
 				}
 			})
 			.then(res => res.json())
-			return word_information as any;
+			return word_information;
 		}
 	
 		if (!args[0]) return message.channel.send('Please give a word to get the definition for');
 		const word = (args.length > 1) ? args.splice(0).join('+') : args[0];
-		let info = await getDefinition(word);
+		const info = await getDefinition(word);
 		if (!info) return;
 	
 		let title = info.word;
@@ -44,7 +49,7 @@ export default class extends Command {
 	
 		}
 		definition.setDescription(desc);
-		message.channel.send(definition);
+		return message.channel.send(definition);
 	
-	};
+	}
 	}

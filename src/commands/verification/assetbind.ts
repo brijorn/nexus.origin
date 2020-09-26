@@ -9,123 +9,109 @@ import embed from "../../functions/embed";
 import { NewAssetBind } from "../../plugins/verification/binding/CreateBind";
 import { AssetBindType } from "../../typings/origin";
 import OriginClient from "../../lib/OriginClient";
+import OriginMessage from "../../lib/extensions/OriginMessage";
+import { editStart } from "../../lib/util/prompt";
+import Command from "../../lib/structures/Command";
 
-export async function run(
-	bot: OriginClient,
-	message: Message,
-	args: string[],
-	guild: GuildSettings
-) {
-	if (message.author.id !== message.guild!.owner!.id)
-		return message.channel.send("You cannot run this command.");
-	const verification = await bot.handlers.verification.settings.fetch(message.guild!.id)
-	if (!verification)
-		return message.channel.send(
-			embed(
-				"Error",
-				"There are no verification settings for this guild, run !setup to setup.",
-				guild,
-				"failure",
-				false,
-				true
-			)
-		);
+export default class extends Command {
+	constructor(bot: OriginClient) {
+		super(bot, {
+			name: 'assetbind',
+			aliases: ['bindasset'],
+			description: 'Bind a new asset to your discord server.'
+		})
+	}
 
-	if (!args) {
-	} else {
-		// GROUP BIND REGEX /(?:(?:(asset?|gamepass?|rank?))?\s(?:(add?|remove?|edit?))?\s(?:(\d+))?\s(?:(\d+-\d+|\d+\S+))?\s(?:(\d+))?\s(?:'(.*?)')?\s(?:(\S+)))/gi;
-		const getArgumentsRegex = /(?:(?:(asset?|gamepass?|rank?))?\s(?:(add?|remove?|edit?))?\s(?:(\d+))?\s(?:(\d+))?\s(?:'(.*?)')?\s(?:(\S+)))/gi;
-		const getArguments = getArgumentsRegex.exec(args.join(" "))!;
-		console.log(getArguments);
-		getArguments.shift();
-		let [
-			type,
-			method,
-			assetId,
-			hierarchy,
-			nickname,
-			roles,
-		] = getArguments as any;
-		const bindingObject: NewAssetBindInterface = (await checkValidation(
-			message,
-			guild,
-			{
-				type: type,
-				method: method,
-				assetId: assetId,
-				hierarchy: hierarchy,
-				nickname: nickname,
-				roles: roles,
-			}
-		)) as any;
-		if (!bindingObject) return;
-
-		if (
-			verification[type + "_binds"].find((bind: AssetBindType) => {
-				bind.assetId === assetId;
-			})
-		)
-			return message.channel.send(
-				embed(
-					"Binding Already Exists",
-					`A binding already exists for the asset ${assetId}. If you wish to edit it use the command:
-				\`${guild.prefix}assetbind edit ${assetId} <role, nickname, hierarchy> <newvalue>\``,
-					guild,
-					"failure",
-					false,
-					true
-				)
+	async execute(bot: OriginClient, message: OriginMessage, guild: GuildSettings, args: string[]): Promise<void| Message> {
+		if (!guild || !message.guild?.owner) return
+		if (message.author.id !== message.guild.owner.id)
+			return message.channel.send("You cannot run this command.");
+		const verification = await this.bot.handlers.verification.settings.fetch(message.guild.id)
+		if (!verification)
+			return message.error(
+				"There are no verification settings for this guild, run !setup to setup."
 			);
-		return await NewAssetBind(bot, message, guild, verification, bindingObject);
+	
+			const validTypes = ['asset', 'gamepass', 'rank']
+			const mappedTypes = validTypes.map(each => `${each}`).join(', ')
+	
+			
+		if (!args) {
+			const start = await editStart(message, { title: 'Asset Bind Creation', description: `What type of binding is this?\nOptions: ${mappedTypes}`}, true)
+			if (!start) return
+			if (!validTypes.includes(start?.content)) return message.failure(`Invalid Option. Valid Options: ${mappedTypes}`)
+			const type = start.content
+	
+	
+		} else {
+			// GROUP BIND REGEX /(?:(?:(asset?|gamepass?|rank?))?\s(?:(add?|remove?|edit?))?\s(?:(\d+))?\s(?:(\d+-\d+|\d+\S+))?\s(?:(\d+))?\s(?:'(.*?)')?\s(?:(\S+)))/gi;
+			const getArgumentsRegex = /(?:(?:(asset?|gamepass?|rank?))?\s(?:(add?|remove?|edit?))?\s(?:(\d+))?\s(?:(\d+))?\s(?:'(.*?)')?\s(?:(\S+)))/gi;
+			const getArguments = getArgumentsRegex.exec(args.join(" "));
+			if (!getArguments) return message.error('Failed to parse Arguments. View the help with !help assetbind')
+			console.log(getArguments);
+			getArguments.shift();
+			const [
+				type,
+				method,
+				assetId,
+				hierarchy,
+				nickname,
+				roles,
+			] = getArguments;
+			const bindingObject: NewAssetBindInterface = (await checkValidation(
+				message,
+				guild,
+				{
+					type: type,
+					method: method,
+					assetId: assetId,
+					hierarchy: hierarchy,
+					nickname: nickname,
+					roles: roles,
+				}
+			)) as NewAssetBindInterface;
+			if (!bindingObject) return;
+	
+			if (
+				verification[type + "_binds"].find((bind: AssetBindType) => {
+					bind.assetId === parseInt(assetId);
+				})
+			)
+				return message.channel.send(
+					embed(
+						"Binding Already Exists",
+						`A binding already exists for the asset ${assetId}. If you wish to edit it use the command:
+					\`${guild.prefix}assetbind edit ${assetId} <role, nickname, hierarchy> <newvalue>\``,
+						guild,
+						"failure",
+						false,
+						true
+					)
+				);
+			return await NewAssetBind(bot, message, guild, verification, bindingObject);
+		}
 	}
 }
 
-module.exports.help = {
-	name: "assetbind",
-	description: "Add, remove or edit a group, asset, gamepass or badge bind",
-	aliases: ["binds"],
-	syntax: [
-		"!bind group create `5845349 1-50`",
-		"!bind group add 5845349, 100-200 [Staff]{{s}}{robloxname} 5 Staff",
-		"!bind asset add <asset-id> <role-id>",
-		"!bind gamepass remove <asset-id> or <rank-id> with groups",
-		"!bind group remove all",
-	],
-	inDepth:
-		"Use this command to add, remove or edit bindings to a asset gamepass or rank." +
-		"\nWhen using group the following are available:\n\n`bind group add 5845349 1-255 create` to create bindings for all the ranks in the given group." +
-		"This will skip those that already exist. You can also create custom settings using the nicknameformat placeholders.\nSyntax: `bind group add [groupid: 5845349] [rank: 100] [nickname: '[STAFF]{{s}}{robloxname}'] [hierarchy: the higher the number the more important] [role, roles]`\n Example: `bind group add 100 '[Owner]{roblox-name}' 1 749748861651779695,740596178177097880`\n Other Methods: `bind group clear [groupid]` - clear all group binds" +
-		"\n\nWhen using any other type of bind the syntax is fairly the same:\n\n" +
-		"Syntax: `bind [asset-type] add [assetId] [nickname] [hiearchy] [role, roles]`" +
-		"\nExample: `bind asset add 3196348 '[Adopt Me Vip]{robloxname}' 1 738249753581846538`" +
-		"\n\n**Use quotations for nickname for both group and asset nicknames if they are more than one character. To use the default nickname put `default` for the nickname value**\nTo include a space in the nickname use `{{s}}`",
-	module: "settings",
-};
-
 async function checkValidation(
-	message: Message,
+	message: OriginMessage,
 	guild: GuildSettings,
-	opt: any
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	opt: Record<string, any>
 ) {
-	let valid: boolean = true;
+	let valid = true;
 	if (!opt.type || opt.type !== ("asset" || "gamepass" || "rank")) {
 		valid = false;
-		message.channel.send(
-			error(
+		message.error(
 				`Invalid/Missing type. Valid Types: asset, gamepass or rank.\n\nSee ${guild.prefix}help bind for more info.`,
-				guild
 			)
-		);
 	}
 	if (valid == false) return;
 
 	if (!opt.method || opt.method !== ("add" || "remove" || "edit")) {
 		valid = false;
-		message.channel.send(
-			error(
+		message.error(
 				`Invalid/Missing. Valid Methods: add, remove or edit\n\nSee ${guild.prefix}help bind for more info.`,
-				guild
-			)
 		);
 	}
 	if (valid == false) return;
@@ -174,8 +160,8 @@ async function checkValidation(
 	} else {
 		const roles: string[] = opt.roles
 			.split(",")
-			.filter((v: any) => v != "")
-			.map((p: any) => p.trim());
+			.filter((v: string) => v != "")
+			.map((p: string) => p.trim());
 		opt.roles = roles;
 	}
 	if (valid == false) return valid;

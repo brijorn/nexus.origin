@@ -3,33 +3,30 @@ import { Client, Message, MessageEmbed, TextChannel } from "discord.js";
 
 import { SuggestionSettings, GuildSettings } from "../../typings/origin";
 import OriginClient from "../../lib/OriginClient";
+import Command from "../../lib/structures/Command";
+import OriginMessage from "../../lib/extensions/OriginMessage";
+import { message } from "noblox.js";
 
-export async function run(
-	bot: OriginClient,
-	message: Message,
-	args: string[],
-	guild: GuildSettings
-) {
-	const settings = await new SuggestionSettings(bot.handlers.database).fetch(message.guild!.id);
+export default class extends Command {
+	constructor(bot: OriginClient) {
+		super(bot, {
+			name: 'suggest',
+			description: 'Suggest something to this guild',
+			syntax: ['!suggest <suggestion>']
+		})
+	}
+	async run(message: OriginMessage, args: string[], guild: GuildSettings): Promise<Message|void> {
+		const settings: SuggestionSettings = await this.bot.handlers.database.getOne('modules', 'suggestion', { guild_id: message.guild?.id})
 	if (!settings || settings.enabled === false)
-		return message.reply(
-			embed(
-				"none",
-				"Suggestions are not enabled for this guild.",
-				guild,
-				"failure",
-				false,
-				true
-			)
-		);
-	const amount = parseInt(settings.amount) + 1;
+		return message.error("Suggestions are not enabled for this guild.")
+	const suggestionCount = parseInt(settings.suggestion_count) + 1;
 
 	const content = args.slice(0).join(" ");
-	if (content.length <= 5)
+	if (content.split(' ').length < 3)
 		return message.reply(
 			embed(
 				"none",
-				"Suggestions must be more than 5 words long.",
+				"Suggestions must be more than 3 words long.",
 				guild,
 				"failure",
 				true,
@@ -43,7 +40,7 @@ export async function run(
 		.setTitle(`Suggestion #${settings}`)
 		.setAuthor(
 			`${message.author.username}#${message.author.discriminator}`,
-			message.author.avatarURL()!
+			message.author.avatarURL() as string
 		)
 		.setDescription(content)
 		.setFooter("Nexus Origin")
@@ -52,9 +49,15 @@ export async function run(
 	try {
 		await msg.react(settings.first_reaction);
 		await msg.react(settings.second_reaction);
-	} catch {}
-	await settings.increment(amount);
+	} catch { return; }
+	await this.bot.handlers.database.updateOne(
+		'modules',
+		'suggestion',
+		{ guild_id: message.guild?.id},
+		{ suggestion_count: suggestionCount}
+	)
 	return;
+	}
 }
 
 module.exports.help = {

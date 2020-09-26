@@ -5,14 +5,15 @@ import { getUsernameFromId } from 'noblox.js';
 import config from '../../lib/util/json/config.json';
 import  { GuildSettings } from "../../typings/origin";
 import OriginClient from "../../lib/OriginClient";
-export async function run(bot: OriginClient, message: Message, args: string[], guild: GuildSettings) {
+export async function run(bot: OriginClient, message: Message, args: string[], guild: GuildSettings): Promise<void|Message> {
 	// Get Verification Setting and Get User Data
-	const verification = await bot.handlers.verification.settings.fetch(message.guild!.id)
+	if (!message.guild || !message.member) return;
+	const verification = await bot.handlers.verification.settings.fetch(message.guild.id)
 	if (!verification) return message.channel.send('Verification is not setup for this guild.')
 	const checkforAccount = await bot.handlers.verification.users.fetch(message.author.id)
 	if (checkforAccount) {
 		const user = checkforAccount
-		const roleAdd = await roleCheck(bot, message, guild, user, verification);
+		const roleAdd = await roleCheck(message.member, message.guild, user, verification);
 		const newUsername = await getUsernameFromId(user.primary_account);
 		const Verified = new MessageEmbed()
 			.setDescription(`You were successfully verified as ${newUsername}`)
@@ -27,10 +28,10 @@ export async function run(bot: OriginClient, message: Message, args: string[], g
 				Verified.addField('Roles Removed', eachrole);
 			}
 		}
-		message.channel.send(Verified);
+		return message.channel.send(Verified);
 	}
 	if (!checkforAccount) return message.channel.send(`Run the ${guild.prefix}verify command first before doing this.`);
-};
+}
 
 module.exports.help = {
 	name: 'getroles',

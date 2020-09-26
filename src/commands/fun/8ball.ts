@@ -1,17 +1,20 @@
-import { Client, Message } from "discord.js";
 import Command from "../../lib/structures/Command";
-import { GuildSettings } from "../../typings/origin";
+import OriginMessage from "../../lib/extensions/OriginMessage";
 
-const Axios = require('axios').default;
-
-const { MessageEmbed } = require('discord.js');
+import { Message, MessageEmbed } from 'discord.js';
+import OriginClient from "../../lib/OriginClient";
 
 export default class extends Command {
-	aliases!: ['8'];
-	syntax!: ['!8ball [question]'];
-	description!: 'Asks a would you rather question';
+	constructor(bot: OriginClient) {
+		super(bot, {
+			name: '8ball',
+			aliases!: ['8'],
+			syntax!: ['!8ball [question]'],
+			description!: 'Asks a would you rather question'
+		})
+	}
 
-	run(message: Message, args: any[], guild: GuildSettings) {
+	run(message: OriginMessage, args: string[]): Promise<Message> {
 		if (!args[3] && !args.find((o => o.includes('?')))) return message.channel.send('You must ask a question');
 	
 		const responses: string[] = ['It is certain.',
@@ -42,8 +45,8 @@ export default class extends Command {
 			.setDescription(answer)
 			.setTimestamp();
 	
-		message.channel.send(res);
-	};	
+		return message.channel.send(res);
+	}
 } 
 module.exports.help = {
 	name: '8ball',

@@ -1,7 +1,8 @@
-import { Message } from "discord.js";
-export default async (message: Message, prompt: any) => {
+import { Message, MessageEmbed } from "discord.js";
+import { EmbedFields } from "../../../typings/origin";
+export default async (message: Message, prompt: MessageEmbed | EmbedFields | string, lower?: boolean): Promise<string|undefined> => {
 	// Makes sure that the bot will only listen to a message from the author
-	const filter = (response: any) => response.author.id === message.author.id;
+	const filter = (response: Message) => response.author.id === message.author.id;
 	// Instance now contains the prompt message
 	const instance = await message.channel.send(prompt);
 
@@ -10,8 +11,9 @@ export default async (message: Message, prompt: any) => {
 		.then(collected => {
 
 			// Ifs
-			const content = collected.first()!.content
-			return content;
+			const content = collected.first()?.content
+			if (lower == true) return content?.toLowerCase()
+			else return content;
 		})
 		.catch(_ => {
 			// If the author waited too long, delete the prompt

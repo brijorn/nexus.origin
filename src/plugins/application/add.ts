@@ -1,58 +1,55 @@
-import { ApplicationSettings, GuildSettings } from "../../typings/origin";
+import { GuildSettings } from "../../typings/origin";
 import { Message } from "discord.js";
 import embed from "../../functions/embed";
 import { editPrompt, editStart } from "../../lib/util/prompt";
 import OriginClient from "../../lib/OriginClient";
-
-const MAX_APPLICATIONS: number = 10;
-const MAX_QUESTIONS: number = 20;
+import { Application, ApplicationSettings } from "../../typings/origin";
+import OriginMessage from "../../lib/extensions/OriginMessage";
+import { channel } from "../../lib/util/parse";
+const MAX_APPLICATIONS = 10;
+const MAX_QUESTIONS = 20;
 
 export default async (
 	bot: OriginClient,
-	message: Message,
+	message: OriginMessage,
 	application: ApplicationSettings,
 	guild: GuildSettings
-) => {
+): Promise<Message|undefined> => {
 	if (application.applications.length == MAX_APPLICATIONS)
-		return message.channel.send(
-			embed(
+		return message.guildembed(
 				"Maximum Applications",
 				`You have reach the maximum amount of applications per guild: ${MAX_APPLICATIONS}`,
 				guild,
 				"failure",
 				false,
 				true
-			)
 		);
 
-	const start = await new editStart(
+	const start = await editStart(
 		message,
-		embed(
-			"Application Creation",
-			"What is the name of the application?",
-			guild,
-			""
+		{
+			title: "Application Creation",
+			description: "What is the name of the application?"
+		}
 		)
-	).init();
-	if (!start || start.content.toLowerCase() === "cancel")
-		return start!.message.delete({ timeout: 5000 });
+	if (!start || start.content.toLowerCase() === "cancel") return start?.message.delete({ timeout: 5000 }) || undefined;
 
 	const getQuestions = await createQuestions(message, start.message, guild);
 	if (getQuestions.cancelled === true)
 		return start.message.delete({ timeout: 5000 });
 	const questions: string[] = getQuestions.questions;
-	let responseChannel = editPrompt(
+	const responseChannelPrompt = editPrompt(
 		message,
 		start.message,
 		embed(
 			"Application Creation",
-			"Would you like users to be verified to apply?",
+			"Would channel would you like to send application responses to?",
 			guild,
 			""
 		),
 		"lower"
-	) as any;
-	// responseChannel = channel(message, responseChannel)
+	);
+	const responseChannel = await channel(message, responseChannelPrompt as unknown as string) as string
 
 	let requireVerification = editPrompt(
 		message,
@@ -64,7 +61,9 @@ export default async (
 			""
 		),
 		"lower"
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	) as any;
+
 	requireVerification =
 		requireVerification.content === "true" ? true : (false as boolean);
 
@@ -77,8 +76,8 @@ export default async (
 		)
 	);
 
-
-	const newApplication = {
+	if (!responseChannel) return message.error('Could not find the given response channel.')
+	const newApplication: Application = {
 		available: true,
 		name: start.content,
 		require_verification: requireVerification,
@@ -87,7 +86,7 @@ export default async (
 	};
 
 	application.applications.push(newApplication);
-	await application.update("applications", application.applications);
+	await bot.handlers.database.updateOne('modules', 'applications', { guild_id: message.guild?.id }, application)
 
 	return;
 };
@@ -98,8 +97,8 @@ async function createQuestions(
 	guild: GuildSettings
 ) {
 	// Declare
-	let done: boolean = false;
-	let cancelled: boolean = false;
+	let done= false;
+	let cancelled = false;
 	const questions: string[] = [];
 	let i = 0;
 

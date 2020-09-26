@@ -1,30 +1,25 @@
-import { Message } from "discord.js";
+import { Message, MessageEmbed } from "discord.js";
+import { EmbedFields } from "../../../typings/origin";
+import OriginMessage from "../../extensions/OriginMessage";
 
-const embed = require('../functions/embed');
-export default class editStart implements PromptFields {
-	constructor(message: Message, prompt: any) { 
-		this.message = message;
-		this.prompt = prompt;
-	}
-
-	public message!: Message
-	public content!: string
-	public prompt: any
+export default async (message: OriginMessage, prompt: string | EmbedFields | MessageEmbed, lower?: boolean): Promise<PromptFields|undefined> => {
+	if (!lower) lower = false
 	
-	public async init() {
+	const filter = (response: Message) => response.author.id === message.author.id;
 
-	const filter = (response: any) => response.author.id === this.message.author.id;
+	const instance = await message.channel.send(prompt);
 
-	const instance = await this.message.channel.send(prompt);
-
-	const collector = this.message.channel.awaitMessages(filter, { max: 1, time: 180000, errors: ['time'] })
+	const collector = message.channel.awaitMessages(filter, { max: 1, time: 180000, errors: ['time'] })
 		.then(collected => {
-			const content = collected.first()!.content;
+			const content = collected.first()?.content;
 
-			collected.first()!.delete();
-			this.content = content
-			this.message = collected.first() as Message
-			return this;
+			collected.first()?.delete();
+			if (!content || !instance) return
+			const res: PromptFields = {
+				content: (lower == true) ? content.toLowerCase() : content,
+				message: instance
+			}
+			return res;
 		})
 		.catch(_ => {
 
@@ -32,9 +27,8 @@ export default class editStart implements PromptFields {
 
 			return undefined;
 		});
-	return collector
+		return collector
 	}
-}
 
 
 interface PromptFields {
