@@ -1,10 +1,11 @@
 import { Client, GuildMember, Message, MessageReaction } from "discord.js";
 import { GuildSettings } from "../../typings/origin";
+import OriginMessage from "../extensions/OriginMessage";
 
-const embed = require('../functions/embed');
-const { MessageEmbed } = require('discord.js');
-const { enabled, disabled } = require('../config.json');
-export default async (bot: Client, message: Message, guild: GuildSettings, data: any[], timeout = true) => {
+import embed, { RegularEmbed } from '../../functions/embed';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async (bot: Client, message: OriginMessage, data: Record<string, any>[], timeout = true): Promise<void> => {
 	const pages = data;
 	let page = 1;
 	const maxpage = pages.length - 1;
@@ -38,7 +39,7 @@ export default async (bot: Client, message: Message, guild: GuildSettings, data:
 	collector.on('end', async collected => {
 		await mainpage.reactions.cache.map(each => each.remove());
 		if (timeout === true) {
-			mainpage.edit(embed('Timeout', 'Points has timed out.', guild));
+			mainpage.edit(RegularEmbed({ title: 'Timeout', description: 'This prompt has timed out.'}));
 		}
 	});
 };

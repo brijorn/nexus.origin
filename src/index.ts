@@ -11,9 +11,6 @@ import {
 } from "discord.js";
 
 import OriginClient from './lib/OriginClient';
-import ReactionHandler from './events/reaction';
-import MessageHandler from './events/message';
-import OriginMessage from "./lib/extensions/OriginMessage";
 const env = require("dotenv").config();
 // New Bot
 const bot = new OriginClient()
@@ -58,20 +55,3 @@ bot.on("guildMemberAdd", async (member: GuildMember | PartialGuildMember) => {
 				});
 	}
 });
-
-bot.on(
-	"messageReactionAdd",
-	async (reaction: MessageReaction, user: User | PartialUser) => {
-		if (reaction.partial) reaction = await reaction.fetch();
-		if (user.partial) user = await user.fetch();
-		return ReactionHandler(bot, reaction, user)
-	}
-);
-
-bot.on("message", async (message: Message) => {
-	if (!message.guild) return;
-	const guild =  await bot.handlers.database.getOne('public', 'guild', { guild_id: message.guild.id })
-	return MessageHandler(bot, message as OriginMessage)
-});
-
-(process.env.TOKEN) ? bot.login(process.env.TOKEN) : new Error('Missing Token')

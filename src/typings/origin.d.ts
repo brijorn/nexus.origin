@@ -16,6 +16,7 @@ export interface AssetBindType {
 
 export interface RankBindType extends AssetBindType {
 	rank: number;
+	name: string;
 }
 
 export interface RoleBindGroup {
@@ -119,9 +120,9 @@ export interface OriginMessage extends Message {
 	options?: MessageOptions): Promise<Message>
 
 	dmprompt(content: string | MessageEmbed,
-		embed?: MessageEmbed,
+		embed?: EmbedFields,
 		options?: MessageOptions,
-		lower?: boolean): Promise<Message|undefined>
+		lower?: boolean): Promise<string|undefined>
 	
 	prompt(content: string | MessageEmbed,
 		embed?: EmbedFields,
@@ -341,4 +342,14 @@ export interface SuggestionSettings {
 	whitelisted_roles: string[],
 	blacklisted_roles: string[],
 	admin_roles: string[]
+}
+
+export interface UserProfile {
+	user_id: string;
+	badges: string[];
+	description: string;
+	primary_group: boolean;
+	status: string;
+	presence: boolean,
+	thumbnail: string;
 }

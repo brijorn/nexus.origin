@@ -1,10 +1,10 @@
-const rbx = require('noblox.js');
-const fetch = require('node-fetch');
-const thumbnail = require('./thumbnailFunction');
-const { user } = require('..');
-module.exports = async (id, type = 'user') => {
+import rbx from 'noblox.js';
+import fetch from 'node-fetch';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async (id: number, type = 'user'): Promise<any> => {
 	if (type === 'primary') {
-		let val = '';
+		let val: unknown = '';
 		const primaryGroup = await fetch(`https://groups.roblox.com/v1/users/${id}/groups/primary/role`).then(response => response.json())
 			.then(data => {
 				const body = data.group;
@@ -18,8 +18,8 @@ module.exports = async (id, type = 'user') => {
 		return state;
 	}
 	if (type === 'user') {
-		const friendData = await rbx.getFriends(id);
-		const friends = friendData.data.length;
+		const friendData = await (await rbx.getFriends(id)).friends;
+		const friends = friendData.length;
 		const followers = await fetch(`https://friends.roblox.com/v1/users/${id}/followers/count`).then(response => response.json())
 			.then(data => {
 				return data.count;
@@ -30,14 +30,11 @@ module.exports = async (id, type = 'user') => {
 			});
 		const blurb = await rbx.getBlurb(id);
 		const status = await rbx.getStatus(id);
-		const GroupData = await rbx.getGroups(id);
-		const groups = GroupData.length;
 		return {
 			friends,
 			followers,
 			following,
 			blurb,
-			groups,
 			status,
 		};
 	}

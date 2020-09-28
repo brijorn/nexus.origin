@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
 
-export default (message: Message, value: string): string | void => {
+export default (message: Message, value: string): string | undefined => {
 	if (value.startsWith('<#') && value.endsWith('>')) {
 		value = value.substring(2);
 		value = value.substring(0, value.length - 1);
@@ -15,4 +15,5 @@ export default (message: Message, value: string): string | void => {
 		const findChannel = message.guild?.channels.cache.get(value)?.id || undefined
 		if (findChannel) return findChannel
 	}
+	return
 };

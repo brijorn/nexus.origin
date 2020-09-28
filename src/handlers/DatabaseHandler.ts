@@ -98,5 +98,22 @@ export class DatabaseHandler {
 		.update(data)
 	}
 
+	public decryptToken(guild_id: string): Promise<string> {
+		return this.connection.raw(`
+		SELECT pgp_sym_decrypt(token::bytea, '${process.env.TOKEN_KEY}') FROM guild
+		WHERE guild_id = ?
+		`, [guild_id])
+		.then(query => query.rows[0].pgp_sym_decrypt)
+	}
+
+	public encryptToken(guild_id: string, token: string): Promise<void> {
+		if (!process.env.TOKEN) throw new Error('Missing TOKEN_KEY In ENV')
+		return this.connection.raw(`
+		UPDATE "guild"
+        SET token = pgp_sym_encrypt(?, ?)
+
+    	WHERE guild_id = ?
+		`, [token, process.env.TOKEN_KEY as string, guild_id])
+	}
 
 }

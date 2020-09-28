@@ -92,7 +92,7 @@ export default async (
 };
 
 async function createQuestions(
-	message: Message,
+	message: OriginMessage,
 	msgToEdit: Message,
 	guild: GuildSettings
 ) {

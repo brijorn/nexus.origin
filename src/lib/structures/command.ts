@@ -12,7 +12,8 @@ export default class Command {
     public readonly inDepthDescription: string;
     public readonly syntax: string[];
     public readonly includeCommand?: boolean;
-
+    public readonly cooldown?: number;
+    public module!: string;
     constructor(bot: OriginClient, info: CommandParams) {
         this.bot = bot;
         this.name = info.name;
@@ -21,6 +22,7 @@ export default class Command {
         this.inDepthDescription = info.inDepthDescription || '';
         this.syntax = info.syntax || [];
         this.includeCommand = info.includeCommand || false;
+        this.cooldown = info.cooldown || 0;
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -40,5 +42,5 @@ interface CommandParams {
     inDepthDescription?: string;
     syntax?: string[];
     includeCommand?: boolean;
-
+    cooldown?: number;
 }

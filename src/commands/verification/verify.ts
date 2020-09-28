@@ -9,11 +9,20 @@ import nodefetch from 'node-fetch'
 import { GuildSettings } from '../../typings/origin';
 import OriginClient from '../../lib/OriginClient';
 import OriginMessage from '../../lib/extensions/OriginMessage';
+import Command from '../../lib/structures/Command';
 
-export async function run(bot: OriginClient, message: OriginMessage, args: string[], guild: GuildSettings): Promise<void> {
-	if (!message.member || !message.guild) return;
+export default class extends Command {
+	constructor(bot: OriginClient) {
+		super(bot, {
+			name: 'verify',
+			description: 'Link your Roblox Account to your Discord'
+		})
+	}
+
+	async run(message: OriginMessage, args: string[], guild: GuildSettings): Promise<void> {
+		if (!message.member || !message.guild) return;
 	// Get the verification table
-	const verification = await bot.handlers.verification.settings.fetch(message.guild?.id)
+	const verification = await this.bot.handlers.verification.settings.fetch(message.guild?.id)
 	// Get the Type
 	const sendtype = (verification.dm_verification === true) ? await message.author : await message.channel;
 	const ask = (verification.dm_verification === true) ? message.dmprompt : message.prompt;
@@ -22,7 +31,7 @@ export async function run(bot: OriginClient, message: OriginMessage, args: strin
 	if (process.env.DEFAULT_TOKEN) await noblox.setCookie(process.env.DEFAULT_TOKEN)
 	else throw new Error('NO DEFAULT .ROBLOSECURITY HAS BEEN SET OR IS INVALID')
 
-	const checkforAccount = await bot.handlers.verification.users.fetch(message.author.id)
+	const checkforAccount = await this.bot.handlers.verification.users.fetch(message.author.id)
 
 	if (checkforAccount) {
 		const user = checkforAccount
@@ -62,11 +71,11 @@ export async function run(bot: OriginClient, message: OriginMessage, args: strin
 					.setDescription('What is your roblox username?')
 					.setColor('#f79a36');
 				const res = await ask(verifQues);
-				verify(message, bot, res, guild, verification);
+				verify(message, this.bot, res, guild, verification);
 			}
 			else {
 				// Create the user in the database
-				const user = await bot.handlers.verification.users.create(message.author.id, body.primaryAccount)
+				const user = await this.bot.handlers.verification.users.create(message.author.id, body.primaryAccount)
 
 				// Check them for the roles
 				const roleAdd = await roleCheck(message.member as GuildMember, message.guild as Guild, user, verification);
@@ -102,12 +111,5 @@ export async function run(bot: OriginClient, message: OriginMessage, args: strin
 
 		});
 	}
-
+	}
 }
-
-module.exports.help = {
-	name: 'verify',
-	module: 'verification',
-	description: 'Link your roblox account to your discord account.',
-	cooldown: 5,
-};

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
 	VerificationSettings,
 	GuildSettings,
@@ -8,16 +9,21 @@ import embed from "../../functions/embed";
 import { getRoles, Role } from "noblox.js";
 import { NewRoleBind } from "../../plugins/verification/binding/CreateBind";
 import OriginClient from "../../lib/OriginClient";
+import Command from "../../lib/structures/Command";
+import OriginMessage from "../../lib/extensions/OriginMessage";
+export default class extends Command {
+	constructor(bot: OriginClient) {
+		super(bot, {
+			name: 'groupbind',
+			aliases: ['bindgroup', 'gb'],
+			description: 'Add a new group bind'
+		})
+	}
 
-export async function run(
-	bot: OriginClient,
-	message: Message,
-	args: string[],
-	guild: GuildSettings
-) {
-	if (message.author.id !== message.guild!.owner!.id)
+	async run(message: OriginMessage, args: string[], guild: GuildSettings): Promise<void|Message> {
+		if (message.author.id !== message.guild?.owner?.id)
 		return message.channel.send("You cannot run this command.");
-	const verification = await bot.handlers.verification.settings.fetch(message.guild!.id)
+	const verification = await this.bot.handlers.verification.settings.fetch(message.guild?.id)
 	if (!verification)
 		return message.channel.send(
 			embed(
@@ -31,16 +37,17 @@ export async function run(
 		);
 
 	if (!args) {
+		console.log('Hey')
 	} else {
 		const getArgumentsRegex = /(?:\s?(?:(add?|remove?|edit?))?\s(?:(\d+))?\s(?:(\S+))?\s(?:(\d+))?\s(?:'(.*?)')?\s(?:(\S+(?=--)?))?\s?(?:(.*)?))/gim;
-		const getArguments = getArgumentsRegex.exec(args.join(" "))!;
+		const getArguments = getArgumentsRegex.exec(args.join(" "));
 		try {
-			getArguments.shift();
+			getArguments?.shift();
 		} catch {
-			return error("Missing a value.", guild);
+			return message.error("Missing a value.");
 		}
 
-		let [
+		const [
 			method,
 			groupId,
 			ranks,
@@ -48,7 +55,8 @@ export async function run(
 			nickname,
 			roles,
 			flags,
-		] = getArguments as any;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		] = getArguments as any[];
 		const groupRanks = await getRoles(groupId).catch(() => {
 			return message.channel.send(
 				error(`Could not find the group ${groupId}`, guild)
@@ -67,10 +75,11 @@ export async function run(
 				roles: roles,
 				flags: flags,
 			}
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		)) as any;
 		if (!bindingObject) return;
 		return NewRoleBind(
-			bot,
+			this.bot,
 			message,
 			guild,
 			verification,
@@ -78,15 +87,17 @@ export async function run(
 			groupRanks as Role[]
 		);
 	}
+	}
 }
 
 async function checkValidation(
 	message: Message,
 	guild: GuildSettings,
 	groupRanks: Role[],
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	opt: any
 ) {
-	let valid: Boolean = true;
+	let valid = true;
 	if (!opt.method || opt.method !== ("add" || "remove" || "edit")) {
 		valid = false;
 		message.channel.send(
@@ -117,10 +128,10 @@ async function checkValidation(
 			)
 		);
 	} else {
-		const newRanks: object[] = [];
+		const newRanks: Role[] = [];
 		opt.ranks = opt.ranks.split(",");
 		// Loop through all of the given ranks
-		for (let value of opt.ranks) {
+		for (const value of opt.ranks) {
 			if (valid == false) return;
 			console.log(value);
 			// if its a between value
@@ -129,7 +140,7 @@ async function checkValidation(
 				// Check if any of them are names
 				let betweenRoles: number[] = [];
 				console.log(splitRanks);
-				for (let item of splitRanks) {
+				for (const item of splitRanks) {
 					// Name
 					if (isNaN(item as any) == true) {
 						const rank = ((item as any) = groupRanks.find(
@@ -141,7 +152,7 @@ async function checkValidation(
 								error(`Could not find a rank with the name of ${item}`, guild)
 							);
 						}
-						betweenRoles.push(rank!.rank);
+						betweenRoles.push(rank?.rank as any);
 					}
 					// ID
 					else {
@@ -154,7 +165,7 @@ async function checkValidation(
 								error(`Could not find a rank with a rank of ${item}`, guild)
 							);
 						}
-						betweenRoles.push(rank!.rank);
+						betweenRoles.push(rank?.rank as any);
 					}
 				}
 				betweenRoles = betweenRoles.sort((a: number, b: number) => a - b);
@@ -174,7 +185,7 @@ async function checkValidation(
 							error(`Could not find a rank with the name of ${value}`, guild)
 						);
 					}
-					newRanks.push(rank!);
+					newRanks.push(rank?.rank as any);
 				}
 				// ID
 				else {
@@ -185,7 +196,7 @@ async function checkValidation(
 							error(`Could not find a rank with a rank of ${value}`, guild)
 						);
 					}
-					newRanks.push(rank!);
+					newRanks.push(rank?.rank as any);
 				}
 			}
 		}
@@ -277,7 +288,7 @@ async function checkValidation(
 		});
 	}
 
-	if (valid == false) return;
+	if (valid as boolean == false) return;
 
 	return opt as NewRoleBindInterface;
 }

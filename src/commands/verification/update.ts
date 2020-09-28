@@ -9,9 +9,18 @@ import { GuildSettings } from '../../typings/origin';
 import { member } from '../../lib/util/parse'
 import OriginClient from '../../lib/OriginClient';
 import OriginMessage from '../../lib/extensions/OriginMessage';
+import Command from '../../lib/structures/Command';
 
-export async function run(bot: OriginClient, message: OriginMessage, args: string[], guild: GuildSettings): Promise<Message> {
-	const verification = await bot.handlers.verification.settings.fetch(message.guild?.id as string)
+export default class extends Command {
+	constructor(bot: OriginClient) {
+		super(bot, {
+			name: 'update',
+			description: 'Update a member\'s roles.'
+		})
+	}
+	
+	async run(message: OriginMessage, args: string[], guild: GuildSettings): Promise<Message> {
+		const verification = await this.bot.handlers.verification.settings.fetch(message.guild?.id as string)
 
 	let nick = '';
 	let mentioned: GuildMember;
@@ -28,7 +37,7 @@ export async function run(bot: OriginClient, message: OriginMessage, args: strin
 		guild, 'failure', false, true
 	))
 
-	const user = await bot.handlers.verification.users.fetch(mentioned.id)
+	const user = await this.bot.handlers.verification.users.fetch(mentioned.id)
 	await message.react('740748381223256075');
 	const roleAdd = await roleCheck(message.member as GuildMember, message.guild as Guild, user, verification, message);
 	console.log(roleAdd);
@@ -56,12 +65,5 @@ export async function run(bot: OriginClient, message: OriginMessage, args: strin
 	message.reactions.cache.map(each => each.remove());
 	message.react('740751221782085655');
 	return message.channel.send(Verified);
-
+	}
 }
-
-module.exports.help = {
-	name: 'update',
-	module: 'verification',
-	description: 'Updates the roles/nickname of the given user',
-	cooldown: 15,
-};

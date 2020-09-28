@@ -1,20 +1,22 @@
-import { Message } from "discord.js";
+import { Message, MessageEmbed } from "discord.js";
+import { EmbedFields } from "../../../typings/origin";
+import OriginMessage from "../../extensions/OriginMessage";
 
-const embed = require('../functions/embed');
-export default async (message: Message, msgToEdit: Message, msg: any, type = 'regular') => {
+export default async (message: OriginMessage, msgToEdit: Message, msg: MessageEmbed | EmbedFields, type = 'regular'): Promise<string|undefined> => {
 	// Makes sure that the bot will only listen to a message from the author
-	const filter = (response: any) => response.author.id === message.author.id;
+	const filter = (response: Message) => response.author.id === message.author.id;
 	// Instance now contains the prompt message
 	const instance = await msgToEdit.edit(msg);
 	// Collect the first message from the author, waiting 1 minute for a reaction
 	return message.channel.awaitMessages(filter, { max: 1, time: 180000, errors: ['time'] })
 		.then(collected => {
 			// Content now contains the message from the author
-			const content = (type === 'image') ? collected.first()!.attachments.first()!.url : collected.first()!.content;
+			const content = (type === 'image') ? collected.first()?.attachments.first()?.url : collected.first()?.content;
+			if (!content) return;
 			// Delete the response from the author
 			// Delete the prompt message
 			if (type !== 'image') {
-				collected.first()!.delete();
+				collected.first()?.delete();
 			}
 			// Return the reply
 			if (type === 'lower') {
@@ -30,6 +32,6 @@ export default async (message: Message, msgToEdit: Message, msg: any, type = 're
 			instance.delete();
 			// Return undefined so you can create a custom error message if no reaction was collected
 
-			return message.channel.send('Prompt has timed out after 3 minutes.');
+			return undefined;
 		});
 };

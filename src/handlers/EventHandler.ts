@@ -23,6 +23,7 @@ export default class EventHandler extends Collection<string, Event> {
                 const file = parse(item.path);
 
                 if (file.ext && file.ext === '.js') {
+                    console.log(file)
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
                     const Event = ((r) => r.default || r)(require(join(file.dir, file.base)));
                     const event: Event = new Event(this.bot, file.name, join(file.dir, file.base));
@@ -30,7 +31,7 @@ export default class EventHandler extends Collection<string, Event> {
                     this.set(file.name, event);
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     //@ts-ignore
-                    this.client[event.once ? 'once' : 'on'](event.name, (...args: unknown[]) => event.execute(...args));
+                    this.bot[event.once ? 'once' : 'on'](event.name, (...args: unknown[]) => event.execute(...args));
                 }
             })
             .on('end', () => {

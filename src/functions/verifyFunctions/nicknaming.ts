@@ -5,7 +5,7 @@ import formats from '../../lib/util/json/formats.json';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async (member: GuildMember, guild: Guild, verification: VerificationSettings, newUsername: string, roleInfo: Record<string, any>, type = 'Def'): Promise<string> => {
-	console.log(verification)
+	console.log(roleInfo)
 	let format: string = roleInfo.obj.nickname;
 	if (format === 'default') format = verification.nickname_format;
 	formats.nicknameformats.forEach((each) => {

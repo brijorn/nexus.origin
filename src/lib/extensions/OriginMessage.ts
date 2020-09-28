@@ -82,7 +82,7 @@ export default class OriginMessage extends Message {
 		}
 	
 	public dmprompt(content: string | MessageEmbed,
-		embed?: MessageEmbed,
+		embed?: EmbedFields,
 		options?: MessageOptions,
 		lower?: boolean) {
 			if (!lower) lower = false

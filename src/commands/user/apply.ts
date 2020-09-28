@@ -5,15 +5,19 @@ import { editStart, prompt } from "../../lib/util/prompt";
 import pmprompt from "../../lib/util/prompt/pmprompt";
 import OriginClient from "../../lib/OriginClient";
 import OriginMessage from "../../lib/extensions/OriginMessage";
+import Command from "../../lib/structures/Command";
 
-export async function run(
-	bot: OriginClient,
-	message: OriginMessage,
-	args: string[],
-	guild: GuildSettings
-): Promise<void|Message> {
-	const application: ApplicationSettings =
-		await bot.handlers.database.getOne("modules", "applications", {
+export default class extends Command {
+	constructor(bot: OriginClient) {
+		super(bot, {
+			name: 'apply',
+			description: 'Apply for the given application'
+		})
+	}
+
+	async run(message: OriginMessage, args: string[], guild: GuildSettings): Promise<void|Message> {
+		const application: ApplicationSettings =
+		await this.bot.handlers.database.getOne("modules", "applications", {
 			guild_id: message.guild?.id,
 		})
 	const app = application.applications;
@@ -143,12 +147,5 @@ export async function run(
 			)
 		);
 	}
+	}
 }
-
-module.exports.help = {
-	name: "apply",
-	description: "Apply for the given application",
-	module: "user",
-	inDepth:
-		"Apply for the given application in their respective server. Only works if they are available or if you meet the set requirements.",
-};
