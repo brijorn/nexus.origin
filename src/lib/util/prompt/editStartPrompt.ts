@@ -1,10 +1,10 @@
 import { Message, MessageEmbed } from "discord.js";
 import { EmbedFields } from "../../../typings/origin";
-import OriginMessage from "../../extensions/OriginMessage";
+import { OriginMessage } from "../../extensions/OriginMessage";
 
 export default async (message: OriginMessage, prompt: string | EmbedFields | MessageEmbed, lower?: boolean): Promise<PromptFields|undefined> => {
 	if (!lower) lower = false
-	
+	if (typeof prompt !== 'string' && prompt instanceof MessageEmbed == false) prompt = new MessageEmbed(prompt as never)
 	const filter = (response: Message) => response.author.id === message.author.id;
 
 	const instance = await message.channel.send(prompt);

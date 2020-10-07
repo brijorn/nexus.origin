@@ -6,7 +6,7 @@ import config from '../../lib/util/json/config.json';
 import  { GuildSettings } from "../../typings/origin";
 import OriginClient from "../../lib/OriginClient";
 import Command from "../../lib/structures/Command";
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 
 export default class extends Command {
 	constructor(bot: OriginClient) {

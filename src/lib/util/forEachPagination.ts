@@ -1,12 +1,13 @@
 import { Client, GuildMember, Message, MessageReaction } from "discord.js";
 import { GuildSettings } from "../../typings/origin";
-import OriginMessage from "../extensions/OriginMessage";
+import { OriginMessage } from "../extensions/OriginMessage";
 
 import embed, { RegularEmbed } from '../../functions/embed';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async (bot: Client, message: OriginMessage, data: Record<string, any>[], timeout = true): Promise<void> => {
-	const pages = data;
+	data.unshift({ type: 'filler'});
+	const pages = data
 	let page = 1;
 	const maxpage = pages.length - 1;
 	pages[1].setFooter(`Page ${page} / ${maxpage}`);

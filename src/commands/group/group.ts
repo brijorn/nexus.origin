@@ -3,7 +3,7 @@ import lookup from '../../lib/util/lookupFunction';
 import thumbnail from '../../functions/thumbnailFunction';
 import { MessageEmbed } from 'discord.js';
 import OriginClient from "../../lib/OriginClient";
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 import fetch from 'node-fetch';
 import paginate from '../../lib/util/forEachPagination';
 import { getGroup } from "noblox.js";

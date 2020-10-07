@@ -2,7 +2,7 @@ import { config } from 'process';
 import moment from 'moment-timezone';
 import Command from '../../lib/structures/Command';
 import OriginClient from '../../lib/OriginClient';
-import OriginMessage from '../../lib/extensions/OriginMessage';
+import { OriginMessage } from '../../lib/extensions/OriginMessage';
 import { GuildSettings } from '../../typings/origin';
 
 export default class extends Command {

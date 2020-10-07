@@ -2,7 +2,7 @@ import { Panel, GuildSettings } from "../../typings/origin";
 import { Message } from "discord.js";
 
 import OriginClient from "../../lib/OriginClient";
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 import CreateTicketCommand from "../../plugins/ticketing/CreateTicketCommand";
 import Command from "../../lib/structures/Command";
 

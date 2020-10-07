@@ -4,7 +4,7 @@ import { Message, MessageEmbed } from 'discord.js';
 import Badge from '../../plugins/user/profile/badge';
 import Command from '../../lib/structures/Command';
 import OriginClient from '../../lib/OriginClient';
-import OriginMessage from '../../lib/extensions/OriginMessage';
+import { OriginMessage } from '../../lib/extensions/OriginMessage';
 import { GuildSettings, UserProfile } from '../../typings/origin';
 import { getPresences } from 'noblox.js';
 export default class extends Command {
@@ -22,7 +22,7 @@ export default class extends Command {
 		if (!profile) profile = await createProfile(this.bot, message.author.id)
 		if (!args[0]) {
 			// Get Values
-			const badges = Badge(profile.badges);
+			const badges = Badge(['verified'].concat(profile.badges));
 			let description = `${badges}`;
 
 			// Get and set the presence if enabled
@@ -70,7 +70,6 @@ export default class extends Command {
 
 async function setPresence(robloxAccount: number): Promise<string> {
 	const presence = (await getPresences([robloxAccount])).userPresences[0]
-	console.log(presence)
 	if (presence.gameId) return presence.gameId
 	else return 'apple'
 }

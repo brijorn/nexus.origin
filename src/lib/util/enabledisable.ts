@@ -1,5 +1,5 @@
 import { RegularEmbed } from "../../functions/embed";
-import OriginMessage from "../extensions/OriginMessage";
+import { OriginMessage } from "../extensions/OriginMessage";
 import { editStart } from "./prompt";
 
 export default async (message: OriginMessage, setting: string, value?: string): Promise<boolean|undefined> => {

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ColorResolvable, Message, MessageEmbed, MessageOptions } from "discord.js";
+import { ColorResolvable, Structures, MessageEmbed, MessageOptions, Message } from "discord.js";
 import { EmbedFields, GuildSettings } from "../../typings/origin";
 import { prompt as promptFunction, dmprompt as dmPromptFunction} from '../../lib/util/prompt/'
 import embed, { RegularEmbed } from "../../functions/embed";
@@ -8,7 +8,8 @@ enum Colors {
 	GREEN_SUCCESS = "#3bff86",
 	RED_FAILURE = "#ff6257",
 }
-export default class OriginMessage extends Message {
+export class OriginMessage extends Message {
+	
 	public guildembed(
 		title: any,
 		description: any,
@@ -52,7 +53,7 @@ export default class OriginMessage extends Message {
     }
 
     public error(content: string, title?: string) {
-        return this.send(
+        return this.channel.send(
             new MessageEmbed()
             .setTitle(title || 'Error')
             .setDescription(content)
@@ -68,7 +69,7 @@ export default class OriginMessage extends Message {
 		}
         if (typeof content === 'string') {
             return this.channel.send(content, { ...options, embed });
-        }
+		}
         return this.channel.send(content);
 	}
 
@@ -105,4 +106,8 @@ export default class OriginMessage extends Message {
 			}
 			return promptFunction(this, content,lower)
 		}
+}
+
+export function extendus() {
+	Structures.extend('Message', () => OriginMessage)
 }

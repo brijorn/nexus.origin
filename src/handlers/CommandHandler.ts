@@ -9,6 +9,8 @@ export default class CommandHandler extends Collection<string, Command> {
     constructor(bot: OriginClient) {
         super();
         this.bot = bot;
+
+        this.init().catch((err) => Promise.reject(new Error('Error Loading Commands.')))
     }
 
     async init(): Promise<CommandHandler> {

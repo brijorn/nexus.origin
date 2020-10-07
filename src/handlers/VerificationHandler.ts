@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import OriginClient from "../lib/OriginClient";
 import { RoleBindGroup, RankBindType, AssetBindType } from "../typings/origin";
-import { DatabaseHandler } from "./DatabaseHandler";
+import DatabaseHandler from "./DatabaseHandler";
 
 export class VerificationHandler {
     constructor(bot: OriginClient) {

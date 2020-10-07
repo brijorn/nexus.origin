@@ -1,6 +1,6 @@
 import { Message, MessageEmbed } from "discord.js";
 import { Panel } from "../../typings/origin.d";
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 
 export default async (message: OriginMessage, panel: Panel, type: 'command' | 'reaction'): Promise<Response|Message> => {
     const response: Response = {

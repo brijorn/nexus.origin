@@ -10,7 +10,7 @@ import { getRoles, Role } from "noblox.js";
 import { NewRoleBind } from "../../plugins/verification/binding/CreateBind";
 import OriginClient from "../../lib/OriginClient";
 import Command from "../../lib/structures/Command";
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 export default class extends Command {
 	constructor(bot: OriginClient) {
 		super(bot, {

@@ -4,7 +4,7 @@ import { Client, Message, MessageEmbed, TextChannel } from "discord.js";
 import { SuggestionSettings, GuildSettings } from "../../typings/origin";
 import OriginClient from "../../lib/OriginClient";
 import Command from "../../lib/structures/Command";
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 import { message } from "noblox.js";
 
 export default class extends Command {

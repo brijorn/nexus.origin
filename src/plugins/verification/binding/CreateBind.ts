@@ -13,7 +13,7 @@ import embed from "../../../functions/embed";
 import { getProductInfo, ProductInfo } from "noblox.js";
 import { VerificationSettings } from "../../../handlers/VerificationHandler";
 import OriginClient from "../../../lib/OriginClient";
-import OriginMessage from "../../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../../lib/extensions/OriginMessage";
 export async function NewAssetBind(
 	bot: OriginClient,
 	message: OriginMessage,

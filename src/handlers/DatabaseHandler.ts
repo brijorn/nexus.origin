@@ -6,10 +6,11 @@ import Knex from "knex"
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const env = require("dotenv").config();
 
-export class DatabaseHandler {
+export default class DatabaseHandler {
 	connection: Knex
 	bot: OriginClient
 	constructor(bot: OriginClient) {
+		const start = Date.now()
 		this.bot = bot
 		this.connection = Knex({
 			client: "pg",
@@ -25,6 +26,7 @@ export class DatabaseHandler {
 				max: 7,
 			}
 		})
+		console.log(`Loaded Database in ${Date.now() - start}ms`);
 		return this
 	}
 	public insert<T>(schema: string, table: string, data: Record<string, any>): Promise<T> {
@@ -37,7 +39,7 @@ export class DatabaseHandler {
 	public get(schema: string, table: string, where: Record<string, any>): Promise<any> {
 		return this.connection
 		.withSchema(schema)
-		.table(where)
+		.table(table)
 		.where(where)
 	}
 

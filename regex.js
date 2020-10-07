@@ -16,13 +16,10 @@ const [
 console.log(hours)
 
 */
-const Regex = {
-	NICKNAME_REGEX: /(['])(?:(?=(\\?))\2.)*?\1/,
 
-};
 
-const args = 'asset add 1-250 5 \'Big Potato\' 3456654321,2565786543';
 
+/*
 
 const options = ['all', 'nickname', 'hierarchy'];
 const element = '--editexisting(all,idiot)';
@@ -34,3 +31,4 @@ if (insideBrackets == null) {
 	return console.log('no brackets');
 }
 else if (insideBrackets[1].split(',').forEach(e => {if (options.includes(e) == false) console.log('Invalid');})) {console.log(insideBrackets[1].split(','));}
+*/

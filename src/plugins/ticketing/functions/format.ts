@@ -1,6 +1,6 @@
 import { MessageReaction, User } from "discord.js";
 import { Panel } from "../../../typings/origin.d";
-import OriginMessage from "../../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../../lib/extensions/OriginMessage";
 import formats from './formats.json'
 export default async (value: string, panel: Panel, type: 'reaction' | 'command', message?: OriginMessage, reaction?: MessageReaction, user?: User): Promise<string> => {
     formats.forEach(format => {

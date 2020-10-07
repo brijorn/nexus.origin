@@ -1,1 +1,7 @@
 node_modules
+wip
+README.md
+tsconfig.json
+tsconfig.buildinfo
+src
+.env

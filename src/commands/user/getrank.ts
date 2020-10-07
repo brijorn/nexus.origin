@@ -1,6 +1,6 @@
 import embed from "../../functions/embed";
 import noblox, { getOwnership, setRank } from "noblox.js";
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 import OriginClient from "../../lib/OriginClient";
 import Command from "../../lib/structures/Command";
 import { GuildSettings } from "../../typings/origin";

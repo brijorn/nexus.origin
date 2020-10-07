@@ -1,6 +1,6 @@
 import { GuildSettings } from "../../typings/origin";
 import OriginClient from "../OriginClient";
-import OriginMessage from "../extensions/OriginMessage";
+import { OriginMessage } from "../extensions/OriginMessage";
 /**
  * Command Builder for all Commands
  */

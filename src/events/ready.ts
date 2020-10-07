@@ -1,7 +1,8 @@
-import Event from "../lib/structures/Event";
+import Event from '../lib/structures/Event';
 
 export default class extends Event {
-    execute(): void {
-        return console.log(`Bot Connected`)
-    }
+	async execute(): Promise<void> {
+		await this.bot.handlers.job.start();
+		return console.log(`Bot Connected`);
+	}
 }

@@ -1,9 +1,8 @@
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 import OriginClient from "../../lib/OriginClient";
 import Command from "../../lib/structures/Command";
 
 import Discord, { Message } from "discord.js";
-import embed from "../../functions/embed";
 import rbx, { LoggedInUserData } from "noblox.js";
 import { GuildSettings } from "../../typings/origin";
 
@@ -60,7 +59,9 @@ export default class extends Command {
 		const token = await message.dmprompt("", {
 			title: ".ROBLOSECURITY Prompt",
 			description: `What is the .ROBLOSECURITY for the account?`,
-			footer: 'We will never look at nor share this. Feel free to delete your message after.'
+			footer: {
+				text: 'We will never look at nor share this. Feel free to delete your message after.'
+			}
 		});
 		if (!token || token.toLowerCase() === 'cancel') return message.dm('Cancelled.')
 

@@ -1,4 +1,4 @@
-import OriginMessage from "../../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../../lib/extensions/OriginMessage";
 import { Message, Role as DiscordRole } from "discord.js";
 import { GroupBinds } from "../../../typings/origin";
 import { getRoles, Role as RobloxGroupRole } from "noblox.js";
@@ -54,7 +54,6 @@ export async function deleteRoles(message: OriginMessage, msgToEdit: Message, gr
 		const answer = role.editable && !role.managed;
 		return answer;
 	}
-
 	message.guild.roles.cache.forEach(role => {
 		if (!deletableRole(role)) return;
 		msgToEdit.edit(RegularEmbed({ description: `Deleting role \`${role.name}\`` }))

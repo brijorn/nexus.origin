@@ -2,7 +2,7 @@ import embed from '../../functions/embed';
 import { getIdFromUsername, promote, getUsernameFromId } from 'noblox.js';
 import { Message, MessageEmbed } from 'discord.js';
 import Command from '../../lib/structures/Command';
-import OriginMessage from '../../lib/extensions/OriginMessage';
+import { OriginMessage } from '../../lib/extensions/OriginMessage';
 import OriginClient from '../../lib/OriginClient';
 
 export default class extends Command {

@@ -9,7 +9,7 @@ import config from '../../lib/util/json/config.json';
 import OriginClient from "../../lib/OriginClient";
 import { VerificationSettings } from "../../handlers/VerificationHandler";
 import codeVerification from './codeVerify'
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 export default async (message: OriginMessage, bot: OriginClient, userName: string, guild: GuildSettings, verification: VerificationSettings): Promise<void> => {
 	let verifStatus = undefined;
 	const sendtype = (verification.dm_verification === true) ? await message.author : await message.channel;

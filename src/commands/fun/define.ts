@@ -2,7 +2,7 @@ import { Message, MessageEmbed } from "discord.js";
 import nodefetch from 'node-fetch'
 import OriginClient from "../../lib/OriginClient";
 import Command from '../../lib/structures/Command'
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 
 export default class extends Command {
 	constructor(bot: OriginClient) {

@@ -1,6 +1,6 @@
 import { Panel } from "../../typings/origin.d";
 import OriginClient from "../../lib/OriginClient";
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 import { Message } from "discord.js";
 import { TicketCommandCreateData } from "./TicketManager";
 

@@ -1,6 +1,6 @@
 import { Guild, Message, MessageEmbed, Role } from "discord.js";
 import { message } from "noblox.js";
-import OriginMessage from "../../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../../lib/extensions/OriginMessage";
 import { editPrompt } from "../../../lib/util/prompt";
 
 export async function createVerificationRole(guild: Guild): Promise<Role> {

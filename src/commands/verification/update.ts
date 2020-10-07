@@ -6,9 +6,9 @@ import noblox from 'noblox.js';
 import Discord, { Client, Guild, GuildMember, Message } from 'discord.js';
 import thumbnail from '../../functions/thumbnailFunction';
 import { GuildSettings } from '../../typings/origin';
-import { member } from '../../lib/util/parse'
+import { parseMember } from '../../lib/util/parse'
 import OriginClient from '../../lib/OriginClient';
-import OriginMessage from '../../lib/extensions/OriginMessage';
+import { OriginMessage } from '../../lib/extensions/OriginMessage';
 import Command from '../../lib/structures/Command';
 
 export default class extends Command {
@@ -20,6 +20,7 @@ export default class extends Command {
 	}
 	
 	async run(message: OriginMessage, args: string[], guild: GuildSettings): Promise<Message> {
+		if (!message.guild) return message.error('Bot error, try running the command again');
 		const verification = await this.bot.handlers.verification.settings.fetch(message.guild?.id as string)
 
 	let nick = '';
@@ -28,8 +29,9 @@ export default class extends Command {
 		return message.channel.send(embed('Permissions Error', 'You do not have the required permissions for this command.\nRequired Permission: MANAGE_MESSAGES` or `ADMIN` OR `OWNER`', guild, config.failure));
 	}
 	if (message.mentions.users.first()) mentioned = message.guild?.members.cache.get(message.mentions.users.first()?.id as string) as GuildMember
-	else mentioned = await member(message, 
-		(args.length > 0) ? args.splice(0).join(' ') : args[0] )
+	else mentioned = await parseMember(message.guild, 
+		(args.length > 0) ? args.splice(0).join(' ') : args[0] ) as GuildMember
+	if (!mentioned) return message.error('User not Found')
 	
 		if (!mentioned) return message.channel.send(embed(
 		'User Not Found',

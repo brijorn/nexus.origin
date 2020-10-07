@@ -11,7 +11,7 @@ export default class EventHandler extends Collection<string, Event> {
 
         this.bot = bot;
 
-        this.init();
+        this.init().catch((err) => console.error(err));
     }
 
     async init(): Promise<void> {
@@ -23,7 +23,6 @@ export default class EventHandler extends Collection<string, Event> {
                 const file = parse(item.path);
 
                 if (file.ext && file.ext === '.js') {
-                    console.log(file)
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
                     const Event = ((r) => r.default || r)(require(join(file.dir, file.base)));
                     const event: Event = new Event(this.bot, file.name, join(file.dir, file.base));

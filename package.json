@@ -4,31 +4,37 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./src/index.js",
-    "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index"
+    "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index",
+    "lint": "eslint \"**/*.ts\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/ws": "^7.2.6",
+    "@types/redis": "^2.8.27",
     "axios": "^0.19.2",
-    "browserslist": "^4.14.0",
     "cheerio": "^1.0.0-rc.3",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
+    "got": "^11.7.0",
     "klaw": "^3.0.0",
     "knex": "^0.21.5",
     "lodash.sample": "^4.2.1",
     "lodash.shuffle": "^4.2.0",
+    "moment": "^2.29.0",
     "moment-timezone": "^0.5.31",
     "noblox.js": "^4.7.2",
     "node-fetch": "^2.6.1",
-    "pg": "^8.3.3"
+    "pg": "^8.3.3",
+    "pg-boss": "^5.0.8",
+    "redis": "^3.0.2"
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.22",
     "@types/klaw": "^3.0.1",
+    "@types/node": "^14.11.2",
     "@types/node-fetch": "^2.5.7",
+    "@types/ws": "^7.2.6",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
     "eslint": "^7.9.0",

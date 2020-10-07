@@ -1,4 +1,4 @@
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 import OriginClient from "../../lib/OriginClient";
 import Command from "../../lib/structures/Command";
 import VerifyFunction from '../../functions/verifyFunctions/VerifyFunction';

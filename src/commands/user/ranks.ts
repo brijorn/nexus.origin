@@ -1,7 +1,7 @@
 import embed from '../../functions/embed';
 import Command from '../../lib/structures/Command';
 import OriginClient from '../../lib/OriginClient';
-import OriginMessage from '../../lib/extensions/OriginMessage';
+import { OriginMessage } from '../../lib/extensions/OriginMessage';
 import { GuildSettings } from '../../typings/origin';
 import { Message } from 'discord.js';
 

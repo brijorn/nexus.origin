@@ -15,8 +15,8 @@ export default class extends Command {
 	}
 	async run(message: Message, args: string[], guild: GuildSettings): Promise<Message|void> {
 			async function getData() {
-				const res = await (await nodefetch('http://either.io/')).json();
-				return cheerio.load(res.data);
+				const res = await (await nodefetch('http://either.io/', { method: 'GET' })).text();
+				return cheerio.load(res);
 			}
 			const $ = await getData();
 			// Red and Blue
@@ -32,7 +32,6 @@ export default class extends Command {
 				.setDescription(`${letterA} ${ques1}\n**OR**\n${letterB} ${ques2}`)
 				.setColor(colors[Math.floor(Math.random() * colors.length)])
 				.setTimestamp()
-				.setFooter(guild.embed.footer, guild.embed.footerlogo);
 			return message.channel.send(ask).then(m => {
 				m.react(letterA);
 				m.react(letterB);

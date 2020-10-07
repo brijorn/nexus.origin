@@ -1,4 +1,4 @@
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 import OriginClient from "../../lib/OriginClient";
 import Command from "../../lib/structures/Command";
 import { Message } from "discord.js";
@@ -6,6 +6,8 @@ import { RegularEmbed } from "../../functions/embed";
 import { GuildSettings } from "../../typings/origin";
 // Modules
 import suggestion from '../../plugins/suggestion/settings';
+import moderation from '../../plugins/moderation/settings'
+import application from '../../plugins/application/settings'
 /*
 import modmenu from '../../functions/settingsFunctions/moderation/modmenu';
 import logmenu from '../../functions/settingsFunctions/logging/logmenu';
@@ -20,17 +22,20 @@ import prefixset from '../../functions/settingsFunctions/prefix';
 export default class extends Command {
 	constructor(bot: OriginClient) {
 		super(bot, {
-			name: 'suggest',
+			name: 'settings',
 			description: 'View the settings of your guild',
+			aliases: ['s'],
 			syntax: ['!settings']
 		})
 	}
 	async run(message: OriginMessage, args: string[], guild: GuildSettings): Promise<void|Message> {
-		if (message.author.id !== message.guild?.ownerID) return message.reply(RegularEmbed({title: 'Permissions', description: 'You need to be the guild owner or have owner permission to be able to view the guild\'s settings' }));
+
+		if (message.author.id !== message.guild?.ownerID) return message.error('You need to be the guild owner or have owner permission to be able to view the guild\'s settings')
 		if (!args[0]) return;
+		
 		// The Heart
 		if (args[0].startsWith('mod')) {
-			// return await modmenu(this.bot, message, args);
+			return await moderation(this.bot, message, args, guild)
 		}
 		if (args[0].startsWith('log')) {
 			// return await logmenu(this.bot, message, args);
@@ -51,7 +56,7 @@ export default class extends Command {
 			// await welcome(this.bot, message, args);
 		}
 		if (args[0].startsWith('app')) {
-			// await applicationmenu(this.bot, message, args);
+			await application(this.bot, message, args, guild);
 		}
 		if (args[0].startsWith('point')) {
 			// await pointsmenu(this.bot, message, args);

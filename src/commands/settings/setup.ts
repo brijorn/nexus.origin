@@ -2,7 +2,7 @@ import embed from '../../functions/embed';
 import fetch from 'node-fetch';
 import Command from '../../lib/structures/Command';
 import { GroupBinds, GuildSettings, RoleBindGroup } from '../../typings/origin';
-import OriginMessage from '../../lib/extensions/OriginMessage';
+import { OriginMessage } from '../../lib/extensions/OriginMessage';
 import { Message } from 'discord.js';
 import OriginClient from '../../lib/OriginClient';
 import { editPrompt, editStart } from '../../lib/util/prompt';
@@ -33,6 +33,7 @@ export default class extends Command {
 			title: 'Group Setup',
 			description: 'What is the **ID** of the group?\nThis will wipe all bindings for the group with this id or previous main group.\n\nRespond **cancel** to cancel'
 		});
+
 		if (!groupid) return message.error('Setup has timed out.');
 		if (groupid.content.toLowerCase() === 'cancel') { groupid.message.delete({ timeout: 10 }); return message.channel.send('Cancelled');}
 		const numbercheck = numbers.test(groupid.content);
@@ -145,7 +146,8 @@ export default class extends Command {
 		setup4.setThumbnail(groupThumb);
 
 		const verification = await this.bot.handlers.verification.settings.fetch(message.guild.id)
-		
+		const previousMainGroup = verification.role_binds.find(group => group.id == groupId || group.main == true)
+		if (previousMainGroup) verification.role_binds.splice(verification.role_binds.indexOf(previousMainGroup))
 		verification.verified_role = verifiedRole.id
 		verification.role_binds.push(newGroupObject)
 		await verification.save()

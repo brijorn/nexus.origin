@@ -1,5 +1,5 @@
 import Command from "../../lib/structures/Command";
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 
 import { Message, MessageEmbed } from 'discord.js';
 import OriginClient from "../../lib/OriginClient";

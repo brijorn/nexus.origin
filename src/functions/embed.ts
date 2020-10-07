@@ -49,7 +49,9 @@ export function RegularEmbed(
 		if (opt.title !== 'none') construct.setTitle(opt.title)
 	}
 	if (opt.description) construct.setDescription(opt.description)
-	if (opt.footer) construct.setFooter(opt.footer)
+	if (opt.footer) construct.setFooter(opt.footer.text, opt.footer.iconURL || '')
+	if (opt.author) construct.setAuthor(opt.author.name, opt.author.icon)
+	if (opt.thumbnail) construct.setThumbnail(opt.thumbnail)
 	if (opt.timestamp && opt.timestamp == true) construct.setTimestamp()
 	if (opt.color) {
 		if (opt.color === 'success') construct.setColor(Colors.GREEN_SUCCESS)

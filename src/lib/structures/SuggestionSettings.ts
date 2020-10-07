@@ -1,4 +1,4 @@
-import { DatabaseHandler } from "../../handlers/DatabaseHandler";
+import DatabaseHandler from "../../handlers/DatabaseHandler";
 
 export class SuggestionSettings {
 	constructor(database: DatabaseHandler) {

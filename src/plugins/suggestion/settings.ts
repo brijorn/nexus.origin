@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
 import { RegularEmbed } from "../../functions/embed";
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 import OriginClient from "../../lib/OriginClient";
 import { SuggestionSettings } from "../../typings/origin.d";
 import { GuildSettings } from "../../typings/origin";

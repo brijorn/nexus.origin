@@ -4,7 +4,7 @@ import { Application, ApplicationSettings, GuildSettings } from "../../typings/o
 import { editStart, prompt } from "../../lib/util/prompt";
 import pmprompt from "../../lib/util/prompt/pmprompt";
 import OriginClient from "../../lib/OriginClient";
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 import Command from "../../lib/structures/Command";
 
 export default class extends Command {
@@ -17,7 +17,7 @@ export default class extends Command {
 
 	async run(message: OriginMessage, args: string[], guild: GuildSettings): Promise<void|Message> {
 		const application: ApplicationSettings =
-		await this.bot.handlers.database.getOne("modules", "applications", {
+		await this.bot.handlers.database.getOne("modules", "application", {
 			guild_id: message.guild?.id,
 		})
 	const app = application.applications;

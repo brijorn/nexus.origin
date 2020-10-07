@@ -1,6 +1,6 @@
 import { MessageReaction, User } from "discord.js";
 import OriginClient from "../../lib/OriginClient";
-import OriginMessage from "../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
 import { Panel, Ticket, unClaimedTicket } from "../../typings/origin";
 
 export default class TicketManager {

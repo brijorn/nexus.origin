@@ -1,6 +1,9 @@
-import { Client, ColorResolvable, EmbedField, Message, MessageEmbed, MessageOptions, Role } from "discord.js";
+import { Client, ColorResolvable, EmbedField, Message, MessageEmbed, MessageEmbedFooter, MessageOptions, Role, Structures } from "discord.js";
+import CacheHandler from "../handlers/CacheHandler";
 import CommandHandler from "../handlers/CommandHandler";
-import { DatabaseHandler } from "../handlers/DatabaseHandler";
+import DatabaseHandler from "../handlers/DatabaseHandler";
+import EventHandler from "../handlers/EventHandler";
+import JobHandler from "../handlers/JobHandler";
 import { VerificationHandler } from "../handlers/VerificationHandler";
 import TicketManager from "../plugins/ticketing/TicketManager";
 
@@ -134,12 +137,13 @@ export interface EmbedFields {
 	title?: string
 	description?: string,
 	color?: ColorResolvable,
-	footer?: string,
+	footer?: MessageEmbedFooter,
 	timestamp?: boolean
 	author?: {
 		name: string,
 		icon: string,
 	}
+	thumbnail?: string
 	fields?: EmbedField[]
 }
 
@@ -196,6 +200,7 @@ export interface VerificationUser {
  */
 export interface OriginClient extends Client {
 	commands: CommandHandler
+	events: EventHandler
 	handlers: OriginHandlers,
 
 	login(token: string): Promise<string>
@@ -207,7 +212,9 @@ export interface OriginClient extends Client {
 export interface OriginHandlers {
     database: DatabaseHandler,
     ticket: TicketManager,
-    verification: VerificationHandler
+	verification: VerificationHandler,
+	cache: CacheHandler,
+	job: JobHandler
 }
 /**
  * A Panel Settings
@@ -352,4 +359,73 @@ export interface UserProfile {
 	status: string;
 	presence: boolean,
 	thumbnail: string;
+}
+
+export interface WelcomeSettings {
+	enabled: boolean;
+	channel: string;
+	embed: boolean;
+	message: string;
+}
+
+// Moderation
+
+export interface ModerationSettings {
+	guild_id: string,
+    mod_enabled: boolean,
+	mod_roles: string[],
+	cases: number,
+
+    kick_enabled: boolean,
+    kick_roles: string[],
+    kick_require_reason: boolean,
+	kick_message: string,
+	
+    ban_enabled: boolean,
+    ban_roles: string[],
+    ban_require_reason: boolean,
+    ban_message: string
+
+	mute_enabled: boolean,
+	muted_role: string,
+    mute_roles: string[],
+    mute_message: string,
+	unmute_message: string,
+	
+    warn_enabled: boolean,
+    warn_roles: string[],
+    warn_message: string,
+    purge_enabled: boolean,
+	mod_log: string
+	
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	[key: string]: any;
+}
+
+export interface ModerationLog {
+	guild_id: string,
+	case_id: string,
+	user_id: string,
+	user_tag: string,
+	mod_id: string,
+	mod_tag: string,
+	type: 'ban' | 'kick' | 'mute' | 'warn',
+	reason: string,
+	duration: string,
+	date: string,
+	[key: string]: string
+
+}
+
+export interface ModerationCase {
+	guild_id: string,
+	case_id: number,
+	user_id: string,
+	user_tag: string,
+	mod_id: string,
+	mod_tag: string,
+	type: 'ban' | 'kick' | 'mute' | 'warn',
+	reason: string,
+	duration: string,
+	date: string,
 }

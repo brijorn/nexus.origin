@@ -1,8 +1,8 @@
-import { channel as parseChannel } from '../../lib/util/parse';
+import { parseChannel } from '../../lib/util/parse';
 import { Client, Guild, Message, TextChannel } from 'discord.js';
 import Command from "../../lib/structures/Command";
 import OriginClient from '../../lib/OriginClient';
-import OriginMessage from '../../lib/extensions/OriginMessage';
+import { OriginMessage } from '../../lib/extensions/OriginMessage';
 import { GuildSettings } from '../../typings/origin';
 
 
@@ -15,6 +15,7 @@ export default class extends Command {
 		})
 	}
 	async run(message: OriginMessage, args: string[], guild: GuildSettings): Promise<void|Message> {
+		if (!message.guild) return;
 		let json_data = '';
 	try {
 		json_data = (args.includes('-channel')) ?
@@ -28,8 +29,8 @@ export default class extends Command {
 
 	if (channel) {
 		try {
-		const getChannel = parseChannel(message, channel) as string;
-		const textChannel = message.guild?.channels.cache.get(getChannel) as TextChannel
+		const textChannel = parseChannel(message.guild, channel);
+		if (!textChannel) return message.error('Could not find the given channel')
 		textChannel.send({ embed: json_data });
 		}
 		catch {

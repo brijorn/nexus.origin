@@ -1,13 +1,11 @@
 import { GuildSettings } from "../../typings/origin";
-
 import config from '../../lib/util/json/config.json';
 import { Message, MessageEmbed } from 'discord.js';
-import { editStart } from "../../lib/util/prompt";
-import embed, { RegularEmbed } from "../../functions/embed";
 import OriginClient from "../../lib/OriginClient";
-import OriginMessage from "../../lib/extensions/OriginMessage";
-import { role} from '../../lib/util/parse'
+import { OriginMessage } from "../../lib/extensions/OriginMessage";
+import { parseRole } from '../../lib/util/parse'
 import enabledisable from '../../lib/util/enabledisable'
+
 export default async (bot: OriginClient, message: OriginMessage, args: string[], guild: GuildSettings): Promise<Message|void> => {
 	if (!message.guild) return message.error('Bot Error: Try running the command again')
 
@@ -46,7 +44,7 @@ export default async (bot: OriginClient, message: OriginMessage, args: string[],
 		await verification.save()
 	}
 	if (arg1low === 'unverifiedrole') {
-		await role(message, 'Unverified');
+		parseRole(message.guild, 'Unverified');
 	}
 	if (arg1low === 'nicknaming' || arg1low === 'nickname') {
 		const value = await enabledisable(message, 'nicknaming');
@@ -55,7 +53,7 @@ export default async (bot: OriginClient, message: OriginMessage, args: string[],
 		await verification.save()
 	}
 	if (arg1low === 'verified' || arg1low === 'verifiedrole') {
-		await role(message, 'Verified');
+		parseRole(message.guild, 'Verified');
 	}
 	if (arg1low === 'nicknameformat') {
 		console.log('hi')

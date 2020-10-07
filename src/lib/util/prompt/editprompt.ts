@@ -1,6 +1,6 @@
 import { Message, MessageEmbed } from "discord.js";
 import { EmbedFields } from "../../../typings/origin";
-import OriginMessage from "../../extensions/OriginMessage";
+import { OriginMessage } from "../../extensions/OriginMessage";
 
 export default async (message: OriginMessage, msgToEdit: Message, msg: MessageEmbed | EmbedFields, type = 'regular'): Promise<string|undefined> => {
 	// Makes sure that the bot will only listen to a message from the author

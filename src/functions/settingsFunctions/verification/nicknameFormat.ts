@@ -5,7 +5,7 @@ import { MessageEmbed } from "discord.js";
 
 import { VerificationSettings, GuildSettings } from "../../../typings/origin";
 import OriginClient from "../../../lib/OriginClient";
-import OriginMessage from "../../../lib/extensions/OriginMessage";
+import { OriginMessage } from "../../../lib/extensions/OriginMessage";
 
 module.exports = async (
 	bot: OriginClient,
